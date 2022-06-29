@@ -13,13 +13,15 @@
 > Instrucciones: *listar los requerimientos que se consideran para el MVP. Respetar el formato de listado indicado*
 
 - Admin
-  - [x] Requerimiento 1
-  - [ ] Requerimiento 2
-  - [ ] ...
+  - [ ] Check the inventory of the establishment
+  - [ ] Generate a sales record
+  - [ ] Generate a purchase record
+  - [ ] To review the statement of account
+  - [ ] Generate a purchase ticket
 
-- User 
-  - [ ] Requerimiento 1
-  - [ ] Requerimiento 2
+- Employee 
+  - [ ] Generate a purchase ticket
+  - [ ] Generate a sales record
   - [ ] ...
 
 ## Requerimientos no funcionales
