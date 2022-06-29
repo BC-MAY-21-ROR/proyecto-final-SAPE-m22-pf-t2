@@ -1,12 +1,12 @@
 ![BrightCoders Logo](img/logo-bc.png)
 
-# Nombre del proyecto
+# SAPE
 
-> Instrucciones: *remplazar el título con el nombre del proyecto*
 
 ## Descripción
 
 > Instrucciones: *escribir la descripción general del proyecto*
+> Favorece a las personas que emprenden un pequeño negocio y tienen un interes de llevar a cabo una mejor organizacion en cuanto a sus gastos y ganancias y en base a esto tomar accion para solucionar inconvenientes en su negocio
 
 ## Requerimientos funcionales
 
