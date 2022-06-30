@@ -2,19 +2,21 @@
 
 # SAPE
 
+> Administrative management system for small and medium-sized businesses.  
 
-> Favorece a las personas que emprenden un pequeño negocio y tienen un interés de llevar a cabo una mejor organización en sus gastos y ganancias; y, en base a esto, tomar acción para solucionar inconvenientes dentro de su negocio.
+  
+## Solution
 
-# Solución
+> Sape seeks to help people who start a small business to have an interest in better organizing their expenses and profits; and, based on this, take action to solve problems within their business.
 
-> Sistema administrativo ...
+  
+ 
+## Functional requirements
 
-## Requerimientos funcionales
-
-> Instrucciones: *listar los requerimientos que se consideran para el MVP. Respetar el formato de listado indicado*
 
 - Admin
   - [ ] Check establishment's inventory
+  - [ ] Chequear el inventario del establecimiento
   - [ ] Generate a sales record
   - [ ] Generate a purchase record
   - [ ] Generate a purchase ticket
@@ -25,7 +27,7 @@
   - [ ] Generate a sales record
   - [ ] ...
 
-## Requerimientos no funcionales
+## Non functional requirements
 
 - [ ] Responsive design (Tailwind / SASS)
 - [ ] Unit tests (rspec)
@@ -34,18 +36,15 @@
 - [ ] User authentication (devise)
 - [ ] Quality code tools (Rubycritic, Sandimeter and Rubocop)
 
-## Plan de ejecución
+## Implementation plan
 
-> Instrucciones:*considerando que el tiempo que tienen para desarrollar el proyecto es relativamente corto, es importante elaborar una planeación que permita dimensionar el máximo avance posible. Se trata solamente de un plan que pudiera ir cambiando, pero servirá como referencia. Haz una copia de [este template en Google Sheets](https://docs.google.com/spreadsheets/d/1e3kxrdzytEhMlVp1hoItIa-eFhUjE4oFR_iy4MoDiAU/edit?usp=sharing) y actualiza los requerimientos y tiempos para este proyecto. Una vez terminado inserta el enlace al documento y asegúrate de dar acceso a todos quienes tengan este enlace.
+- [Google Excel Spreadsheet](https://docs.google.com/spreadsheets/d/1OD6QHTJwX1rC9uao96UtTkR1vgi-bsUOJfWgyjVTQl4/edit#gid=0)
 
-- [Ver el plan de ejecución](inserta aquí el enlace a tu documento)
+## UI Design
 
-## Diseño de UI
-> Instrucciones: *inserta el enlace a el diseño de UI de tu proyecto. Asegúrate de que todos tengan permisos para el acceso.*
+- [Excalidraw design](https://excalidraw.com/#room=da518a0cf656d9ae061b,AlWoFfTbco7aqFR3JZPxuA)
 
-- [Ver diseño de UI]()
-
-## Recursos
+## Resources
 
 - [Minimum Viable Product](https://www.agilealliance.org/glossary/mvp/#q=~(infinite~false~filters~(tags~(~'mvp))~searchTerm~'~sort~false~sortDirection~'asc~page~1))
 - [Minimum Viable Product (MVP)](https://www.productplan.com/glossary/minimum-viable-product/)
