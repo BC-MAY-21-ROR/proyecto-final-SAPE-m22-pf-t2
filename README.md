@@ -3,34 +3,36 @@
 # SAPE
 
 
-## Descripción
+> Favorece a las personas que emprenden un pequeño negocio y tienen un interés de llevar a cabo una mejor organización en sus gastos y ganancias; y, en base a esto, tomar acción para solucionar inconvenientes dentro de su negocio.
 
-> Instrucciones: *escribir la descripción general del proyecto*
-> Favorece a las personas que emprenden un pequeño negocio y tienen un interes de llevar a cabo una mejor organizacion en cuanto a sus gastos y ganancias y en base a esto tomar accion para solucionar inconvenientes en su negocio
+# Solución
+
+> Sistema administrativo ...
 
 ## Requerimientos funcionales
 
 > Instrucciones: *listar los requerimientos que se consideran para el MVP. Respetar el formato de listado indicado*
 
 - Admin
-  - [ ] Check the inventory of the establishment
+  - [ ] Check establishment's inventory
   - [ ] Generate a sales record
   - [ ] Generate a purchase record
-  - [ ] To review the statement of account
   - [ ] Generate a purchase ticket
+  - [ ] Review the statement of account
 
-- Employee 
+- Employee
   - [ ] Generate a purchase ticket
   - [ ] Generate a sales record
   - [ ] ...
 
 ## Requerimientos no funcionales
 
-> Instrucciones: *listar los requerimientos que se consideran para el MVP. Respetar el formato de listado indicado*
-
-- [ ] Requerimiento 1
-- [ ] Requerimiento 2
-- [ ] ...
+- [ ] Responsive design (Tailwind / SASS)
+- [ ] Unit tests (rspec)
+- [ ] Database system (PostgreSQL)
+- [ ] Deployment (Heroku)
+- [ ] User authentication (devise)
+- [ ] Quality code tools (Rubycritic, Sandimeter and Rubocop)
 
 ## Plan de ejecución
 
