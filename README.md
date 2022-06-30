@@ -25,7 +25,6 @@
 - Employee
   - [ ] Generate a purchase ticket
   - [ ] Generate a sales record
-  - [ ] ...
 
 ## Non functional requirements
 
