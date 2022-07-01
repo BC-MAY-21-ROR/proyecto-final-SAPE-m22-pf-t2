@@ -16,7 +16,6 @@
 
 - Admin
   - [ ] Check establishment's inventory
-  - [ ] Chequear el inventario del establecimiento
   - [ ] Generate a sales record
   - [ ] Generate a purchase record
   - [ ] Generate a purchase ticket
