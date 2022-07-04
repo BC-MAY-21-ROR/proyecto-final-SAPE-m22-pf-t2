@@ -18,10 +18,12 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
 gem 'dotenv-rails', groups: [:development, :test]
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
 end
+
 group :development do
   gem "web-console"
   gem 'annotate', '~> 3.1', '>= 3.1.1'
@@ -32,4 +34,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
