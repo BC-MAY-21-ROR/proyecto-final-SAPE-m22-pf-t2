@@ -1,7 +1,13 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 require 'dotenv/load' if defined? Dotenv
+
+if Rails.env != 'production'
+  require 'dotenv'
+  Dotenv.load('.env.docker') if Rails.env == 'docker'
+end
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
