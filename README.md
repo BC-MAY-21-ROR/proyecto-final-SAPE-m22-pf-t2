@@ -2,17 +2,19 @@
 
 # SAPE
 
-> Administrative management system for small and medium-sized businesses.  
+Administrative management system for small and medium-sized businesses.  
 
-  
+## Sprint Leader
+
+| Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 | Sprint 5 | Sprint 6 | Sprint 7 | Sprint 8 |
+|---|---|---|---|---|---|---|---|
+| Ever |
+
 ## Solution
 
-> Sape seeks to help people who start a small business to have an interest in better organizing their expenses and profits; and, based on this, take action to solve problems within their business.
-
-  
+Sape seeks to help people who start a small business to have an interest in better organizing their expenses and profits; and, based on this, take action to solve problems within their business.
  
 ## Functional requirements
-
 
 - Admin
   - [ ] Check establishment's inventory
