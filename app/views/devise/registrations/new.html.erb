@@ -22,6 +22,11 @@
       <hr class="w-full bg-gray-400  ">
     </div>
 
+    <div class="mb-6">
+      <%= f.label :name, class: "uppercase text-gray-700 text-xs font-bold " %> <br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
+    </div>
+
 
     <div class="mb-6">
       <%= f.label :email, class: "uppercase text-gray-700 text-xs font-bold " %> <br />
