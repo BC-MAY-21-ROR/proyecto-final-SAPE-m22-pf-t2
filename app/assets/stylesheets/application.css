@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+/* ----Config---- */
+@import "config/reset.css";
+
+/* ----Dashboard---- */
+@import "pages/dashboard.css"

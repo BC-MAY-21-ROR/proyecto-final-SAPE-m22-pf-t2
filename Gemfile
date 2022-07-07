@@ -14,7 +14,7 @@ gem "jbuilder"
 gem "tzinfo-data"
 gem "bootsnap", require: false
 gem "tailwindcss-rails", "~> 2.0"
-gem 'wicked_pdf' 
+gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
 gem 'dotenv-rails', groups: [:development, :test]
