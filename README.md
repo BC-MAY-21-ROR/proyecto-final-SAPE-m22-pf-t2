@@ -31,9 +31,9 @@ Sape seeks to help people who start a small business to have an interest in bett
 
 - [ ] Responsive design (Tailwind / SASS)
 - [ ] Unit tests (rspec)
-- [ ] Database system (PostgreSQL)
+- [x] Database system (PostgreSQL)
 - [ ] Deployment (Heroku)
-- [ ] User authentication (devise)
+- [x] User authentication (devise)
 - [ ] Quality code tools (Rubycritic, Sandimeter and Rubocop)
 
 ## Implementation plan
