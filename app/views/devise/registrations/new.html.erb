@@ -1,29 +1,55 @@
-<h2>Sign up</h2>
+<% content_for :form_wrap do %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2 class="text-3xl font-bold mb-6">Sign up</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <button aria-label="Continue with google" role="button" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10">
+      <img src="/app/assets/images/logo.svg"> </img>
+      <p class="text-base font-medium ml-4 text-gray-700">Sign up with Google</p>
+    </button>
+
+    <div class="w-full flex items-center justify-between py-5">
+      <hr class="w-full bg-gray-400">
+      <p class="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
+      <hr class="w-full bg-gray-400  ">
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :name, class: "uppercase text-gray-700 text-xs font-bold " %> <br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
+    </div>
+
+
+    <div class="mb-6">
+      <%= f.label :email, class: "uppercase text-gray-700 text-xs font-bold " %> <br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password , class: "uppercase text-gray-700 text-xs font-bold " %>
+      <% if @minimum_password_length %>
+        <em class="italic text-sm text-gray-600">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password_confirmation, class: "uppercase text-gray-700 text-xs font-bold " %> <br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2 " %>
+    </div>
+
+    <div class="mt-8">
+      <%= f.submit "Sign up", class: "focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full" %>
+    </div>
+   
+  <% end %>
+
+  <div class="my-6">
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="btn btn-black">
-    <%= f.submit "Sign up" %>
-  </div>
+  
 <% end %>
-
-<%= render "devise/shared/links" %>
+ 
+ <%= render "devise/shared/form_wrap" %>
