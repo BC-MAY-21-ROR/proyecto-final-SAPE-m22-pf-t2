@@ -11,22 +11,19 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!--Replace with your tailwind.css once created-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+  </head>
   <body>
     <main>
-      <%= yield %>
+      <%= yield  %>
     </main>
     <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
+      <p class="alert alert-success"><%= notice %></p>
     <% end %>
-
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p> 
-    <% end %> 
-    
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-  
   </body>
-
 </html>

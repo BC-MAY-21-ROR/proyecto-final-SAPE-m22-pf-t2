@@ -1,28 +1,15 @@
 class DashboardController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def business_date
+  def business_date; end
 
-  end
+  def inventory; end
 
-  def inventory
+  def providers; end
 
-  end
+  def sales_and_purcharses; end
 
-  def providers
-    
-  end
+  def statement_of_income; end
 
-  def sales_and_purcharses
-
-  end
-
-  def statement_of_income
-
-  end
-
-  def balance_sheet
-
-  end
+  def balance_sheet; end
 end

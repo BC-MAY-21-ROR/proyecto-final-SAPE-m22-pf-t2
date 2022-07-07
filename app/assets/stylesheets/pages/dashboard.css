@@ -28,9 +28,8 @@ hover\:border-none:hover {
 }
 
 #sidebar:hover {
-  width: 290px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  /*shadow-2xl*/
+  width: 290px;
 }
 
 #sidebar:hover span {
