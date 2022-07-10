@@ -1,5 +1,12 @@
-
 /* ----Config---- */
 
 /* ----Dashboard---- */
-@import "pages/dashboard.css";
+@import 'pages/dashboard.css';
+
+body {
+  height: 100vh;
+}
+
+main {
+  height: 100vh;
+}
