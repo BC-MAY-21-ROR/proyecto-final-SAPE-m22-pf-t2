@@ -1,22 +1,20 @@
 class OmniauthController < Devise::OmniauthCallbacksController
   def github
-    @admin = Admin.create_from_provider_data(request.env['omniauth.auth'])
-    if @admin.persisted?
-      sign_in_and_redirect @admin
-      set_flash_message(:notice, :success, kind: 'Github') if is_navigational_format?
-    else
-      flash[:error] = 'There was a problem signing you in through Github. Please register or try signing in later.'
-      redirect_to new_admin_registration_url
-    end
+    sign_in_from_provider 'Github'
   end
 
   def google_oauth2
+    sign_in_from_provider 'Google'
+  end
+
+  def sign_in_from_provider(provider)
     @admin = Admin.create_from_provider_data(request.env['omniauth.auth'])
     if @admin.persisted?
       sign_in_and_redirect @admin
-      set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
+      set_flash_message(:notice, :success, kind: provider) if is_navigational_format?
     else
-      flash[:error] = 'There was a problem signing you in through Google. Please register or try signing in later.'
+      flash[:error] =
+        "There was a problem signing you in through #{provider}. Please register or try signing in later."
       redirect_to new_admin_registration_url
     end
   end
