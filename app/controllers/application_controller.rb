@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: 
+  before_action :configure_permitted_parameters, if:
   :devise_controller?
 
   protected
@@ -8,6 +8,5 @@ class ApplicationController < ActionController::Base
     added_attrs = [:name]
     devise_parameter_sanitizer.permit :sign_up, keys:
     added_attrs
-
   end
 end
