@@ -1,0 +1,8 @@
+<div class="relative w-full max-w-3xl px-6">
+  <div class="absolute h-10 mt-1 left-0 top-0 flex items-center pl-10">
+    <%= show_svg 'lens.svg' %>
+  </div>
+  <input id="search-toggle" type="search" placeholder="search"
+    class="block w-full bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3"
+    onkeyup="updateSearchResults(this.value);">
+</div>

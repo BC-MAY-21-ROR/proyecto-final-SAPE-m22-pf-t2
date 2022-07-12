@@ -36,6 +36,8 @@ gem 'omniauth-google-oauth2'
 # Load env variables
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'rubocop-rails', require: false
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
