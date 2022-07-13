@@ -1,33 +1,40 @@
 <%= form_with(model: business, class: "contents") do |f| %>
+  <div class="mb-6">
+    <%= f.label 'Name', for: 'business_name', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :name, placeholder: 'Enter business name', class: "" %>
+    <% business.errors.full_messages_for(:name).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
 
-  <%= f.label 'Name', for: 'business_name', class: '' %>
-  <%= f.text_field :name, placeholder: 'Enter business name', class: '' %>
-  <% business.errors.full_messages_for(:name).each do |message| %>
-    <div class=''>
-      <%= message %>
-    </div>
-  <% end %>
+  <div class="mb-6">
+    <%= f.label 'Type', for: 'business_type', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :business_type, placeholder: 'Enter business type', class: '' %>
+    <% business.errors.full_messages_for(:business_type).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
 
-  <%= f.label 'Type', for: 'business_type', class: '' %>
-  <%= f.text_field :business_type, placeholder: 'Enter business type', class: '' %>
-  <% business.errors.full_messages_for(:business_type).each do |message| %>
-    <div class=''>
-      <%= message %>
-    </div>
-  <% end %>
+  <div class="mb-6">
+    <%= f.label 'Address', for: 'business_address', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :address, placeholder: 'Enter business address', class: '' %>
+    <% business.errors.full_messages_for(:address).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
 
-  <%= f.label 'Address', for: 'business_address', class: '' %>
-  <%= f.text_field :address, placeholder: 'Enter business address', class: '' %>
-  <% business.errors.full_messages_for(:address).each do |message| %>
-    <div class=''>
-      <%= message %>
-    </div>
-  <% end %>
+  <div class="mb-6">
+    <%= f.label 'Country', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.select :country_id, @countries.map { |country| [country.name, country.id] }, {}, {class: ''} %>
+  </div>
 
-  <%= f.label 'Country', class: '' %>
-  <%= f.select :country_id, @countries.map { |country| [country.name, country.id] }, {}, {class: ''} %>
-
-  <div class="inline">
+  <div class="m-6">
     <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 
