@@ -1,2 +1,2 @@
-@import "pages/landing.css";
-@import "pages/dashboard.css";
+@import url('pages/landing.css');
+@import url('pages/dashboard.css');

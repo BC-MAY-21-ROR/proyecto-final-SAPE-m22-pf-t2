@@ -17,14 +17,14 @@ hover\:border-none:hover {
 }
 
 #sidebar {
-  transition: ease-in-out all .3s;
+  transition: ease-in-out all 0.3s;
   z-index: 9999;
 }
 
 #sidebar span {
   opacity: 0;
   position: absolute;
-  transition: ease-in-out all .1s;
+  transition: ease-in-out all 0.1s;
 }
 
 #sidebar:hover {
