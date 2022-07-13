@@ -5,6 +5,11 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
+  validates :name, :email, presence: true
+  validates :name, length: { minimum: 3 }
+  validates :email, uniqueness: { case_sensitive: false },
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
+
   def self.create_from_provider_data(provider_data)
     create!(
       name: provider_data.info.name,
