@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   devise_for :admin, controllers: { omniauth_callbacks: 'omniauth' }
 
   get 'landing_page/index'
