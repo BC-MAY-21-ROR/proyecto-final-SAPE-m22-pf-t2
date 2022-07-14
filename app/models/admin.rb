@@ -7,6 +7,11 @@ class Admin < ApplicationRecord
 
   has_one :business
 
+  validates :name, :email, presence: true
+  validates :name, length: { minimum: 3 }
+  validates :email, uniqueness: { case_sensitive: false },
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
+
   def self.create_from_provider_data(provider_data)
     create!(
       name: provider_data.info.name,

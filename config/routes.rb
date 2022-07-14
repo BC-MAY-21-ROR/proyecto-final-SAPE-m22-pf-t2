@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :businesses
-  devise_for :admin, controllers: { omniauth_callbacks: 'omniauth' }
+  devise_for :admin, controllers: { omniauth_callbacks: 'omniauth', registrations: 'admins/registrations' }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get 'dashboard', to: 'dashboard#index'
