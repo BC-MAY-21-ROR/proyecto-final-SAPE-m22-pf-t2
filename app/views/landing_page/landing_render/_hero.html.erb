@@ -1,0 +1,17 @@
+  <div class="container mx-auto h-screen">
+    <div class="px-3 lg:px-0">
+      <div class="text-center flex flex-col content-center justify-center">
+        <h1
+          class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight"
+        >
+        Need help with your business?We got you covered
+        </h1>
+        <p
+        class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
+        >
+          Try us for free!
+        </p>
+      <img id="sapec_logo" src="<%= asset_path('logo.png')%>" class="w-64 mx-auto" />
+      <%= link_to "Sign up", new_admin_registration_path, :class => "gradient2 mx-auto hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48" %>
+    </div>
+  </div>
