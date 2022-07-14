@@ -4,38 +4,15 @@
     Log in
   </h2>
 
+  <%= render "devise/shared/oauth_providers_links", action: 'Log in' %>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-
-    <button
-      aria-label="Continue with google"
-      role="button"
-      class="
-        focus:outline-none
-        focus:ring-2
-        focus:ring-offset-1
-        focus:ring-gray-700
-        py-3.5
-        px-4
-        border
-        rounded-lg
-        border-gray-700
-        flex
-        items-center
-        w-full
-        mt-10
-      "
-    >
-      <%= image_tag("logo.svg", :alt => 'Google icon') %>
-      <p class="text-base font-medium ml-4 text-gray-700">
-        Log in with Google
-      </p>
-    </button>
 
     <div class="w-full flex items-center justify-between py-5">
       <hr class="w-full bg-gray-400">
       <p class="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
-      <hr class="w-full bg-gray-400">
+      <hr class="w-full bg-gray-400 ">
     </div>
 
     <div class="mb-6">
@@ -70,6 +47,7 @@
         <%= f.label :remember_me %>
       </div>
     <% end %>
+  <% end %>
 
   <% end %>
 

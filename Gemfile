@@ -3,22 +3,40 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 gem "rails", "~> 7.0.3"
-gem "sprockets-rails"
-gem 'devise', '~> 4.8', '>= 4.8.1'
-gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
+gem "sprockets-rails"
+
+# Database driver
+gem "pg", "~> 1.1"
+
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data"
 gem "bootsnap", require: false
+
+# Styling
 gem "tailwindcss-rails", "~> 2.0"
-gem 'wicked_pdf'
+
+# PDF reports
+gem 'wicked_pdf' 
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
-gem 'rubocop-rails', require: false
+
+# Authorization
+gem 'devise', '~> 4.8', '>= 4.8.1'
+
+# Omniauth
+gem 'omniauth'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+
+# Load env variables
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'rubocop-rails', require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
