@@ -1,2 +1,10 @@
 @import url('pages/landing.css');
 @import url('pages/dashboard.css');
+
+body {
+  height: 100vh;
+}
+
+main {
+  height: 100vh;
+}
