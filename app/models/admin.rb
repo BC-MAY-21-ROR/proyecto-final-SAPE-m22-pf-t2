@@ -5,6 +5,8 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
+  has_one :business
+
   def self.create_from_provider_data(provider_data)
     create!(
       name: provider_data.info.name,

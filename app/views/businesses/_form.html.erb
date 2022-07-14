@@ -1,0 +1,41 @@
+<%= form_with(model: business, class: "contents") do |f| %>
+  <div class="mb-6">
+    <%= f.label 'Name', for: 'business_name', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :name, placeholder: 'Enter business name', class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
+    <% business.errors.full_messages_for(:name).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Type', for: 'business_type', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :business_type, placeholder: 'Enter business type', class: 'bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2' %>
+    <% business.errors.full_messages_for(:business_type).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Address', for: 'business_address', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :address, placeholder: 'Enter business address', class: 'bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2' %>
+    <% business.errors.full_messages_for(:address).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Country', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.select :country_id, @countries.map { |country| [country.name, country.id] }, {}, {class: ''} %>
+  </div>
+
+  <div class="m-6">
+    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+
+<% end %>
