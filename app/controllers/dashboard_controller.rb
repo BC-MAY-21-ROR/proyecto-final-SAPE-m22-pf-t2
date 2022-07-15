@@ -1,19 +1,26 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user_owns_business, only: [:index]
 
   def index
-    redirect_to new_business_path if current_user.business.nil?
+    selected_business_id = session['business_id']
+
+    return unless selected_business_id.nil?
+
+    if @user_owns_business
+      session['business_id'] = @user_owns_business.business.id
+      redirect_to dashboard_path
+    else
+      redirect_to new_business_path
+    end
   end
 
-  def business_date; end
+  private
 
-  def inventory; end
-
-  def providers; end
-
-  def sales_and_purcharses; end
-
-  def statement_of_income; end
-
-  def balance_sheet; end
+  def set_user_owns_business
+    @user_owns_business = BusinessEnrollment.where(
+      user_id: current_user.id,
+      owner: true
+    ).first
+  end
 end

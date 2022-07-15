@@ -17,11 +17,12 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(business_params)
-    @business.user = current_user
 
     respond_to do |format|
       if @business.save
-        format.html { redirect_to dashboard_path, notice: 'Business was successfully created.' }
+        BusinessEnrollment.enroll_own_business_for!(current_user, @business)
+        session['business_id'] = @business.id
+        format.html { redirect_to dashboard_path, notice: 'Your new business was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -31,7 +32,7 @@ class BusinessesController < ApplicationController
   def update
     respond_to do |format|
       if @business.update(business_params)
-        format.html { redirect_to business_url(@business), notice: 'Business was successfully updated.' }
+        format.html { redirect_to business_url(@business), notice: 'Your new business was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
