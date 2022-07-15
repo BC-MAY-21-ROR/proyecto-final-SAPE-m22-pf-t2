@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   resources :businesses
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
-  get 'landing_page/index'
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get 'dashboard', to: 'dashboard#index'
 
@@ -15,5 +13,5 @@ Rails.application.routes.draw do
   get 'dashboard/statement_of_income'
 
   # Defines the root path route ("/")
-  root 'landing_page#index'
+  root 'landing#index'
 end
