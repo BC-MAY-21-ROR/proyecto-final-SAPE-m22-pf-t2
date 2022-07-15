@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
-  has_one :business
+  has_many :business_enrollments
+  has_many :businesses, through: :business_enrollments
 
   validates :name, :email, presence: true
   validates :name, length: { minimum: 3 }
