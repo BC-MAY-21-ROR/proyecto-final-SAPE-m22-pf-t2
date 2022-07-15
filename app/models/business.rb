@@ -1,5 +1,5 @@
 class Business < ApplicationRecord
-  belongs_to :admin
+  belongs_to :user
   belongs_to :country
 
   validates :name, :business_type, :address, presence: true

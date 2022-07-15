@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
   before_action :set_business, only: %i[show edit update destroy]
   before_action :set_countries, only: %i[new edit create update]
 
@@ -17,7 +17,7 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(business_params)
-    @business.admin = current_admin
+    @business.user = current_user
 
     respond_to do |format|
       if @business.save

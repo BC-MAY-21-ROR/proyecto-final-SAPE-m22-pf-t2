@@ -1,8 +1,8 @@
 class DashboardController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
 
   def index
-    redirect_to new_business_path if current_admin.business.nil?
+    redirect_to new_business_path if current_user.business.nil?
   end
 
   def business_date; end

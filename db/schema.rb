@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_13_230011) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_15_204523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
+  create_table "businesses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "country_id"
+    t.string "name"
+    t.string "business_type"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_businesses_on_country_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -25,26 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_13_230011) do
     t.string "provider", limit: 50, default: "sapec", null: false
     t.string "uid", limit: 50, default: "", null: false
     t.string "name", null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "businesses", force: :cascade do |t|
-    t.bigint "admin_id"
-    t.bigint "country_id"
-    t.string "name"
-    t.string "business_type"
-    t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_businesses_on_admin_id"
-    t.index ["country_id"], name: "index_businesses_on_country_id"
-  end
-
-  create_table "countries", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

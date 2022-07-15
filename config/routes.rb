@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
   resources :businesses
-  devise_for :admin, controllers: { omniauth_callbacks: 'omniauth', registrations: 'admins/registrations' }
+  devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
   get 'landing_page/index'
 
