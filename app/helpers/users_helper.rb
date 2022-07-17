@@ -1,5 +1,5 @@
 module UsersHelper
-  def roles_options
+  def roles_to_options
     [%w[Employee employee], %w[Admin admin]]
   end
 end

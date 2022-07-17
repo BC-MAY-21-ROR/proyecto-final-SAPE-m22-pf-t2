@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def current_business_id
     session['business_id']
   end
+
+  def set_current_business_id(business_id)
+    session['business_id'] = business_id
+  end
 end

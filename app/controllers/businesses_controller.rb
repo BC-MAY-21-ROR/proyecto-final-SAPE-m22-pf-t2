@@ -3,14 +3,11 @@ class BusinessesController < ApplicationController
   before_action :set_business, only: %i[show edit update destroy]
   before_action :set_countries, only: %i[new edit create update]
 
-  def index
-    @businesses = Business.all
-  end
-
   def show; end
 
   def new
     @business = Business.new
+    @enrollments = BusinessEnrollment.where(user_id: current_user.id)
   end
 
   def edit; end
@@ -21,12 +18,17 @@ class BusinessesController < ApplicationController
     respond_to do |format|
       if @business.save
         BusinessEnrollment.enroll_own_business_for!(current_user, @business)
-        session['business_id'] = @business.id
+        set_current_business_id(@business.id)
         format.html { redirect_to dashboard_path, notice: 'Your new business was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
     end
+  end
+
+  def join_to_enrolled_business
+    set_current_business_id(params[:business_id])
+    redirect_to dashboard_path
   end
 
   def update

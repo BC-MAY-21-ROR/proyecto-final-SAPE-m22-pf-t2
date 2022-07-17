@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
     @enrollments = BusinessEnrollment.where(
-      business_id: current_business_id,
-      owner: false
+      'business_id = ? AND user_id != ?',
+      current_business_id,
+      current_user.id
     )
   end
 
