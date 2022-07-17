@@ -3,10 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
-    @enrollments = BusinessEnrollment.where(
-      'business_id = ? AND user_id != ?',
-      current_business_id,
-      current_user.id
+    @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
+    @enrollments = BusinessEnrollment.enrollments_for_business_excluding(
+      current_business,
+      current_user
     )
   end
 
@@ -32,10 +32,10 @@ class UsersController < ApplicationController
   end
 
   def enroll_existing_user_to_current_business
-    @user = User.where(email: params[:email]).first
+    @user = User.find_by_email(params[:email])
     if @user.nil?
       redirect_to new_user_path, notice: 'Invalid email.'
-    elsif user_already_enrolled
+    elsif BusinessEnrollment.user_enrolled?(@user, current_business)
       redirect_to new_user_path, notice: 'User already enrolled.'
     else
       enroll_user_to_business
@@ -43,16 +43,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_already_enrolled
-    BusinessEnrollment.where(
-      user_id: @user.id,
-      business_id: current_business_id
-    ).first
-  end
-
   def enroll_user_to_business
     role = params[:role]
-    current_business = Business.where(id: current_business_id).first
     BusinessEnrollment.enroll_user_to_business(@user, current_business, role)
   end
 

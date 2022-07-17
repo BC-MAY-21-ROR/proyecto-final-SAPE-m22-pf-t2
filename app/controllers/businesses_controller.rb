@@ -3,11 +3,15 @@ class BusinessesController < ApplicationController
   before_action :set_business, only: %i[show edit update destroy]
   before_action :set_countries, only: %i[new edit create update]
 
-  def show; end
+  def show
+    @user_owns_business = BusinessEnrollment.user_owns_business?(current_user, current_business)
+    @user_has_own_business = BusinessEnrollment.user_has_own_business?(current_user)
+    @enrollments = BusinessEnrollment.enrollments_for_user_excluding(current_user, current_business)
+  end
 
   def new
     @business = Business.new
-    @enrollments = BusinessEnrollment.where(user_id: current_user.id)
+    @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
   end
 
   def edit; end
@@ -18,23 +22,28 @@ class BusinessesController < ApplicationController
     respond_to do |format|
       if @business.save
         BusinessEnrollment.enroll_own_business_for!(current_user, @business)
-        set_current_business_id(@business.id)
-        format.html { redirect_to dashboard_path, notice: 'Your new business was successfully created.' }
+        self.current_business = @business
+        format.html { redirect_to dashboard_path, notice: 'Your own business was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
 
+  def switch_to_own_business
+    self.current_business = BusinessEnrollment.owned_business_for(current_user)
+    redirect_to dashboard_path
+  end
+
   def join_to_enrolled_business
-    set_current_business_id(params[:business_id])
+    self.current_business_id = params[:business_id]
     redirect_to dashboard_path
   end
 
   def update
     respond_to do |format|
       if @business.update(business_params)
-        format.html { redirect_to business_url(@business), notice: 'Your new business was successfully updated.' }
+        format.html { redirect_to business_url(@business), notice: 'Your own business was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -52,7 +61,7 @@ class BusinessesController < ApplicationController
   private
 
   def set_business
-    @business = Business.find(params[:id])
+    @business = Business.find(current_business_id)
   end
 
   def set_countries

@@ -23,7 +23,7 @@
     </div>
 
     <div class="inline">
-      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+      <%= form.submit "Create employee", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
   <% end %>
 
@@ -38,7 +38,7 @@
     </div>
     <div class="my-5">
       <%= form.label :role %>
-      <%= select_tag(:role, options_for_select(roles_options)) %>
+      <%= select_tag(:role, options_for_select(roles_to_options)) %>
     </div>
     <%= form.submit "Add to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium  cursor-pointer" %>
   <% end %>

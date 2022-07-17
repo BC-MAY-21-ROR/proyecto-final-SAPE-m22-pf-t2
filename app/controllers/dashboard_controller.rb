@@ -1,24 +1,16 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_own_business_enrollment, only: [:index]
 
   def index
-    return unless current_business_id.nil?
+    unless current_business_id.nil?
+      @current_business = Business.find_by_id(current_business_id)
+      return
+    end
 
-    if @own_business_enrollment
-      set_current_business_id(@own_business_enrollment.business.id)
-      redirect_to dashboard_path
+    if BusinessEnrollment.user_has_own_business?(current_user)
+      self.current_business = BusinessEnrollment.owned_business_for(current_user)
     else
       redirect_to new_business_path
     end
-  end
-
-  private
-
-  def set_own_business_enrollment
-    @own_business_enrollment = BusinessEnrollment.where(
-      user_id: current_user.id,
-      owner: true
-    ).first
   end
 end
