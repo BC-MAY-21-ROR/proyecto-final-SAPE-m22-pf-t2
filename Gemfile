@@ -33,6 +33,9 @@ gem "omniauth-rails_csrf_protection"
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 
+#Hosting
+gem 'google-cloud-storage'
+
 # Load env variables
 gem 'dotenv-rails', groups: [:development, :test]
 
