@@ -2,7 +2,7 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Employees</h1>
 
-    <% if @current_user_enrollment.has_admin_role? %>
+    <% if @current_user_enrollment.admin_role? %>
       <%= link_to 'New employee',
         new_user_path,
         class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
@@ -34,6 +34,11 @@
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Owner
               </th>
+              <% if @current_user_enrollment.admin_role? %>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                  Remove from business
+                </th>
+              <% end %>
             </tr>
           </thead>
           <tbody>
@@ -51,6 +56,26 @@
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   <%= enrollment.owner %>
                 </td>
+                <% if @current_user_enrollment.admin_role? %>
+                  <td
+                    scope="col"
+                    class="
+                      text-sm
+                      text-gray-900
+                      font-light
+                      px-6
+                      py-4
+                      whitespace-nowrap
+                    "
+                  >
+                    <%= button_to 'Remove',
+                      remove_employee_from_current_business_path,
+                      method: :delete,
+                      params: { user_id: enrollment.user.id },
+                      class: '',
+                      form: { data: { turbo_confirm: 'Are you sure?' } } %>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

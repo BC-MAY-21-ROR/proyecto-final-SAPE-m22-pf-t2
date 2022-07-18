@@ -50,6 +50,12 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def remove_employee_from_current_business
+    user_to_remove = User.find_by_id(params[:user_id])
+    BusinessEnrollment.remove_enrollment(user_to_remove, current_business)
+    redirect_to users_path, notice: 'Employee removed from business'
+  end
+
   def destroy
     @business.destroy
 
