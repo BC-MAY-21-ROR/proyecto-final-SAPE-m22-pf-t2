@@ -3,6 +3,14 @@ class BusinessesController < ApplicationController
   before_action :set_business, only: %i[show edit update destroy]
   before_action :set_countries, only: %i[new edit create update]
 
+  def index_employees
+    @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
+    @enrollments = BusinessEnrollment.enrollments_for_business_excluding(current_business, current_user)
+    respond_to do |format|
+      format.html { render template: 'businesses/employees/index' }
+    end
+  end
+
   def show
     @user_owns_business = BusinessEnrollment.user_owns_business?(current_user, current_business)
     @user_has_own_business = BusinessEnrollment.user_has_own_business?(current_user)
@@ -12,6 +20,13 @@ class BusinessesController < ApplicationController
   def new
     @business = Business.new
     @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
+  end
+
+  def new_business_employee
+    @user = User.new
+    respond_to do |format|
+      format.html { render template: 'businesses/employees/new' }
+    end
   end
 
   def edit; end

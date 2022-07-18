@@ -2,19 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
 
-  def index
-    @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
-    @enrollments = BusinessEnrollment.enrollments_for_business_excluding(
-      current_business,
-      current_user
-    )
-  end
-
   def show; end
-
-  def new
-    @user = User.new
-  end
 
   def edit; end
 
