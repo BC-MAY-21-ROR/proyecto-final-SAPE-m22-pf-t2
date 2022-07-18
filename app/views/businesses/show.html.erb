@@ -1,35 +1,55 @@
 <div class="container mx-auto h-screen">
-    <%= render @business %>
-    <div class="text-center px-3 lg:px-0">
-      <h1
-          class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight"
-      >
-          <%= @business.name %>
-      </h1>
-      <p
-          class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
-      >
-          Sub-hero message, not too long and not too short. Make it just right!
-      </p>
-      <p
-          class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
-      >
-        <%= @business.business_type%>
-      </p>
-      <p
-          class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
-      >
-        <%= @business.address%>
-      </p>
-      <p
-          class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
-      >
-        <%= @business.country_id%>
-      </p>
-      <%= link_to 'Edit this business', edit_business_path(@business), class: "mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-4" %>
-      <%= link_to 'Back to businesses', businesses_path, class: "mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-4" %>
-      <div class="mt-6">
-        <%= button_to 'Destroy this business', business_path(@business), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-      </div>
-    </div>
+  <div class="text-center px-3 lg:px-0">
+
+    <% unless @user_owns_business %>
+      <% if @user_has_own_business %>
+        <%= button_to 'Go to my business', switch_to_own_business_path, class: '' %>
+      <% else %>
+        <%= link_to 'Create my own business', new_business_path, class: '' %>
+      <% end %>
+    <% end %>
+
+    <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
+      <%= @business.name %>
+    </h1>
+
+    <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+      Sub-hero message, not too long and not too short. Make it just right!
+    </p>
+
+    <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+      <%= @business.business_type %>
+    </p>
+
+    <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+      <%= @business.address %>
+    </p>
+
+    <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+      <%= @business.country.name %>
+    </p>
+
+    <%= link_to 'Edit this business',
+      edit_business_path(@business),
+      class: "mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-4" %>
+
+    <%= link_to 'Back to businesses',
+      business_path,
+      class: "mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-4" %>
+
+    <% unless @enrollments.empty? %>
+      <hr>
+
+      <h1>Switch to another business</h1>
+
+      <%= form_with url: join_to_enrolled_business_path, method: :post do |form| %>
+        <div class="my-5">
+          <%= form.label 'You are enrolled to the following business' %>
+          <%= select_tag(:business_id, options_for_select(enrollments_to_options(@enrollments))) %>
+        </div>
+        <%= form.submit "Join to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium  cursor-pointer" %>
+      <% end %>
+    <% end %>
+
+  </div>
 </div>

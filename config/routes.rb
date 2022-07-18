@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  resources :businesses
-  devise_for :admin, controllers: { omniauth_callbacks: 'omniauth', registrations: 'admins/registrations' }
+  resource :business
+  resources :users, path: '/business/employees'
+  devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get 'dashboard', to: 'dashboard#index'
 
-  get 'dashboard/balance_sheet'
-  get 'dashboard/business_date'
-  get 'dashboard/inventory'
-  get 'dashboard/providers'
-  get 'dashboard/sales_and_purcharses'
-  get 'dashboard/statement_of_income'
+  post 'enroll_existing_user_to_current_business',
+       to: 'users#enroll_existing_user_to_current_business'
 
-  # Defines the root path route ("/")
-  root 'landing_page#index'
+  post 'join_to_enrolled_business',
+       to: 'businesses#join_to_enrolled_business'
+
+  post 'switch_to_own_business',
+       to: 'businesses#switch_to_own_business'
+
+  root 'landing#index'
 end
