@@ -1,4 +1,4 @@
-<%= form_for business, url: business_path(business), class: "contents" do |f| %>
+<%= form_for business, url: business_path, class: "contents" do |f| %>
   <div class="mb-6">
     <%= f.label 'Name', for: 'business_name', class: "uppercase text-gray-700 text-xs font-bold " %>
     <%= f.text_field :name, placeholder: 'Enter business name', class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
