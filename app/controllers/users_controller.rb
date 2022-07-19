@@ -37,8 +37,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    user_params = remove_password_from_params_if_empty
     respond_to do |format|
       if @user.update(user_params)
+        bypass_sign_in @user, scope: :user
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,5 +64,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def remove_password_from_params_if_empty
+    new_user_params = user_params
+    new_user_params = new_user_params.except('password') if new_user_params['password'].empty?
+    new_user_params
   end
 end

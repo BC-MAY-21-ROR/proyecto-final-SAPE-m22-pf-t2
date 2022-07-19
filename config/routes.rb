@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :business
-  resources :users, only: %i[show edit create]
+  resources :users, only: %i[show edit create update]
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
   # Business
