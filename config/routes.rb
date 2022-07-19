@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/business/employees/new',
       to: 'businesses#new_business_employee', as: 'new_employee'
 
+  # Business enrollment
   post 'enroll_existing_user_to_current_business',
        to: 'users#enroll_existing_user_to_current_business'
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   post 'switch_to_own_business',
        to: 'businesses#switch_to_own_business'
 
+  # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'
 
   root 'landing#index'

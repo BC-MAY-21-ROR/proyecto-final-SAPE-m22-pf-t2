@@ -63,12 +63,15 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def remove_password_from_params_if_empty
     new_user_params = user_params
-    new_user_params = new_user_params.except('password') if new_user_params['password'].empty?
-    new_user_params
+    if new_user_params['password'].empty?
+      new_user_params.except('password', 'password_confirmation')
+    else
+      new_user_params
+    end
   end
 end

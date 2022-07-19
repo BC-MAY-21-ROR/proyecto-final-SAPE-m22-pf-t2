@@ -15,8 +15,14 @@
     </div>
 
     <div class="my-5">
-      <%= form.label :password %>
+      <%= form.label :password, 'Update password' %>
       <%= form.password_field :password,
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :password_confirmation, 'Confirm new password' %>
+      <%= form.password_field :password_confirmation,
         class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
