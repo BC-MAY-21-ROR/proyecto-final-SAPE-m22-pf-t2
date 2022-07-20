@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :business_enrollments
   has_many :businesses, through: :business_enrollments
+  has_one :owned_business, class_name: 'Business', foreign_key: 'owner_id'
 
   validates :name, :email, presence: true
   validates :name, length: { minimum: 3 }

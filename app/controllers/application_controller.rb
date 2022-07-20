@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
+  def current_user_owns_current_business
+    return false if current_user.owned_business.nil?
+
+    current_business_id == current_user.owned_business.id
+  end
+
   def current_business
     Business.find_by_id(current_business_id)
   end

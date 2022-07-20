@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         enroll_user_to_business
-        format.html { redirect_to users_path, notice: 'User was successfully enrolled.' }
+        format.html { redirect_to employees_path, notice: 'User was successfully enrolled.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render template: 'businesses/employees/new', status: :unprocessable_entity }
       end
     end
   end
@@ -22,12 +22,12 @@ class UsersController < ApplicationController
   def enroll_existing_user_to_current_business
     @user = User.find_by_email(params[:email])
     if @user.nil?
-      redirect_to new_user_path, notice: 'Invalid email.'
+      redirect_to new_employee_path, notice: 'Invalid email.'
     elsif BusinessEnrollment.user_enrolled?(@user, current_business)
-      redirect_to new_user_path, notice: 'User already enrolled.'
+      redirect_to new_employee_path, notice: 'User already enrolled.'
     else
       enroll_user_to_business
-      redirect_to users_path
+      redirect_to employees_path
     end
   end
 
