@@ -1,4 +1,4 @@
-class Admin < ApplicationRecord
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,8 +6,11 @@ class Admin < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   has_one :business
+  has_many :business_enrollments
+  has_many :businesses, through: :business_enrollments
+
   has_one_attached :avatar
-  
+
   validates :name, :email, presence: true
   validates :name, length: { minimum: 3 }
   validates :email, uniqueness: { case_sensitive: false },

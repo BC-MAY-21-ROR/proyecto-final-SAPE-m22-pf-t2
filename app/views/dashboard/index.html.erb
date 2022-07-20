@@ -5,22 +5,22 @@
       <nav id="header"
         class="bg-gray-200 w-full lg:max-w-sm flex items-center border-b-1 border-gray-300 order-2 lg:order-1">
         <!--Search Reports-->
-        <%= render 'dashboard/index_render/search_reports'  %>
+        <%= render 'dashboard/partials/search_reports'  %>
         <!-- / Search Reports -->
       </nav>
       <nav id="header1" class="bg-gray-100 w-auto flex-1 border-b-1 border-gray-300 order-1 lg:order-2">
         <div class="flex h-full justify-between items-center">
           <!--Search-->
-          <%= render 'dashboard/index_render/search' %>
+          <%= render 'dashboard/partials/search' %>
           <!-- / Search-->
           <!--Menu-->
-          <%= render 'dashboard/index_render/menu' %>
+          <%= render 'dashboard/partials/menu' %>
           <!-- / Menu -->
         </div>
       </nav>
     </div>
     <!--Dash Content -->
-    <%= render 'dashboard/index_render/dash_content'  %>
+    <%= render 'dashboard/partials/dash_content'  %>
     <!--Graph Content -->
     <div id="main-content" class="w-full flex-1">
       <div class="flex flex-1 flex-wrap">
@@ -36,7 +36,7 @@
             </div>
             <!--/Graph Card-->
             <!--Table Card-->
-            <%= render 'dashboard/index_render/table_card'  %>
+            <%= render 'dashboard/partials/table_card'  %>
             <!--/table Card-->
           </div>
         </div>

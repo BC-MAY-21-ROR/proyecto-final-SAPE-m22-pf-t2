@@ -1,15 +1,17 @@
-<%= button_to admin_google_oauth2_omniauth_authorize_path,
+<%= button_to user_google_oauth2_omniauth_authorize_path,
     method: :post,
-    class: "focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10" do %>
+    class: "focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10",
+    data: { turbo: "false" } do %>
   <%= image_tag("google-icon.svg", :alt => 'Google') %>
   <p class="text-base font-medium ml-4 text-gray-700">
     <%= action %>&nbsp;with Google
   </p>
 <% end %>
 
-<%= button_to admin_github_omniauth_authorize_path,
+<%= button_to user_github_omniauth_authorize_path,
     method: :post,
-    class: "focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10" do %>
+    class: "focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10",
+    data: { turbo: "false" } do %>
   <%= image_tag("github-icon.svg", :alt => 'Github') %>
   <p class="text-base font-medium ml-4 text-gray-700">
     <%= action %>&nbsp;with Github
