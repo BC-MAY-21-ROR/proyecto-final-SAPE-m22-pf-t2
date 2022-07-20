@@ -2,19 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
 
-  def index
-    @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
-    @enrollments = BusinessEnrollment.enrollments_for_business_excluding(
-      current_business,
-      current_user
-    )
-  end
-
   def show; end
-
-  def new
-    @user = User.new
-  end
 
   def edit; end
 
@@ -49,8 +37,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    user_params = remove_password_from_params_if_empty
     respond_to do |format|
       if @user.update(user_params)
+        bypass_sign_in @user, scope: :user
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -73,6 +63,15 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def remove_password_from_params_if_empty
+    new_user_params = user_params
+    if new_user_params['password'].empty?
+      new_user_params.except('password', 'password_confirmation')
+    else
+      new_user_params
+    end
   end
 end
