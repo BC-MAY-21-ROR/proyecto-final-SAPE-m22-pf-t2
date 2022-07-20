@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
-    I18n.locale = params[:lang] || I18n.default_locale
+    I18n.locale = params[:lang] || local_form_header || I18n.default_locale
+  end
+
+  def local_form_header
+    request.env.fetch('HTTP_ACCEPT_LANGUAGE', '').scan(/[a-z]{2}/).first
   end
 end
