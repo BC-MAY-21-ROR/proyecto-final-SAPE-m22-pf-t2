@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
   def current_business_id=(business_id)
     session[:business_id] = business_id
   end
+
+  before_action :set_locale
+
+  def set_locale
+    I18n.locale = params[:lang] || I18n.default_locale
+  end
 end
