@@ -13,6 +13,8 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def create_employee; end
+
   def show
     @user_owns_business = current_user_owns_current_business
     @user_has_own_business = !current_user.owned_business.nil?

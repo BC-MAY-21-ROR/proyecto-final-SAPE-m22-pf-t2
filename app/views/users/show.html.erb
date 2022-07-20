@@ -3,9 +3,11 @@
 
     <%= render @user %>
 
-    <%= link_to 'Edit my info',
+    <% if can? :edit, @user %>
+      <%= link_to 'Edit my info',
       edit_user_path(@user),
       class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
 
   </div>
 </div>

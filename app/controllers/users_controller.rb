@@ -4,8 +4,6 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def edit; end
-
   def create
     @user = User.new(user_params)
 
@@ -35,6 +33,8 @@ class UsersController < ApplicationController
     role = params[:role]
     BusinessEnrollment.enroll_user_to_business(@user, current_business, role)
   end
+
+  def edit; end
 
   def update
     user_params = remove_password_from_params_if_empty
