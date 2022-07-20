@@ -4,7 +4,7 @@
 
     <% if @current_user_enrollment.admin_role? %>
       <%= link_to 'New employee',
-        new_user_path,
+        new_employee_path,
         class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     <% end %>
 
