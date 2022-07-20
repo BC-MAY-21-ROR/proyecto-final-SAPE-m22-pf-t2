@@ -13,10 +13,8 @@ class BusinessesController < ApplicationController
     end
   end
 
-  def create_employee; end
-
   def show
-    @user_owns_business = current_user_owns_current_business
+    @user_owns_current_business = current_user_owns_current_business
     @user_has_own_business = !current_user.owned_business.nil?
     @enrollments = BusinessEnrollment.enrollments_for_user_excluding(current_user, current_business)
   end
@@ -26,7 +24,7 @@ class BusinessesController < ApplicationController
     @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
   end
 
-  def new_business_employee
+  def new_employee
     @user = User.new
     respond_to do |format|
       format.html { render template: 'businesses/employees/new' }
@@ -50,12 +48,7 @@ class BusinessesController < ApplicationController
   end
 
   def switch_to_own_business
-    self.current_business = BusinessEnrollment.owned_business_for(current_user)
-    redirect_to dashboard_path
-  end
-
-  def join_to_enrolled_business
-    self.current_business_id = params[:business_id]
+    self.current_business = current_user.owned_business
     redirect_to dashboard_path
   end
 
@@ -67,12 +60,6 @@ class BusinessesController < ApplicationController
         format.html { render edit_business_path, status: :unprocessable_entity }
       end
     end
-  end
-
-  def remove_employee_from_current_business
-    user_to_remove = User.find_by_id(params[:user_id])
-    BusinessEnrollment.remove_enrollment(user_to_remove, current_business)
-    redirect_to users_path, notice: 'Employee removed from business'
   end
 
   def destroy
