@@ -58,11 +58,17 @@ class BusinessesController < ApplicationController
   def update
     respond_to do |format|
       if @business.update(business_params)
-        format.html { redirect_to business_url(@business), notice: 'Your own business was successfully updated.' }
+        format.html { redirect_to business_path, notice: 'Your own business was successfully updated.' }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render edit_business_path, status: :unprocessable_entity }
       end
     end
+  end
+
+  def remove_employee_from_current_business
+    user_to_remove = User.find_by_id(params[:user_id])
+    BusinessEnrollment.remove_enrollment(user_to_remove, current_business)
+    redirect_to users_path, notice: 'Employee removed from business'
   end
 
   def destroy

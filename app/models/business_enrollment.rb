@@ -73,7 +73,14 @@ class BusinessEnrollment < ApplicationRecord
     ).first != nil
   end
 
-  def has_admin_role?
+  def self.remove_enrollment(user, business)
+    where(
+      user_id: user.id,
+      business_id: business.id
+    ).delete_all
+  end
+
+  def admin_role?
     role == 'admin'
   end
 end
