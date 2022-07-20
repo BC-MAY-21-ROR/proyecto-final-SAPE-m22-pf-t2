@@ -1,7 +1,7 @@
 <div class="container mx-auto h-screen">
   <div class="text-center px-3 lg:px-0">
 
-    <% unless @user_owns_business %>
+    <% unless @user_owns_current_business %>
       <% if @user_has_own_business %>
         <%= button_to 'Go to my business', switch_to_own_business_path, class: '' %>
       <% else %>
@@ -29,13 +29,11 @@
       <%= @business.country.name %>
     </p>
 
-    <%= link_to 'Edit this business',
+    <% if can? :edit, @business %>
+      <%= link_to 'Edit this business',
       edit_business_path(@business),
       class: "mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-4" %>
-
-    <%= link_to 'Back to businesses',
-      business_path,
-      class: "mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-4" %>
+    <% end %>
 
     <% unless @enrollments.empty? %>
       <hr>
