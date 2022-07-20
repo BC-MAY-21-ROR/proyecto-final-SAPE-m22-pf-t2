@@ -3,10 +3,12 @@ def quickstart bucket_name:
     require "google/cloud/storage"
   
     # Instantiates a client
-    storage = Google::Cloud::Storage.new
+    storage = Google::Cloud::Storage.new{
+      
+    }
   
     # The ID to give your GCS bucket
-    # bucket_name = "your-unique-bucket-name"
+    bucket_name = "sapec-images"
   
     # Creates the new bucket
     bucket = storage.create_bucket bucket_name

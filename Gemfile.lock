@@ -384,7 +384,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8, >= 4.8.1)
   dotenv-rails
-  google-cloud-storage
+  google-cloud-storage (~> 1.11)
   importmap-rails
   jbuilder
   omniauth
