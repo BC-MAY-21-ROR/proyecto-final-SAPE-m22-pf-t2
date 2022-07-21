@@ -24,4 +24,8 @@ class ApplicationController < ActionController::Base
   def current_business_id=(business_id)
     session[:business_id] = business_id
   end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, current_business)
+  end
 end

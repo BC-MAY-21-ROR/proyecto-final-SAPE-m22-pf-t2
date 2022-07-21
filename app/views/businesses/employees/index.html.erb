@@ -2,7 +2,7 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Employees</h1>
 
-    <% if @can_manage_employees %>
+    <% if @current_user_enrollment.admin_role? %>
       <%= link_to 'New employee',
         new_employee_path,
         class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
@@ -11,11 +11,9 @@
   </div>
 </div>
 
-<% unless @user_role == :owner %>
-  <h2>
-    Your current role for this business is:&nbsp;<%= @user_role %>
-  </h2>
-<% end %>
+<h2>
+  Your current role for this business is:&nbsp;<%= @current_user_enrollment.role %>
+</h2>
 
 <div class="flex flex-col">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -33,7 +31,7 @@
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Role
               </th>
-              <% if @can_manage_employees %>
+              <% if @current_user_enrollment.admin_role? %>
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                   Remove from business
                 </th>
@@ -52,7 +50,7 @@
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   <%= enrollment.role %>
                 </td>
-                <% if @can_manage_employees %>
+                <% if @current_user_enrollment.admin_role? %>
                   <td
                     scope="col"
                     class="

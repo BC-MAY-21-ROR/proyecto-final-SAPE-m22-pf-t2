@@ -5,8 +5,6 @@ class BusinessesController < ApplicationController
 
   def index_employees
     @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
-    @can_manage_employees = current_user_owns_current_business || @current_user_enrollment.admin_role?
-    @user_role = @current_user_enrollment&.role || :owner
     @enrollments = BusinessEnrollment.enrollments_for_business_excluding(current_business, current_user)
     respond_to do |format|
       format.html { render template: 'businesses/employees/index' }
@@ -40,6 +38,7 @@ class BusinessesController < ApplicationController
     respond_to do |format|
       if @business.save
         self.current_business = @business
+        BusinessEnrollment.enroll_user_to_business(current_user, @business, :admin)
         format.html { redirect_to dashboard_path, notice: 'Your own business was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
