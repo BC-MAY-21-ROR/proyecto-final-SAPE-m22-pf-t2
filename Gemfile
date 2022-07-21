@@ -36,6 +36,8 @@ gem 'omniauth-google-oauth2'
 #Hosting
 gem "google-cloud-storage", "~> 1.11", require: false
 
+gem 'i18n', '~> 1.12'
+
 # Load env variables
 gem 'dotenv-rails', groups: [:development, :test]
 
