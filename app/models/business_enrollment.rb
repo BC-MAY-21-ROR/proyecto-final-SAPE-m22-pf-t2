@@ -14,6 +14,7 @@ class BusinessEnrollment < ApplicationRecord
 
   def self.enrollments_for_user_excluding(user, business_to_exclude)
     where('user_id = ? AND business_id != ?', user.id, business_to_exclude.id)
+      .select { |enrollment| enrollment.business.owner != user }
   end
 
   def self.enrollments_for_business_excluding(business, user_to_exclude)
@@ -26,6 +27,10 @@ class BusinessEnrollment < ApplicationRecord
       business_id: business.id,
       role: user_role
     )
+  end
+
+  def self.enroll_user_as_admin(user, business)
+    enroll_user_to_business(user, business, :admin)
   end
 
   def self.user_enrolled?(user, business)

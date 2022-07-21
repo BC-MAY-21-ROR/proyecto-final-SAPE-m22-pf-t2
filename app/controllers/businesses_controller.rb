@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_business, only: %i[show edit update destroy]
+  before_action :set_business, only: %i[show update destroy]
   before_action :set_countries, only: %i[new edit create update]
 
   def index_employees
@@ -18,27 +18,38 @@ class BusinessesController < ApplicationController
   end
 
   def new
-    @business = Business.new
-    @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
+    if current_user.owned_business.present?
+      redirect_to business_path
+    else
+      @business = Business.new
+      @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
+    end
   end
 
   def new_employee
+    authorize! :create_and_enroll, current_user
     @user = User.new
     respond_to do |format|
       format.html { render template: 'businesses/employees/new' }
     end
   end
 
-  def edit; end
+  def edit
+    if current_business_id.nil?
+      redirect_to new_business_path
+    else
+      set_business
+    end
+    authorize! :edit, @business
+  end
 
   def create
-    @business = Business.new(business_params)
-    @business.owner = current_user
+    @business = Business.new(business_params.merge({ owner: current_user }))
 
     respond_to do |format|
       if @business.save
         self.current_business = @business
-        BusinessEnrollment.enroll_user_to_business(current_user, @business, :admin)
+        BusinessEnrollment.enroll_user_as_admin(current_user, @business)
         format.html { redirect_to dashboard_path, notice: 'Your own business was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,8 +58,12 @@ class BusinessesController < ApplicationController
   end
 
   def switch_to_own_business
-    self.current_business = current_user.owned_business
-    redirect_to dashboard_path
+    if current_user.owned_business.present?
+      self.current_business = current_user.owned_business
+      redirect_to dashboard_path
+    else
+      redirect_to new_business_path
+    end
   end
 
   def update
