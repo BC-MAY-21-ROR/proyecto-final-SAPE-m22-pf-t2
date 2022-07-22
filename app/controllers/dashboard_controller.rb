@@ -1,7 +1,11 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action do
+    ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
+  end
 
   def index
+    @user = User.all
     unless current_business_id.nil?
       @current_business = Business.find_by_id(current_business_id)
       return

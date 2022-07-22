@@ -11,7 +11,9 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Avatar</strong>
-    <%= user.avatar %>
+    <% if user.avatar.attached? %>
+      <img src="<%= user.avatar.attachment.url %>" alt="A nice alt value" />
+    <% end %>
   </p>
 
   <% if action_name != "show" %>

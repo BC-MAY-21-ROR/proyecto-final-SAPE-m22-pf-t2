@@ -8,9 +8,7 @@ class User < ApplicationRecord
   has_one :business
   has_many :business_enrollments
   has_many :businesses, through: :business_enrollments
-
   has_one_attached :avatar
-
   validates :name, :email, presence: true
   validates :name, length: { minimum: 3 }
   validates :password, length: { minimum: 5 }, allow_blank: true

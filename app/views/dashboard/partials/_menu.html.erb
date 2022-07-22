@@ -2,28 +2,22 @@
   <div class="w-full sm:w-6/12 md:w-4/12 px-4">
     <div class="relative inline-flex align-middle w-full">
       <button class="flex items-center focus:outline-none mr-3" type="button" onclick="openDropdown(event,'dropdown-id')">
-          <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User" />
+         <img src=<%= current_user.avatar.url(:width=>32, :crop=>"fill") %> class="rounded-full">
           <span class="hidden md:inline-block">Hi, User </span>
           <%= show_svg 'arrow_down.svg' %>
       </button>
       <div class="hidden bg-white  text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1" style="min-width:12rem" id="dropdown-id">
-        <a href="/users/1" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Informacion de usuario
-        </a>
-        <a href="/business" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Mis negocios
-        </a>
-        <a href="/dashboard/balance_sheet" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Mis balances
-        </a>
-        <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
-        <a href="index" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Volver a inicio
-        </a>
+        <%= link_to "Informacion del usuario", user_path(current_user) , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
+        <%= link_to "Mis negocios", business_path(@current_business) , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
+        <%= link_to "Mis balances", user_path(@user) , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>          
+          <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
+        <%= link_to "Volver a inicio", root_path , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
+        <%= link_to "Cerrar sesion", destroy_user_session_url, :method => :delete , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
       </div>
     </div>
   </div>
 </div>
+
 <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
 <script>
   function openDropdown(event,dropdownID){
