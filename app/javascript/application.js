@@ -4,3 +4,4 @@ import "controllers";
 import "@fortawesome/fontawesome-free";
 import "./dashboard";
 import "./landing";
+import "./dropdown";

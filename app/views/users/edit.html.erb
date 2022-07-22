@@ -25,11 +25,17 @@
       <%= form.password_field :password_confirmation,
         class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-
+    <div class="my-5">
+      <%= form.label "Foto de perfil" %>
+      <br>
+      <%= form.file_field :avatar %><br>
+    </div>
     <div class="inline">
       <%= form.submit 'Update my info',
         class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
+
+
   <% end %>
 
   <%= link_to "Show my info", @user, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
