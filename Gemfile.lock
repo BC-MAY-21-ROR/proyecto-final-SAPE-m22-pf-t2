@@ -151,7 +151,7 @@ GEM
       signet (>= 0.16, < 2.a)
     hashie (5.0.0)
     httpclient (2.8.3)
-    i18n (1.10.0)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.2)
       actionpack (>= 6.0.0)
@@ -387,6 +387,7 @@ DEPENDENCIES
   devise (~> 4.8, >= 4.8.1)
   dotenv-rails
   google-cloud-storage (~> 1.11)
+  i18n (~> 1.12)
   importmap-rails
   jbuilder
   omniauth
