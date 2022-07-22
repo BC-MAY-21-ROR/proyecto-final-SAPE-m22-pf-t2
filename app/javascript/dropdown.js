@@ -1,4 +1,4 @@
-function openDropdown(event,dropdownID){
+  function openDropdown(event,dropdownID){
     let element = event.target;
     while(element.nodeName !== "BUTTON"){
       element = element.parentNode;
@@ -9,3 +9,4 @@ function openDropdown(event,dropdownID){
     document.getElementById(dropdownID).classList.toggle("hidden");
     document.getElementById(dropdownID).classList.toggle("block");
   }
+  

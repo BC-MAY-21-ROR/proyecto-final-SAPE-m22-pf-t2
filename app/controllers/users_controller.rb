@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
-
+  before_action do
+    ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
+  end
+  
   def show; end
 
   def edit; end
@@ -38,7 +41,7 @@ class UsersController < ApplicationController
 
   def update
     user_params = remove_password_from_params_if_empty
-    respond_to do |format|
+     respond_to do |format|
       if @user.update(user_params)
         bypass_sign_in @user, scope: :user
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
@@ -47,6 +50,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   def destroy
     @user.destroy
@@ -63,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation , :avatar)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
 
   def remove_password_from_params_if_empty
