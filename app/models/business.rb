@@ -1,6 +1,7 @@
 class Business < ApplicationRecord
   has_many :business_enrollments
   has_many :users, through: :business_enrollments
+  has_many :products
   belongs_to :country
 
   validates :name, :business_type, :address, presence: true
