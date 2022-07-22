@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_business, only: %i[show edit update destroy]
+  before_action :set_business, only: %i[show update destroy]
   before_action :set_countries, only: %i[new edit create update]
 
   def index_employees
@@ -12,32 +12,44 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @user_owns_business = BusinessEnrollment.user_owns_business?(current_user, current_business)
-    @user_has_own_business = BusinessEnrollment.user_has_own_business?(current_user)
+    @user_owns_current_business = current_user_owns_current_business
+    @user_has_own_business = !current_user.owned_business.nil?
     @enrollments = BusinessEnrollment.enrollments_for_user_excluding(current_user, current_business)
   end
 
   def new
-    @business = Business.new
-    @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
+    if current_user.owned_business.present?
+      redirect_to business_path
+    else
+      @business = Business.new
+      @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
+    end
   end
 
-  def new_business_employee
+  def new_employee
+    authorize! :create_and_enroll, current_user
     @user = User.new
     respond_to do |format|
       format.html { render template: 'businesses/employees/new' }
     end
   end
 
-  def edit; end
+  def edit
+    if current_business_id.nil?
+      redirect_to new_business_path
+    else
+      set_business
+    end
+    authorize! :edit, @business
+  end
 
   def create
-    @business = Business.new(business_params)
+    @business = Business.new(business_params.merge({ owner: current_user }))
 
     respond_to do |format|
       if @business.save
-        BusinessEnrollment.enroll_own_business_for!(current_user, @business)
         self.current_business = @business
+        BusinessEnrollment.enroll_user_as_admin(current_user, @business)
         format.html { redirect_to dashboard_path, notice: 'Your own business was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,13 +58,12 @@ class BusinessesController < ApplicationController
   end
 
   def switch_to_own_business
-    self.current_business = BusinessEnrollment.owned_business_for(current_user)
-    redirect_to dashboard_path
-  end
-
-  def join_to_enrolled_business
-    self.current_business_id = params[:business_id]
-    redirect_to dashboard_path
+    if current_user.owned_business.present?
+      self.current_business = current_user.owned_business
+      redirect_to dashboard_path
+    else
+      redirect_to new_business_path
+    end
   end
 
   def update
@@ -63,12 +74,6 @@ class BusinessesController < ApplicationController
         format.html { render edit_business_path, status: :unprocessable_entity }
       end
     end
-  end
-
-  def remove_employee_from_current_business
-    user_to_remove = User.find_by_id(params[:user_id])
-    BusinessEnrollment.remove_enrollment(user_to_remove, current_business)
-    redirect_to users_path, notice: 'Employee removed from business'
   end
 
   def destroy

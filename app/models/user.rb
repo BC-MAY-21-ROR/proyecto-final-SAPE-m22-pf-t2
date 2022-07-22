@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :business
   has_many :business_enrollments
   has_many :businesses, through: :business_enrollments
+  has_one :owned_business, class_name: 'Business', foreign_key: 'owner_id'
 
   has_one_attached :avatar
 

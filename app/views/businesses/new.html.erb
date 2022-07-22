@@ -9,18 +9,20 @@
 
     <%= render "form", business: @business %>
 
-    <hr>
+    <% unless @enrollments.empty? %>
+      <hr>
 
-    <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
-      Or join to business
-    </h1>
+      <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
+        Or join to business
+      </h1>
 
-    <%= form_with url: join_to_enrolled_business_path, method: :post do |form| %>
-      <div class="my-5">
-        <%= form.label 'You are enrolled to the following business' %>
-        <%= select_tag(:business_id, options_for_select(enrollments_to_options(@enrollments))) %>
-      </div>
-      <%= form.submit "Join to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium  cursor-pointer" %>
+      <%= form_with url: join_to_enrolled_business_path, method: :post do |form| %>
+        <div class="my-5">
+          <%= form.label 'You are enrolled to the following business' %>
+          <%= select_tag(:business_id, options_for_select(enrollments_to_options(@enrollments))) %>
+        </div>
+        <%= form.submit "Join to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium  cursor-pointer" %>
+      <% end %>
     <% end %>
 
   </div>

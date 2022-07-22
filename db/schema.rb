@@ -46,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_201811) do
     t.bigint "user_id"
     t.bigint "business_id"
     t.integer "role", default: 0
-    t.boolean "owner", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_business_enrollments_on_business_id"
@@ -54,15 +53,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_201811) do
   end
 
   create_table "businesses", force: :cascade do |t|
-    t.bigint "admin_id"
+    t.bigint "owner_id"
     t.bigint "country_id"
     t.string "name"
     t.string "business_type"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_businesses_on_admin_id"
     t.index ["country_id"], name: "index_businesses_on_country_id"
+    t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
 
   create_table "countries", force: :cascade do |t|

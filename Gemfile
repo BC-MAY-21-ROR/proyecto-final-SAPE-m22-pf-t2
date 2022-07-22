@@ -24,8 +24,11 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
 
-# Authorization
+# Authentication
 gem 'devise', '~> 4.8', '>= 4.8.1'
+
+# Authorization
+gem 'cancancan'
 
 # Omniauth
 gem 'omniauth'
