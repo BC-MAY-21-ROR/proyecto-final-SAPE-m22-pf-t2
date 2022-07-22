@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_business, only: %i[new edit create update]
 
   # GET /products or /products.json
   def index
@@ -61,6 +63,10 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def set_business
+      @businesses = Business.all
     end
 
     # Only allow a list of trusted parameters through.
