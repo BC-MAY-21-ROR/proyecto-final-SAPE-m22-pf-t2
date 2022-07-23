@@ -1,40 +1,113 @@
 <div class="flex flex-wrap">
   <div class="w-full sm:w-6/12 md:w-4/12 px-4">
     <div class="relative inline-flex align-middle w-full">
-      <button class="flex items-center focus:outline-none mr-3" type="button" onclick="openDropdown(event,'dropdown-id')">
-          <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User" />
-          <span class="hidden md:inline-block">Hi, User </span>
-          <%= show_svg 'arrow_down.svg' %>
+      <button
+        class="flex items-center focus:outline-none mr-3"
+        type="button"
+        data-controller="dashboard"
+        data-action="click->dashboard#openDropdown"
+      >
+        <img
+          class="w-8 h-8 rounded-full mr-4"
+          src="http://i.pravatar.cc/300"
+          alt="Avatar of User"
+        />
+        <span class="hidden md:inline-block">Hi, User</span>
+        <%= show_svg 'arrow_down.svg' %>
       </button>
-      <div class="hidden bg-white  text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1" style="min-width:12rem" id="dropdown-id">
-        <a href="/users/1" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Informacion de usuario
+      <div
+        class="
+          hidden
+          bg-white
+          text-base
+          z-50
+          float-left
+          py-2
+          list-none
+          text-left
+          rounded
+          shadow-lg
+          mt-1
+        "
+        style="min-width:12rem"
+        id="avatar-dropdown"
+      >
+        <a
+          href="<%= user_path(current_user) %>"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
+          User information
         </a>
-        <a href="/business" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Mis negocios
+        <a
+          href="<%= business_path %>"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
+          Business
         </a>
-        <a href="/dashboard/balance_sheet" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
+        <a
+          href="#"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
           Mis balances
         </a>
-        <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
-        <a href="index" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
+        <div
+          class="
+            h-0
+            my-2
+            border
+            border-solid
+            border-t-0
+            border-slate-800
+            opacity-25
+          "
+        ></div>
+        <a
+          href="#"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
           Volver a inicio
         </a>
       </div>
     </div>
   </div>
 </div>
-<script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
-<script>
-  function openDropdown(event,dropdownID){
-    let element = event.target;
-    while(element.nodeName !== "BUTTON"){
-      element = element.parentNode;
-    }
-    var popper = Popper.createPopper(element, document.getElementById(dropdownID), {
-      placement: 'bottom-start'
-    });
-    document.getElementById(dropdownID).classList.toggle("hidden");
-    document.getElementById(dropdownID).classList.toggle("block");
-  }
-</script>

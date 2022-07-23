@@ -13,7 +13,7 @@ class BusinessesController < ApplicationController
 
   def show
     @user_owns_current_business = current_user_owns_current_business
-    @user_has_own_business = !current_user.owned_business.nil?
+    @user_has_own_business = current_user.owned_business.present?
     @enrollments = BusinessEnrollment.enrollments_for_user_excluding(current_user, current_business)
   end
 

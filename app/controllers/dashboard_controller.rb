@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    unless current_business_id.nil?
+    if current_business_id.present?
       @current_business = Business.find_by_id(current_business_id)
       return
     end
