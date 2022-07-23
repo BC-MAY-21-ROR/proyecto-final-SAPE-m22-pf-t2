@@ -7,10 +7,10 @@ class DashboardController < ApplicationController
       return
     end
 
-    if BusinessEnrollment.user_has_own_business?(current_user)
-      self.current_business = BusinessEnrollment.owned_business_for(current_user)
-    else
+    if current_user.owned_business.nil?
       redirect_to new_business_path
+    else
+      self.current_business = current_user.owned_business
     end
   end
 end

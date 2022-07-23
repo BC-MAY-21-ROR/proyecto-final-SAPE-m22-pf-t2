@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
+  sign_in: "Sign in"
+  sign_up: "Sign up"
+  title: "Title"
+  hero_message: "Need help with your business? We got you covered "
+  sub_message: "Try us for free!"

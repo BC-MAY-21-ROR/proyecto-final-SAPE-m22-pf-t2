@@ -1,45 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
+  load_and_authorize_resource
 
   def show; end
 
   def edit; end
 
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        enroll_user_to_business
-        format.html { redirect_to users_path, notice: 'User was successfully enrolled.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def enroll_existing_user_to_current_business
-    @user = User.find_by_email(params[:email])
-    if @user.nil?
-      redirect_to new_user_path, notice: 'Invalid email.'
-    elsif BusinessEnrollment.user_enrolled?(@user, current_business)
-      redirect_to new_user_path, notice: 'User already enrolled.'
-    else
-      enroll_user_to_business
-      redirect_to users_path
-    end
-  end
-
-  def enroll_user_to_business
-    role = params[:role]
-    BusinessEnrollment.enroll_user_to_business(@user, current_business, role)
-  end
-
   def update
-    user_params = remove_password_from_params_if_empty
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(update_user_params)
         bypass_sign_in @user, scope: :user
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
       else
@@ -66,7 +36,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation , :avatar)
   end
 
-  def remove_password_from_params_if_empty
+  def update_user_params
     new_user_params = user_params
     if new_user_params['password'].empty?
       new_user_params.except('password', 'password_confirmation')
