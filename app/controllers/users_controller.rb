@@ -41,9 +41,7 @@ class UsersController < ApplicationController
 
   def update
     user_params = remove_password_from_params_if_empty
-    @avatar = User.create params 
-    @avatar.avatar.attach(params[:avatar])
-    respond_to do |format|
+     respond_to do |format|
       if @user.update(user_params)
         bypass_sign_in @user, scope: :user
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
