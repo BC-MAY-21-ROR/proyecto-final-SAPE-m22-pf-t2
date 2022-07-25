@@ -85,10 +85,12 @@
     >
       <ul class="list-reset lg:flex justify-end flex-1 items-center">
         <li class="mr-3">
-          <%= link_to "Sign in", new_user_session_path, :class => "inline-block py-2 px-4 text-black font-bold no-underline" %>
+          <%= link_to "Español", root_path(lang: :es), :class => "inline-block py-2 px-4 text-black font-bold no-underline" %>
+          <%= link_to "English", root_path(lang: :en), :class => "inline-block py-2 px-4 text-black font-bold no-underline" %>
+          <%= link_to t("sign_in"), new_user_session_path, :class => "inline-block py-2 px-4 text-black font-bold no-underline" %>
         </li>
       </ul>
-      <%= link_to "Sign up", new_user_registration_path, :class => "gradient2 mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75" %>
+      <%= link_to t("sign_up"), new_user_registration_path, :class => "gradient2 mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75" %>
     </div>
   </div>
 </nav>

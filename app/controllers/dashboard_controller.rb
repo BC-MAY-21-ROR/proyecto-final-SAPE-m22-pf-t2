@@ -6,15 +6,15 @@ class DashboardController < ApplicationController
 
   def index
     @user = User.all
-    unless current_business_id.nil?
+    if current_business_id.present?
       @current_business = Business.find_by_id(current_business_id)
       return
     end
 
-    if BusinessEnrollment.user_has_own_business?(current_user)
-      self.current_business = BusinessEnrollment.owned_business_for(current_user)
-    else
+    if current_user.owned_business.nil?
       redirect_to new_business_path
+    else
+      self.current_business = current_user.owned_business
     end
   end
 end

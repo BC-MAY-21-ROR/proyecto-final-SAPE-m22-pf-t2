@@ -6,9 +6,11 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   has_one :business
+  has_one :owned_business, class_name: 'Business', foreign_key: 'owner_id'
   has_many :business_enrollments
   has_many :businesses, through: :business_enrollments
   has_one_attached :avatar
+
   validates :name, :email, presence: true
   validates :name, length: { minimum: 3 }
   validates :password, length: { minimum: 5 }, allow_blank: true
