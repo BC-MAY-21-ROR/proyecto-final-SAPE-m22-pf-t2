@@ -5,7 +5,6 @@ class DashboardController < ApplicationController
   end
 
   def index
-    @user = User.all
     if current_business_id.present?
       @current_business = Business.find_by_id(current_business_id)
       return

@@ -119,7 +119,9 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
-    httpclient (2.8.3)
+    http-accept (1.7.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.2)
@@ -354,7 +356,6 @@ DEPENDENCIES
   debug
   devise (~> 4.8, >= 4.8.1)
   dotenv-rails
-  google-cloud-storage (~> 1.11)
   i18n (~> 1.12)
   importmap-rails
   jbuilder

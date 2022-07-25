@@ -7,8 +7,11 @@
         data-controller="dashboard"
         data-action="click->dashboard#openDropdown"
       >
-        <img class="w-8 h-8 rounded-full mr-4" src="<%= current_user.avatar.url(:width=>32, :crop=>"fill") %>
-        alt="Avatar of User" />
+        <img
+          class="w-8 h-8 rounded-full mr-4"
+          src="<%= current_user.avatar.url(:width => 32, :crop => "fill") %>"
+          alt="User's avatar"
+        />
         <span class="hidden md:inline-block">Hi, User</span>
         <%= show_svg 'arrow_down.svg' %>
       </button>
