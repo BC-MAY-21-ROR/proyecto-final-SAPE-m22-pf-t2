@@ -12,6 +12,7 @@ class Ability
     # Users
     can :read, User
     can :edit, User, id: user.id
+    can :update, User, id: user.id
 
     return unless current_business.present?
 

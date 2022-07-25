@@ -37,7 +37,7 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 
 #Hosting
-gem "google-cloud-storage", "~> 1.11", require: false
+gem 'cloudinary'
 
 gem 'i18n', '~> 1.12'
 

@@ -6,10 +6,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   has_one :business
+  has_one :owned_business, class_name: 'Business', foreign_key: 'owner_id'
   has_many :business_enrollments
   has_many :businesses, through: :business_enrollments
-  has_one :owned_business, class_name: 'Business', foreign_key: 'owner_id'
-
   has_one_attached :avatar
 
   validates :name, :email, presence: true
@@ -27,4 +26,14 @@ class User < ApplicationRecord
       uid: provider_data.uid
     )
   end
+
+  after_commit :add_default_avatar, on: [:create, :update]
+
+  private   
+  def add_default_avatar
+    unless avatar.attached?
+      self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
+    end
+  end
+
 end

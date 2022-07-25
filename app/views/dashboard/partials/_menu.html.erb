@@ -1,30 +1,97 @@
-<div class="flex relative inline-block pr-6">
-  <div class="relative text-sm">
-    <button id="userButton" class="flex items-center focus:outline-none mr-3">
-      <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User" />
-      <span class="hidden md:inline-block">Hi, User </span>
-      <%= show_svg 'arrow_down.svg' %>
-    </button>
-    <div id="userMenu"
-      class="bg-white nunito rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
-      <ul class="list-reset">
-        <li>
-          <a href="#"
-            class="px-4 py-2 block text-gray-900 hover:bg-indigo-400 hover:text-white no-underline hover:no-underline">My
-            account</a>
-        </li>
-        <li>
-          <a href="#"
-            class="px-4 py-2 block text-gray-900 hover:bg-indigo-400 hover:text-white no-underline hover:no-underline">Notifications</a>
-        </li>
-        <li>
-          <hr class="border-t mx-2 border-gray-400" />
-        </li>
-        <li>
-          <a href="#"
-            class="px-4 py-2 block text-gray-900 hover:bg-indigo-400 hover:text-white no-underline hover:no-underline">Logout</a>
-        </li>
-      </ul>
+<div class="flex flex-wrap">
+  <div class="w-full sm:w-6/12 md:w-4/12 px-4">
+    <div class="relative inline-flex align-middle w-full">
+      <button
+        class="flex items-center focus:outline-none mr-3"
+        type="button"
+        data-controller="dashboard"
+        data-action="click->dashboard#openDropdown"
+      >
+        <img class="w-8 h-8 rounded-full mr-4" src="<%= current_user.avatar.url(:width=>32,:crop=>"fill") %>" alt="Avatar of User" />
+        <span class="hidden md:inline-block">Hi, User</span>
+        <%= show_svg 'arrow_down.svg' %>
+      </button>
+      <div
+        class="
+          hidden
+          bg-white
+          text-base
+          z-50
+          float-left
+          py-2
+          list-none
+          text-left
+          rounded
+          shadow-lg
+          mt-1
+        "
+        style="min-width:12rem"
+        id="avatar-dropdown"
+      >
+        <a
+          href="<%= user_path(current_user) %>"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
+          User information
+        </a>
+        <a
+          href="<%= business_path %>"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
+          Business
+        </a>
+        <a
+          href="#"
+          class="
+            text-sm
+            py-2
+            px-4
+            font-normal
+            block
+            w-full
+            whitespace-nowrap
+            bg-transparent
+            text-slate-700
+          "
+        >
+          Mis balances
+        </a>
+        <div
+          class="
+            h-0
+            my-2
+            border
+            border-solid
+            border-t-0
+            border-slate-800
+            opacity-25
+          "
+        ></div>
+        <a href="<% root_path %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
+          Volver a inicio
+        </a>
+        <%= link_to "Cerrar sesion", destroy_user_session_url, :method => :delete , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
+      </div>
     </div>
   </div>
 </div>

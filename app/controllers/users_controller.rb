@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+  authorize_resource
+
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
-  load_and_authorize_resource
+  before_action do
+    ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
+  end
 
   def show; end
 
@@ -33,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
 
   def update_user_params
