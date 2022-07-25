@@ -7,11 +7,7 @@
         data-controller="dashboard"
         data-action="click->dashboard#openDropdown"
       >
-        <img
-          class="w-8 h-8 rounded-full mr-4"
-          src="<%= current_user.avatar.url(:width => 32, :crop => "fill") %>"
-          alt="User's avatar"
-        />
+        <img class="w-8 h-8 rounded-full mr-4" src="<%= current_user.avatar.url(:width=>32,:crop=>"fill") %>" alt="Avatar of User" />
         <span class="hidden md:inline-block">Hi, User</span>
         <%= show_svg 'arrow_down.svg' %>
       </button>
@@ -91,26 +87,10 @@
             opacity-25
           "
         ></div>
-        <a
-          href="<% root_path %>"
-          class="
-            text-sm
-            py-2
-            px-4
-            font-normal
-            block
-            w-full
-            whitespace-nowrap
-            bg-transparent
-            text-slate-700
-          "
-        >
+        <a href="<% root_path %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
           Volver a inicio
         </a>
-        <%= link_to "Cerrar sesion", 
-          destroy_user_session_url, 
-          :method => :delete ,
-          class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
+        <%= link_to "Cerrar sesion", destroy_user_session_url, :method => :delete , class:"text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700" %>
       </div>
     </div>
   </div>
