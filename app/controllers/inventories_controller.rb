@@ -1,25 +1,10 @@
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: %i[ show edit update destroy ]
 
-  # GET /inventories or /inventories.json
   def index
     @inventories = Inventory.all
   end
 
-  # GET /inventories/1 or /inventories/1.json
-  def show
-  end
-
-  # GET /inventories/new
-  def new
-    @inventory = Inventory.new
-  end
-
-  # GET /inventories/1/edit
-  def edit
-  end
-
-  # POST /inventories or /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)
 
@@ -34,7 +19,6 @@ class InventoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /inventories/1 or /inventories/1.json
   def update
     respond_to do |format|
       if @inventory.update(inventory_params)
@@ -47,7 +31,22 @@ class InventoriesController < ApplicationController
     end
   end
 
-  # DELETE /inventories/1 or /inventories/1.json
+  def add_product
+    @product= Product.create!(
+      name: @employee.id,
+      code: current_month,
+      price: 
+    )
+  end
+
+  def remove_product
+  
+  end
+
+  def set_business
+    business = business.find(params[:id])
+  end
+
   def destroy
     @inventory.destroy
 
@@ -63,8 +62,16 @@ class InventoriesController < ApplicationController
       @inventory = Inventory.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def inventory_params
-      params.require(:inventory).permit(:product_description, :stock, :incomes, :outcomes)
+      params.require(:inventory).permit(:incomes, :outcomes)
+    end
+    
+    def product_params
+      params.require(:user).permit(
+        :code,
+        :name,
+        :price,
+        :password_confirmation
+      )
     end
 end
