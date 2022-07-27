@@ -1,7 +1,11 @@
 <%= form_with(model: inventory, class: "contents") do |form| %>
   <% if inventory.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+    <div
+      id="error_explanation"
+      class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3"
+    >
+      <h2><%= pluralize(inventory.errors.count, "error") %>
+        prohibited this inventory from being saved:</h2>
 
       <ul>
         <% inventory.errors.each do |error| %>
