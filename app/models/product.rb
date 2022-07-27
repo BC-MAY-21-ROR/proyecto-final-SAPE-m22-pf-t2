@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :business
+  has_many :product_sales
+  has_many :sales, through: :product_sales
 
   validates :name, :code, :price, :stock, :description, presence: true
 
