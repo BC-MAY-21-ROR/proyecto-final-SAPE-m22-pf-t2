@@ -23,16 +23,6 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def add_product
-    @product = Product.create!(
-      name: @employee.id,
-      code: current_month,
-      price:
-    )
-  end
-
-  def remove_product; end
-
   def destroy
     @inventory.destroy
 
