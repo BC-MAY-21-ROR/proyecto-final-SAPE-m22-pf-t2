@@ -5,9 +5,9 @@ name: RubyCritic
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,7 +20,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: docker://ruby:2.7-slim
+      - uses: docker://ruby:3.1.2-slim
 
       - name: Install rubycritic
         run: sudo gem install rubycritic
@@ -32,4 +32,3 @@ jobs:
       # Runs RubyCritic on Tests
       - name: RubyCritic on Tests
         run: mkdir -p tmp/rubycritic && rubycritic --no-browser -p tmp/rubycritic/rubycritic-app -s 65 spec test
-

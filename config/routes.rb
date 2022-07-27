@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :inventory
   resources :products
   resource :business
   resources :users, only: %i[show edit update]
