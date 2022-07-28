@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :inventory
+  belongs_to :business
 
   validates :name, :code, :price, :stock, :description, presence: true
 
