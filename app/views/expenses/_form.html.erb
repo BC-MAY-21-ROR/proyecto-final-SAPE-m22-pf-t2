@@ -43,7 +43,7 @@
 
   <div class="my-5">
     <%= form.label :business_id %>
-    <%= form.text_field :business_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :business_id, businesses_to_options(@businesses), {}, { class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' } %>
   </div>
 
   <div class="inline">
