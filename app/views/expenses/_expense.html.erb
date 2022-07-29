@@ -1,0 +1,42 @@
+<div id="<%= dom_id expense %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Rent:</strong>
+    <%= expense.rent %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Salaries:</strong>
+    <%= expense.salaries %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">General charges:</strong>
+    <%= expense.general_charges %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Service bills:</strong>
+    <%= expense.service_bills %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Commissions:</strong>
+    <%= expense.commissions %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Taxes:</strong>
+    <%= expense.taxes %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Business:</strong>
+    <%= expense.business_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this expense", expense, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this expense', edit_expense_path(expense), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

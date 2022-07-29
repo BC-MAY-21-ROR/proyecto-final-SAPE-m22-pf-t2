@@ -70,6 +70,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_230033) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "expenses", force: :cascade do |t|
+    t.decimal "rent"
+    t.decimal "salaries"
+    t.decimal "general_charges"
+    t.decimal "service_bills"
+    t.decimal "commissions"
+    t.decimal "taxes"
+    t.bigint "business_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_expenses_on_business_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -100,4 +113,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_230033) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "products", "businesses"
+  add_foreign_key "expenses", "businesses"
 end
