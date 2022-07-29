@@ -116,6 +116,8 @@ GEM
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.0.3)
+    ffi (1.15.5)
+    ffi (1.15.5-x64-mingw-ucrt)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -356,6 +358,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8, >= 4.8.1)
   dotenv-rails
+  ffi
   i18n (~> 1.12)
   importmap-rails
   jbuilder
