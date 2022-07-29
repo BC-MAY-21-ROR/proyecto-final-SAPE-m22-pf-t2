@@ -7,7 +7,7 @@ class Business < ApplicationRecord
 
   validates_uniqueness_of :owner_id, message: 'can not have more than one owner'
 
-  validates :name, :business_type, :address, presence: true
+  validates :name, :business_type, :address, :description, presence: true
 
   validates :name, length: { minimum: 5 }
   validates :business_type, length: { minimum: 3 }
