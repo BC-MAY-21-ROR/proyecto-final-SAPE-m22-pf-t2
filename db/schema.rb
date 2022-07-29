@@ -93,16 +93,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
     t.index ["business_id"], name: "index_expenses_on_business_id"
   end
 
-  create_table "inventories", force: :cascade do |t|
-    t.integer "incomes"
-    t.integer "outcomes"
-    t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "business_id", null: false
-    t.index ["business_id"], name: "index_inventories_on_business_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -110,8 +100,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "inventory_id", null: false
-    t.index ["inventory_id"], name: "index_products_on_inventory_id"
+    t.bigint "business_id", null: false
+    t.integer "stock"
+    t.index ["business_id"], name: "index_products_on_business_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -154,7 +145,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "products", "businesses"
   add_foreign_key "expenses", "businesses"
-  add_foreign_key "inventories", "businesses"
-  add_foreign_key "products", "inventories"
 end

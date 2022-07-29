@@ -52,6 +52,7 @@ class BusinessesController < ApplicationController
         BusinessEnrollment.enroll_user_as_admin(current_user, @business)
         format.html { redirect_to dashboard_path, notice: 'Your own business was successfully created.' }
       else
+        @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
         format.html { render :new, status: :unprocessable_entity }
       end
     end
