@@ -1,5 +1,9 @@
 class Product < ApplicationRecord
-  belongs_to :inventory
+  belongs_to :business
+  has_many :product_sales
+  has_many :sales, through: :product_sales
+  has_many :purchases
+  has_many :spents, through: :purchases
 
   validates :name, :code, :price, :stock, :description, presence: true
 

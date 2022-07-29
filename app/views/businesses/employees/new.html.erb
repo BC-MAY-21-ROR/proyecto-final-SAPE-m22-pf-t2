@@ -1,46 +1,44 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Create a user account</h1>
+<div class="h-screen bg-gray-100 ">
+  <%= render 'dashboard/nav' %>
+  
+  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
+    
+    <div class="mx-auto md:w-2/3 w-full pt-5 ">
 
-  <%= form_with model: @user, url: create_and_enroll_employee_path, class: "contents" do |form| %>
-    <div class="my-5">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <div class="relative bg-white shadow-lg border border-gray-200 sm:p-6 rounded-sm overflow-hidden mb-8">
+
+        <div class="relative">
+          <h1 class="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Add already existing account. 👋</h1>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="my-5">
-      <%= form.label :email %>
-      <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <div class="mx-auto md:w-2/3 w-full pt-0">
+
+      <%= render 'businesses/employees/partials/add'  %>
+      
     </div>
 
-    <div class="my-5">
-      <%= form.label :password %>
-      <%= form.password_field :password, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <div class="mx-auto md:w-2/3 w-full pt-10">
+
+      <div class="relative bg-white shadow-lg border border-gray-200 sm:p-6 rounded-sm overflow-hidden mb-8">
+
+        <div class="relative">
+          <h1 class="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Or create a user account. 👋</h1>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="my-5">
-      <%= form.label :role %>
-      <%= select_tag(:role, options_for_select(roles_to_options)) %>
+    <div class="mx-auto md:w-2/3 w-full py-00">
+
+      <%= render 'businesses/employees/partials/create'  %>
+      
     </div>
-
-    <div class="inline">
-      <%= form.submit "Create employee", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    </div>
-  <% end %>
-
-  <hr>
-
-  <h1 class="font-bold text-4xl">Add already existing account</h1>
-
-  <%= form_with url: enroll_existing_user_to_current_business_path, method: :post do |form| %>
-    <div class="my-5">
-      <%= form.label :email %>
-      <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-    <div class="my-5">
-      <%= form.label :role %>
-      <%= select_tag(:role, options_for_select(roles_to_options)) %>
-    </div>
-    <%= form.submit "Add to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium  cursor-pointer" %>
-  <% end %>
-
+   
+  </div>
+  
 </div>

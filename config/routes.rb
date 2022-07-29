@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  resources :products, path: '/inventory/products'
   resources :expenses
   resource :inventory
-  resources :products
   resource :business
   resources :users, only: %i[show edit update]
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
