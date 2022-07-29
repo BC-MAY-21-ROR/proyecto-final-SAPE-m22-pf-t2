@@ -15,6 +15,7 @@ class BusinessesController < ApplicationController
     @user_owns_current_business = current_user_owns_current_business
     @user_has_own_business = current_user.owned_business.present?
     @enrollments = BusinessEnrollment.enrollments_for_user_excluding(current_user, current_business)
+    @enrollments_data = BusinessEnrollment.enrollments_for_user(current_user)
   end
 
   def new
@@ -99,7 +100,8 @@ class BusinessesController < ApplicationController
       :name,
       :business_type,
       :address,
-      :country_id
+      :country_id,
+      :description
     )
   end
 end
