@@ -1,0 +1,25 @@
+<%= form_with model: @user, url: create_and_enroll_employee_path, class: "contents" do |form| %>
+    <div class="my-5">
+      <%= form.label :name, class:"font-semibold" %>
+      <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :email, class:"font-semibold" %>
+      <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :password, class:"font-semibold" %>
+      <%= form.password_field :password, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :role, class:"font-semibold" %>
+      <%= select_tag(:role, options_for_select(roles_to_options)) %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit "Create employee", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+<% end %>
