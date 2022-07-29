@@ -1,0 +1,11 @@
+<%= form_with url: enroll_existing_user_to_current_business_path, method: :post do |form| %>
+    <div class="my-5">
+      <%= form.label :email, class:"font-semibold" %>
+      <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= form.label :role, class:"font-semibold" %>
+      <%= select_tag(:role, options_for_select(roles_to_options)) %>
+    </div>
+    <%= form.submit "Add to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium  cursor-pointer" %>
+<% end %>
