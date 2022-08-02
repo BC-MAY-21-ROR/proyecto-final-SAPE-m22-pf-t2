@@ -20,7 +20,9 @@
   <div class="my-5">
     <%= form.label "Foto de perfil" %>
     <br />
+    <div class="block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"> 
     <%= form.file_field :avatar, class:"form-control" %><br />
+    </div>
   </div>
   <div class="inline">
     <%= form.submit 'Update my info', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
