@@ -3,6 +3,7 @@ class SalesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :init_sale_products
+  before_action :set_sale_products, only: %i[new create]
   before_action :set_sale, only: %i[show edit update destroy]
 
   def index
@@ -12,7 +13,7 @@ class SalesController < ApplicationController
   def add_product_to_sale
     product_id = params[:product_id]
     quantity = params[:quantity]
-    save_product_to_sale(product_id, quantity)
+    save_product_to_sale_in_session(product_id, quantity)
 
     redirect_to new_sale_path
   end
@@ -20,20 +21,23 @@ class SalesController < ApplicationController
   def show; end
 
   def new
+    @query = params[:query]
     @sale = Sale.new
-    @products = Product.search_by_name_and_description(params[:query])
-    @sale_products = sale_products
+    @products = @query.present? ? Product.search_by_name_and_description(@query) : nil
     @total_for_sale_products = calculate_total_for_sale_products(@sale_products)
-    puts @total_for_sale_products
   end
 
   def edit; end
 
   def create
-    @sale = Sale.new(sale_params)
+    sale_amount = calculate_total_for_sale_products(@sale_products)
+    @sale = Sale.new(sale_params.merge({ amount: sale_amount }))
 
     respond_to do |format|
       if @sale.save
+        save_sale_products(@sale)
+        update_stock_of_sale_products
+        reset_sale_products
         format.html { redirect_to sale_url(@sale), notice: 'Sale was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,30 +65,32 @@ class SalesController < ApplicationController
 
   private
 
-  def init_sale_products
-    session[:sale_products] ||= []
-  end
-
-  def sale_products
-    session[:sale_products].map do |sale_product|
-      product = Product.find(sale_product['product_id'])
-      {
-        product_id: product.id,
-        product_code: product.code,
-        product_name: product.name,
-        product_price: product.price,
-        quantity: sale_product['quantity']
-      }
+  def set_sale_products
+    @sale_products = session_sale_products.map do |sale_product|
+      product = Product.find(sale_product[:product_id])
+      calculate_total_for(
+        {
+          product_id: product.id,
+          product_code: product.code,
+          product_name: product.name,
+          product_price: product.price,
+          quantity: sale_product[:quantity]
+        }
+      )
     end
   end
 
-  def save_product_to_sale(product_id, quantity)
-    remove_product_from_sale(product_id)
-    session[:sale_products] << { product_id:, quantity: }
+  def save_sale_products(sale)
+    ProductSale.create!(
+      session_sale_products.map { |sale_product| sale_product.merge({ sale_id: sale.id }) }
+    )
   end
 
-  def remove_product_from_sale(product_id)
-    session[:sale_products].reject! { |sale_product| sale_product['product_id'] == product_id }
+  def update_stock_of_sale_products
+    @sale_products.each do |sale_product|
+      product = Product.find_by_id(sale_product[:product_id])
+      product.update({ stock: (product.stock - sale_product[:quantity].to_i) })
+    end
   end
 
   def set_sale
@@ -92,6 +98,6 @@ class SalesController < ApplicationController
   end
 
   def sale_params
-    params.fetch(:sale, {})
+    params.require(:sale).permit(:client)
   end
 end

@@ -7,60 +7,58 @@
     <%= form.submit "Search", data: { turbo: false } %>
   <% end %>
 
-  <% unless @products.empty? %>
-    <h2>Products found:</h2>
-
-    <table class="table-auto">
-      <thead>
-        <tr>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Stock</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <% @products.each do |product| %>
+  <% if @products.present? %>
+    <% unless @products.empty? %>
+      <h2>Results for:&nbsp;<%= @query %>
+      </h2>
+      <table class="table-auto">
+        <thead>
           <tr>
-            <td>
-              <%= product.code %>
-            </td>
-            <td>
-              <%= product.name %>
-            </td>
-            <td>
-              <%= product.description %>
-            </td>
-            <td>
-              <%= product.price %>
-            </td>
-            <td>
-              <%= product.stock %>
-            </td>
-            <%= form_with url: add_product_to_sale_path, method: :post do |form| %>
-              <td>
-                <%= form.text_field :product_id, value: product.id, hidden: true %>
-                <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-              </td>
-              <td>
-                <%= form.submit 'Add' %>
-              </td>
-            <% end %>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
           </tr>
-        <% end %>
-
-      </tbody>
-    </table>
-
-  <% else %>
-    <h2>No products found</h2>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td>
+                <%= product.code %>
+              </td>
+              <td>
+                <%= product.name %>
+              </td>
+              <td>
+                <%= product.description %>
+              </td>
+              <td>
+                <%= product.price %>
+              </td>
+              <td>
+                <%= product.stock %>
+              </td>
+              <%= form_with url: add_product_to_sale_path, method: :post do |form| %>
+                <td>
+                  <%= form.text_field :product_id, value: product.id, hidden: true %>
+                  <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+                </td>
+                <td>
+                  <%= form.submit 'Add' %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h2>No products found</h2>
+    <% end %>
   <% end %>
 
-  <h2>Sale products</h2>
-
   <% unless @sale_products.empty? %>
+    <h2>Sale products</h2>
     <table class="table-auto">
       <thead>
         <tr>
@@ -72,7 +70,6 @@
         </tr>
       </thead>
       <tbody>
-
         <% @sale_products.each do |sale_product| %>
           <tr>
             <td>
@@ -92,9 +89,19 @@
             </td>
           </tr>
         <% end %>
-
       </tbody>
     </table>
+  <% end %>
+
+  <hr>
+
+  <%= form_with model: @sale, method: :post do |form| %>
+    <%= form.label :client, "Client" %>
+    <%= form.text_field :client, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+
+    <h2>Total:&nbsp;<%= @total_for_sale_products %></h2>
+
+    <%= form.submit "Confirm sale", data: { turbo: false } %>
   <% end %>
 
   <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
