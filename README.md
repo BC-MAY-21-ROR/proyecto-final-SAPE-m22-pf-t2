@@ -2,21 +2,22 @@
 
 # SAPE
 
-Administrative management system for small and medium-sized businesses.  
+Administrative management system for small and medium-sized businesses.
 
 ## Sprint Leader
 
-| Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 | Sprint 5 | Sprint 6 | Sprint 7 | Sprint 8 |
-|---|---|---|---|---|---|---|---|
-| Ever | Lucas | Guillermo |
+| Sprint 1 | Sprint 2 | Sprint 3  | Sprint 4 | Sprint 5 | Sprint 6 | Sprint 7 | Sprint 8 |
+| -------- | -------- | --------- | -------- | -------- | -------- | -------- | -------- |
+| Ever     | Lucas    | Guillermo | Nicolas  | Lucas    |
 
 ## Solution
 
 Sape seeks to help people who start a small business to have an interest in better organizing their expenses and profits; and, based on this, take action to solve problems within their business.
- 
+
 ## Functional requirements
 
 - Admin
+
   - [ ] Check establishment's inventory
   - [ ] Generate a sales record
   - [ ] Generate a purchase record
@@ -46,7 +47,7 @@ Sape seeks to help people who start a small business to have an interest in bett
 
 ## Resources
 
-- [Minimum Viable Product](https://www.agilealliance.org/glossary/mvp/#q=~(infinite~false~filters~(tags~(~'mvp))~searchTerm~'~sort~false~sortDirection~'asc~page~1))
+- [Minimum Viable Product](<https://www.agilealliance.org/glossary/mvp/#q=~(infinite~false~filters~(tags~(~'mvp))~searchTerm~'~sort~false~sortDirection~'asc~page~1)>)
 - [Minimum Viable Product (MVP)](https://www.productplan.com/glossary/minimum-viable-product/)
 - [Design Thinking](https://www.interaction-design.org/literature/topics/design-thinking)
 - [El proceso de pensamiento de diseño](https://www.youtube.com/watch?v=_r0VX-aU_T8)

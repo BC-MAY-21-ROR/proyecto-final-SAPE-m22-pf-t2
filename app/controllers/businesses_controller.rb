@@ -2,6 +2,10 @@ class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_business, only: %i[show update destroy]
   before_action :set_countries, only: %i[new edit create update]
+  before_action do
+    ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
+  end
+
 
   def index_employees
     @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
@@ -102,7 +106,8 @@ class BusinessesController < ApplicationController
       :business_type,
       :address,
       :country_id,
-      :description
+      :description,
+      :logo
     )
   end
 end
