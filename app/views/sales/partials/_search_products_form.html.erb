@@ -1,0 +1,5 @@
+<%= form_with url: new_sale_path, method: :get do |form| %>
+  <%= form.label :query, "Search products:" %>
+  <%= form.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+  <%= form.submit "Search", data: { turbo: false } %>
+<% end %>
