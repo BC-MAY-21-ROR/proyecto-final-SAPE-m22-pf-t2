@@ -23,7 +23,7 @@ class SalesController < ApplicationController
   def new
     @query = params[:query]
     @sale = Sale.new
-    @products = @query.present? ? Product.search_by_name_and_description(@query) : nil
+    @products = @query.present? ? Product.find_by_name_and_description(@query, current_business_id) : nil
     @total_for_sale_products = calculate_total_for_sale_products(@sale_products)
   end
 

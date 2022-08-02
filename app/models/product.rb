@@ -14,4 +14,9 @@ class Product < ApplicationRecord
   validates :name, length: { minimum: 4 }
   validates :code, length: { minimum: 2 }
   validates :description, length: { minimum: 5 }
+
+  def self.find_by_name_and_description(query, business_id)
+    Product.search_by_name_and_description(query)
+           .select { |product| product.business_id == business_id }
+  end
 end
