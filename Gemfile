@@ -6,7 +6,11 @@ gem "rails", "~> 7.0.3"
 gem "puma", "~> 5.0"
 gem "sprockets-rails"
 
+#
 gem "ffi"
+ 
+# Image processing
+gem "image_processing", ">= 1.2"
 
 # Database driver
 gem "pg", "~> 1.1"
