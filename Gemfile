@@ -8,6 +8,7 @@ gem "sprockets-rails"
 
 # Database driver
 gem "pg", "~> 1.1"
+gem 'pg_search'
 
 gem "importmap-rails"
 gem "turbo-rails"
@@ -36,7 +37,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 
-#Hosting
+# Hosting
 gem 'cloudinary'
 
 gem 'i18n', '~> 1.12'
