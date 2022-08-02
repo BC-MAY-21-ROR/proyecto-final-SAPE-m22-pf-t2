@@ -1,0 +1,101 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New sale</h1>
+
+  <%= form_with url: new_sale_path, method: :get do |form| %>
+    <%= form.label :query, "Search products:" %>
+    <%= form.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    <%= form.submit "Search", data: { turbo: false } %>
+  <% end %>
+
+  <% unless @products.empty? %>
+    <h2>Products found:</h2>
+
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @products.each do |product| %>
+          <tr>
+            <td>
+              <%= product.code %>
+            </td>
+            <td>
+              <%= product.name %>
+            </td>
+            <td>
+              <%= product.description %>
+            </td>
+            <td>
+              <%= product.price %>
+            </td>
+            <td>
+              <%= product.stock %>
+            </td>
+            <%= form_with url: add_product_to_sale_path, method: :post do |form| %>
+              <td>
+                <%= form.text_field :product_id, value: product.id, hidden: true %>
+                <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+              </td>
+              <td>
+                <%= form.submit 'Add' %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+
+  <% else %>
+    <h2>No products found</h2>
+  <% end %>
+
+  <h2>Sale products</h2>
+
+  <% unless @sale_products.empty? %>
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @sale_products.each do |sale_product| %>
+          <tr>
+            <td>
+              <%= sale_product[:product_code] %>
+            </td>
+            <td>
+              <%= sale_product[:product_name] %>
+            </td>
+            <td>
+              <%= sale_product[:product_price] %>
+            </td>
+            <td>
+              <%= sale_product[:quantity] %>
+            </td>
+            <td>
+              <%= sale_product[:total] %>
+            </td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+  <% end %>
+
+  <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

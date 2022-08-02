@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_28_230033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,16 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_sales", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "sale_id"
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_product_sales_on_product_id"
-    t.index ["sale_id"], name: "index_product_sales_on_sale_id"
-  end
-
   create_table "expenses", force: :cascade do |t|
     t.decimal "rent"
     t.decimal "salaries"
@@ -91,6 +81,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_expenses_on_business_id"
+  end
+
+  create_table "product_sales", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "sale_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_sales_on_product_id"
+    t.index ["sale_id"], name: "index_product_sales_on_sale_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -128,12 +128,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sales", force: :cascade do |t|
-    t.decimal "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -151,6 +145,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201645) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "products", "businesses"
   add_foreign_key "expenses", "businesses"
+  add_foreign_key "products", "businesses"
 end
