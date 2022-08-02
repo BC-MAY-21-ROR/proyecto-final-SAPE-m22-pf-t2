@@ -29,6 +29,16 @@
     <% end %>
   </div>
 
+    <div class="mb-6">
+    <%= f.label 'Description', for: 'business_description', class: "uppercase text-gray-700 text-xs font-bold " %>
+    <%= f.text_field :description, placeholder: 'Enter your description', class: 'bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2' %>
+    <% business.errors.full_messages_for(:description).each do |message| %>
+      <div class=''>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="mb-6">
     <%= f.label 'Country', class: "uppercase text-gray-700 text-xs font-bold " %>
     <%= f.select :country_id, countries_to_options(@countries), {}, { class: '' } %>
