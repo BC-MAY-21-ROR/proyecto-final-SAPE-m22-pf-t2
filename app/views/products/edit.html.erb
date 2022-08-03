@@ -1,8 +1,22 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing product</h1>
+<div class="h-screen bg-gray-100 ">
+  <%= render 'dashboard/nav' %>
 
-  <%= render "form", product: @product %>
+  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
 
-  <%= link_to "Show this product", @product, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to products", products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="mx-auto md:w-2/3 w-full pt-5 ">
+
+      <div class="relative bg-white shadow-lg border border-gray-200 sm:p-6 rounded-sm overflow-hidden mb-8">
+
+        <div class="relative">
+          <h1 class="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Edit our Expenses. 👋</h1>
+        </div>
+
+      </div>
+
+      <div class="mx-auto md:w-2/3 w-full py-00">
+        <%= render 'form'  %>
+      </div>
+
+  </div>
+
 </div>
