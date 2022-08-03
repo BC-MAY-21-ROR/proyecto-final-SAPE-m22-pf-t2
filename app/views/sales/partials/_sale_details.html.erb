@@ -32,4 +32,9 @@
       <% end %>
     </tbody>
   </table>
+<% else %>
+  <p>No sale products!</p>
 <% end %>
+
+<h2>Client:&nbsp;<%= @sale.client %></h2>
+<h2>Total:&nbsp;<%= @sale_total %></h2>
