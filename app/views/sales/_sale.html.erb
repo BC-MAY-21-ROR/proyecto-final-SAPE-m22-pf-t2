@@ -1,7 +1,13 @@
 <div id="<%= dom_id sale %>">
+
+  <%= render 'sales/partials/sale_details' %>
+
   <% if action_name != "show" %>
     <%= link_to "Show this sale", sale, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
     <%= link_to 'Edit this sale', edit_sale_path(sale), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+
     <hr class="mt-6">
   <% end %>
+
 </div>
