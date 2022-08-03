@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  resources :sales
   resources :products, path: '/inventory/products'
   resources :expenses
+  resources :users, only: %i[show edit update]
   resource :inventory
   resource :business
-  resources :users, only: %i[show edit update]
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
   # Business
@@ -29,6 +30,9 @@ Rails.application.routes.draw do
 
   delete 'remove_employee_from_current_business',
          to: 'business_enrollments#remove_employee_from_current_business'
+
+  # Sales
+  post 'add_product_to_sale', to: 'sales#add_product_to_sale'
 
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'

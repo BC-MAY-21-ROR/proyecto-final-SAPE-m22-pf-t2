@@ -1,0 +1,22 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New sale</h1>
+
+  <%= render 'sales/partials/search_products_form' %>
+
+  <%= render 'sales/partials/products_found_table' %>
+
+  <%= render 'sales/partials/sale_products_table' %>
+
+  <hr>
+
+  <%= form_with model: @sale, method: :post do |form| %>
+    <%= form.label :client, "Client" %>
+    <%= form.text_field :client, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+
+    <h2>Total:&nbsp;<%= @total_for_sale_products %></h2>
+
+    <%= form.submit "Confirm sale", data: { turbo: false } %>
+  <% end %>
+
+  <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

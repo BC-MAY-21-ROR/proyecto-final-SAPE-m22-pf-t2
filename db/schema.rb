@@ -120,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_203851) do
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "client"
   end
 
   create_table "spents", force: :cascade do |t|
