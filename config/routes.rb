@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   # Sales
   post 'add_product_to_sale', to: 'sales#add_product_to_sale'
 
+  # Register
+  get 'register/index'
+
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'
   root 'landing#index'
