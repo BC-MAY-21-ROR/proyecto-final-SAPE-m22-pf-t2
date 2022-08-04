@@ -117,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_213527) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.decimal "amount"
+    t.decimal "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "client"

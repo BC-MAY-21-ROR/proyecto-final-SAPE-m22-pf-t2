@@ -15,24 +15,25 @@ Rails.application.routes.draw do
       to: 'businesses#new_employee', as: 'new_employee'
 
   # Business
-  post 'switch_to_own_business',
+  post '/switch_to_own_business',
        to: 'businesses#switch_to_own_business'
 
   # Business enrollment
-  post 'create_and_enroll_employee',
+  post '/create_and_enroll_employee',
        to: 'business_enrollments#create_and_enroll_employee'
 
-  post 'enroll_existing_user_to_current_business',
+  post '/enroll_existing_user_to_current_business',
        to: 'business_enrollments#enroll_existing_user_to_current_business'
 
-  post 'join_to_enrolled_business',
+  post '/join_to_enrolled_business',
        to: 'business_enrollments#join_to_enrolled_business'
 
-  delete 'remove_employee_from_current_business',
+  delete '/remove_employee_from_current_business',
          to: 'business_enrollments#remove_employee_from_current_business'
 
   # Sales
-  post 'add_product_to_sale', to: 'sales#add_product_to_sale'
+  post '/add_product_to_sale', to: 'sales#add_product_to_sale'
+  get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
 
   # Register
   get 'register/index'

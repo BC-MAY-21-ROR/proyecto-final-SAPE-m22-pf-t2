@@ -9,7 +9,7 @@ module SalesHelper
 
   def save_product_to_sale_in_session(product_id, quantity)
     remove_product_sale_from_session(product_id)
-    session[:sale_products] << { product_id: product_id, quantity: quantity }
+    session[:sale_products] << { product_id: product_id, quantity: quantity}
   end
 
   def remove_product_sale_from_session(product_id)
@@ -28,10 +28,24 @@ module SalesHelper
     result
   end
 
-  def calculate_total_for(sale_product)
+  def enrich_with_total_for(sale_product)
     product_price = sale_product[:product_price]
     quantity = sale_product[:quantity]
     total = product_price.to_f * quantity.to_i
     sale_product.merge!(total: total)
+  end
+
+  def map_to_products_hash(products)
+    products.map { |product| map_to_product_with_quantity_hash(product) }
+  end
+
+  def map_to_product_with_quantity_hash(product, quantity)
+    {
+      product_id: product.id,
+      product_code: product.code,
+      product_name: product.name,
+      product_price: product.price,
+      quantity: quantity
+    }
   end
 end
