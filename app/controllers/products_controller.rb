@@ -44,6 +44,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def new_resupply
+    
+  end
+
   private
 
   def product_params

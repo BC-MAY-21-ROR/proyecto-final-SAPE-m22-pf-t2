@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :clients, except: [:show]
   resources :sales
-  resources :products, path: '/inventory/products', except: [:show]
+  resources :products, path: '/inventory/products' do
+     member do 
+       get :new_resupply
+     end
+  end
   resources :expenses
   resources :users, only: %i[show edit update]
   resource :inventory
