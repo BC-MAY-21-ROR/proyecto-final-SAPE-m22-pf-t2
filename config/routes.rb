@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :clients, except: [:show]
   resources :sales
   resources :products, path: '/inventory/products' 
-
+  resources :resupplies
   resources :expenses
   resources :users, only: %i[show edit update]
   resource :inventory

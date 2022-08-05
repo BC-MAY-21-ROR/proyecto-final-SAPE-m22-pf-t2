@@ -1,0 +1,21 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New Resupply</h1>
+
+  
+
+  <hr>
+
+  <%= form_with model: @resupply, method: :post do |form| %>
+    <%= form.label :quantity, "Quantity" %>
+    <%= form.number_field :comment, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    
+    <div class="my-5">
+    <%= form.label :comment %>
+    <%= form.text_field :comment, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+    <%= form.submit "Confirm resupply", data: { turbo: false } %>
+  <% end %>
+
+  <%= link_to 'Back to resupply', resupplies_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

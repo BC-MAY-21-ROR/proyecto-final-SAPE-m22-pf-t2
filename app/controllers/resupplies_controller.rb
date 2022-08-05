@@ -11,6 +11,11 @@ class ResuppliesController < ApplicationController
 
   def create
     @resupply = Resupply.new(resupply_params)
+    if @resupply.save
+      redirect_to resupply_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private 
