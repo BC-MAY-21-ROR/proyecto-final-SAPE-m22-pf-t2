@@ -26,11 +26,13 @@ class Ability
     can :create_and_enroll, User
     can :enroll_existing_user, User
     can :remove_employee, User
+    
 
     # Products
     can %i[create update destroy], Product
 
     # Client
     can :manage, Client
+    can :create, Resupply, owner: user
   end
 end

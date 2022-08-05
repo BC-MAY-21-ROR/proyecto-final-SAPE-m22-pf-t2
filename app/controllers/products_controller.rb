@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_resupply, only: [:new,:create]
   load_and_authorize_resource
 
   def index
@@ -44,11 +45,11 @@ class ProductsController < ApplicationController
     end
   end
 
-  def new_resupply
-    
-  end
-
   private
+
+  def set_resupply
+    @resupply = Resupply.all
+  end
 
   def product_params
     params.require(:product).permit(
