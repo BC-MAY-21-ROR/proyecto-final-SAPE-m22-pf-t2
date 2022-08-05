@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
   resources :sales
   resources :products, path: '/inventory/products'
   resources :expenses
   resources :users, only: %i[show edit update]
   resource :inventory
+  resources :register
+  resources :financial_statement
   resource :business
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
@@ -38,6 +41,9 @@ Rails.application.routes.draw do
   # Register
   get 'register/index'
 
+  # Financial Statement
+  get 'financial_statement/index'
+  
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'
   root 'landing#index'
