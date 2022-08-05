@@ -32,6 +32,7 @@ Rails.application.routes.draw do
          to: 'business_enrollments#remove_employee_from_current_business'
 
   # Sales
+  get '/search_products', to: 'sales#search_products'
   post '/add_product_to_sale', to: 'sales#add_product_to_sale'
   get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
 
