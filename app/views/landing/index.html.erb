@@ -1,10 +1,14 @@
-<body class="h-full w-full bg-slate-50">
-  <div class="gradient leading-relaxed tracking-wide flex flex-col">
+<div class="w-full bg-slate-50">
+  <div class="hero-gradient min-h-screen leading-relaxed tracking-wide">
     <%= render 'landing/partials/navbar' %>
     <%= render 'landing/partials/hero' %>
   </div>
 
-  <%= render 'landing/partials/section' %>
-  <%= render 'landing/partials/form' %>
+  <%= render 'landing/partials/features' %>
+
+  <hr class="w-2/3 mx-auto">
+
+  <%= render 'landing/partials/testimonials' %>
+  <%= render 'landing/partials/contact' %>
   <%= render 'landing/partials/footer' %>
-</body>
+</div>
