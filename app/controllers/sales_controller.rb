@@ -24,16 +24,16 @@ class SalesController < ApplicationController
     end
   end
 
-  def new
-    @sale = Sale.new
-  end
-
   def search_products
     @query = params[:query]
     @products = Sales::SearchProducts.call(params.merge({ business_id: current_business_id })).products
     respond_to do |format|
       format.html { render partial: 'sales/partials/products_found' }
     end
+  end
+
+  def new
+    @sale = Sale.new
   end
 
   def add_product_to_sale
@@ -49,7 +49,7 @@ class SalesController < ApplicationController
   def edit; end
 
   def create
-    result = Sales::CreateSaleOrganizer.call({ sale_params: sale_params, session: session })
+    result = Sales::CreateSaleOrganizer.call({ sale_params: sale_params, session: session})
     @sale = result.sale
 
     respond_to do |format|
@@ -79,6 +79,18 @@ class SalesController < ApplicationController
     end
   end
 
+  def remove_product_from_sale
+    result = Sales::RemoveProductFromSaleInSessionOrganizer.call(
+      { product_id: params[:product_id], session: session }
+    )
+    @sale_products = result.sale_products
+    @sale_total = result.total
+
+    respond_to do |format|
+      format.html { render partial: 'sales/partials/sale_products' }
+    end
+  end
+
   private
 
   def init_sale_products
@@ -93,6 +105,7 @@ class SalesController < ApplicationController
 
   def load_sale_products_from_session
     @sale_products = Sales::LoadSaleProductsFromSession.call({ session: session }).sale_products
+    @sale_total = Sales::CalculateTotalForSaleProducts.call(sale_products: @sale_products).total
   end
 
   def set_sale

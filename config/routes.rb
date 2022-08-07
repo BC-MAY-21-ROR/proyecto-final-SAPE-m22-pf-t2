@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   # Sales
   get '/search_products', to: 'sales#search_products'
   post '/add_product_to_sale', to: 'sales#add_product_to_sale'
+  delete '/remove_product_to_sale', to: 'sales#remove_product_from_sale'
   get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
 
   # Dashboard & landing

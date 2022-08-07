@@ -1,7 +1,7 @@
-class Sales::AddProductToSaleOrganizer
+class Sales::RemoveProductFromSaleInSessionOrganizer
   include Interactor::Organizer
 
-  organize Sales::SaveProductToSaleInSession,
+  organize Sales::RemoveProductFromSaleInSession,
            Sales::LoadSaleProductsFromSession,
            Sales::CalculateTotalForSaleProducts
 end

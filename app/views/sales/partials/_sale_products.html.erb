@@ -9,6 +9,7 @@
           <th>Price</th>
           <th>Quantity</th>
           <th>Total</th>
+          <th>Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,12 @@
             </td>
             <td>
               <%= sale_product[:total] %>
+            </td>
+            <td>
+              <%= form_with url: remove_product_to_sale_path, method: :delete, data: { turbo_frame: "sale_products" } do |form| %>
+                <%= form.text_field :product_id, value: sale_product[:product_id], hidden: true %>
+                <%= form.submit 'Remove' %>
+              <% end %>
             </td>
           </tr>
         <% end %>
