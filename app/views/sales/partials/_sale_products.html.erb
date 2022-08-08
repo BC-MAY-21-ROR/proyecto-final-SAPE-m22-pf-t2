@@ -1,0 +1,49 @@
+<%= turbo_frame_tag 'sale_products' do %>
+  <% unless @sale_products.empty? %>
+    <h2>Sale products</h2>
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sale_products.each do |sale_product| %>
+          <tr>
+            <td>
+              <%= sale_product[:product_code] %>
+            </td>
+            <td>
+              <%= sale_product[:product_name] %>
+            </td>
+            <td>
+              <%= sale_product[:product_price] %>
+            </td>
+            <td>
+              <%= sale_product[:quantity] %>
+            </td>
+            <td>
+              <%= sale_product[:total] %>
+            </td>
+            <td>
+              <%= form_with url: remove_product_to_sale_path, method: :delete, data: { turbo_frame: "sale_products" } do |form| %>
+                <%= form.text_field :product_id, value: sale_product[:product_id], hidden: true %>
+                <%= form.submit 'Remove' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No sale products!</p>
+  <% end %>
+
+  <h2>Total:&nbsp;<%= @sale_total %></h2>
+
+<% end %>

@@ -19,4 +19,8 @@ class Product < ApplicationRecord
     Product.search_by_name_and_description(query)
            .select { |product| product.business_id == business_id }
   end
+
+  def calculate_total_price(quantity)
+    price.to_f * quantity.to_i
+  end
 end
