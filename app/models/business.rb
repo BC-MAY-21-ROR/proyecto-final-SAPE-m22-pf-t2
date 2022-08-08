@@ -14,12 +14,12 @@ class Business < ApplicationRecord
   validates :name, length: { minimum: 5 }
   validates :business_type, length: { minimum: 3 }
   validates :address, length: { minimum: 5 }
-  
+
   def add_default_logo
     unless logo.attached?
       logo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_logo.png')),
-                    filename: 'default_logo.png',
-                    content_type: 'image/png')
+                  filename: 'default_logo.png',
+                  content_type: 'image/png')
     end
   end
 end
