@@ -1,65 +1,107 @@
 <%= form_for business, url: business_path, class: "contents" do |f| %>
+
   <div class="mb-6">
-    <%= f.label 'Name', for: 'business_name', class: "uppercase text-gray-700 text-xs font-bold " %>
-    <%= f.text_field :name, placeholder: 'Enter business name', class: "bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" %>
+    <%= f.label 'Name *',
+      for: 'business_name',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :name,
+      placeholder: 'Enter business name',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
     <% business.errors.full_messages_for(:name).each do |message| %>
-      <div class=''>
+      <p class="mt-2 text-sm text-red-600">
         <%= message %>
-      </div>
+      </p>
     <% end %>
   </div>
 
   <div class="mb-6">
-    <%= f.label 'Type', for: 'business_type', class: "uppercase text-gray-700 text-xs font-bold " %>
-    <%= f.text_field :business_type, placeholder: 'Enter business type', class: 'bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2' %>
+    <%= f.label 'Type *',
+      for: 'business_type',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :business_type,
+      placeholder: 'Enter business type',
+      class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
+
     <% business.errors.full_messages_for(:business_type).each do |message| %>
-      <div class=''>
+      <p class="mt-2 text-sm text-red-600">
         <%= message %>
-      </div>
+      </p>
     <% end %>
   </div>
 
   <div class="mb-6">
-    <%= f.label 'Address', for: 'business_address', class: "uppercase text-gray-700 text-xs font-bold " %>
-    <%= f.text_field :address, placeholder: 'Enter business address', class: 'bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2' %>
+    <%= f.label 'Address *',
+      for: 'business_address',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :address,
+      placeholder: 'Enter business address',
+      class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
+
     <% business.errors.full_messages_for(:address).each do |message| %>
-      <div class=''>
+      <p class="mt-2 text-sm text-red-600">
         <%= message %>
-      </div>
+      </p>
     <% end %>
   </div>
 
-    <div class="mb-6">
-    <%= f.label 'Description', for: 'business_description', class: "uppercase text-gray-700 text-xs font-bold " %>
-    <%= f.text_field :description, placeholder: 'Enter your description', class: 'bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2' %>
+  <div class="mb-6">
+    <%= f.label 'Description *',
+      for: 'business_description',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :description,
+      placeholder: 'Enter your description',
+      class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
+
     <% business.errors.full_messages_for(:description).each do |message| %>
-      <div class=''>
+      <p class="mt-2 text-sm text-red-600">
         <%= message %>
-      </div>
+      </p>
     <% end %>
-    </div>
+  </div>
 
   <div class="mb-6">
-    <%= f.label "Business logo",class: "uppercase text-gray-700 text-xs font-bold " %>
-      <div class="mb-6  ">
-      <br/>  
-        <label class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-        Upload your logo
-        <span style="display:none;">
-        <%= f.file_field :logo %>
+    <%= f.label 'Country *', class: "text-sm font-medium text-gray-900" %>
+    <%= f.select :country_id, 
+      countries_to_options(@countries),
+      {}, { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full mt-2 p-2.5 focus:ring-blue-500 focus:border-blue-500' } %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label "Upload logo", class: "mr-2 text-sm font-medium text-gray-900" %>
+    <div class="mt-4 inline">
+      <label
+        class="
+          inline
+          bg-blue-500
+          rounded
+          text-white
+          py-2
+          px-4
+          hover:border-blue-500
+          hover:bg-blue-400
+        "
+      >
+        Choose file
+        <span class="hidden">
+          <%= f.file_field :logo %>
         </span>
-        </label>
-      </div>
-  </div>
-  
-
-  <div class="mb-6">
-    <%= f.label 'Country', class: "uppercase text-gray-700 text-xs font-bold " %>
-    <%= f.select :country_id, countries_to_options(@countries), {}, { class: '' } %>
+      </label>
+    </div>
   </div>
 
-  <div class="m-6">
-    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex items-center space-x-2">
+    <%= f.submit class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+
+    <% if has_path? 'edit' %>
+      <%= link_to "Cancel",
+        business_path,
+        class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
+    <% end %>
   </div>
 
 <% end %>
