@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_03_230325) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_08_214639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_230325) do
     t.string "description"
     t.index ["country_id"], name: "index_businesses_on_country_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.bigint "business_id"
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_clients_on_business_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -147,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_230325) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "clients", "businesses"
   add_foreign_key "expenses", "businesses"
   add_foreign_key "products", "businesses"
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clients
   resources :sales
   resources :products, path: '/inventory/products'
   resources :expenses
