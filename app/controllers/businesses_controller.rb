@@ -6,7 +6,6 @@ class BusinessesController < ApplicationController
     ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
   end
 
-
   def index_employees
     @current_user_enrollment = BusinessEnrollment.enrollment_for(current_user, current_business)
     @enrollments = BusinessEnrollment.enrollments_for_business_excluding(current_business, current_user)
@@ -19,7 +18,7 @@ class BusinessesController < ApplicationController
     @user_owns_current_business = current_user_owns_current_business
     @user_has_own_business = current_user.owned_business.present?
     @enrollments = BusinessEnrollment.enrollments_for_user_excluding(current_user, current_business)
-    @enrollments_data = BusinessEnrollment.enrollments_for_user(current_user)
+    @user_role = BusinessEnrollment.user_roll_for_business(current_user, current_business)
   end
 
   def new
