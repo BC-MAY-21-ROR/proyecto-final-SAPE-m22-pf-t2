@@ -1,4 +1,3 @@
-<!-- Side bar-->
 <div
   id="sidebar"
   class="
@@ -28,26 +27,6 @@
     </li>
 
     <li class="my-2 md:my-0">
-      <%= link_to business_path,
-        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fas fa-tasks fa-fw mr-3"></i>
-        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
-          Business info
-        </span>
-      <% end %>
-    </li>
-
-    <li class="my-2 md:my-0">
-      <%= link_to expenses_path,
-        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fas fa-tasks fa-fw mr-3"></i>
-        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
-          Business Expenses
-        </span>
-      <% end %>
-    </li>
-
-    <li class="my-2 md:my-0">
       <%= link_to employees_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
         <i class="fas fa-tasks fa-fw mr-3"></i>
@@ -57,73 +36,46 @@
       <% end %>
     </li>
 
+    <% if can? :manage, Client %>
+      <li class="my-2 md:my-0">
+        <%= link_to clients_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+          <i class="fas fa-tasks fa-fw mr-3"></i>
+          <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+            Clients
+          </span>
+        <% end %>
+      </li>
+    <% end %>
+
     <li class="my-2 md:my-0">
-      <a
-        href="<%= products_path %>"
-        class="
-          block
-          py-1
-          md:py-3
-          pl-1
-          align-middle
-          text-gray-600
-          no-underline
-          hover:text-indigo-400
-        "
-      >
-        <i class="fas fa-chart-area fa-fw mr-3"></i><span class="w-full inline-block pb-1 md:pb-0 text-sm">Inventory</span>
-      </a>
+      <%= link_to products_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fas fa-tasks fa-fw mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Inventory
+        </span>
+      <% end %>
     </li>
+
     <li class="my-2 md:my-0">
-      <a
-        href="/dashboard/sales_and_purcharses"
-        class="
-          block
-          py-1
-          md:py-3
-          pl-1
-          align-middle
-          text-gray-600
-          no-underline
-          hover:text-indigo-400
-        "
-      >
-        <i class="fa-regular fa-pen-to-square fa-fw mr-3"></i><span class="w-full inline-block pb-1 md:pb-0 text-sm">Registro de ventas y compras</span>
-      </a>
+      <%= link_to expenses_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fas fa-tasks fa-fw mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Business expenses
+        </span>
+      <% end %>
     </li>
+
     <li class="my-2 md:my-0">
-      <a
-        href="/dashboard/statement_of_income"
-        class="
-          block
-          py-1
-          md:py-3
-          pl-1
-          align-middle
-          text-gray-600
-          no-underline
-          hover:text-indigo-400
-        "
-      >
-        <i class="fa-solid fa-chart-simple fa-fw mr-3"></i><span class="w-full inline-block pb-1 md:pb-0 text-sm">Estado de resultado</span>
-      </a>
-    </li>
-    <li class="my-2 md:my-0">
-      <a
-        href="/dashboard/balance_sheet"
-        class="
-          block
-          py-1
-          md:py-3
-          pl-1
-          align-middle
-          text-gray-600
-          no-underline
-          hover:text-indigo-400
-        "
-      >
-        <i class="fas fa-balance-scale fa-fw mr-3"></i><span class="w-full inline-block pb-1 md:pb-0 text-sm">Balance general</span>
-      </a>
+      <%= link_to business_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fas fa-tasks fa-fw mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Business administration
+        </span>
+      <% end %>
     </li>
   </ul>
 </div>

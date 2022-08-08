@@ -1,32 +1,57 @@
-<%= form_with(model: client, class: "contents") do |form| %>
-  <% if client.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+<%= form_with(model: client, class: "contents") do |f| %>
+  <div class="mb-6">
+    <%= f.label 'Name *',
+      for: 'client_name',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
 
-      <ul>
-        <% client.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= f.text_field :name,
+      placeholder: 'Enter client name',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <% client.errors.full_messages_for(:name).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Email',
+      for: 'client_email',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :email,
+      placeholder: 'Enter client email',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% client.errors.full_messages_for(:email).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Phone',
+      for: 'client_phone',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :phone,
+      placeholder: 'Enter client phone',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% client.errors.full_messages_for(:phone).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex items-center space-x-2">
+    <%= f.submit class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+    <%= link_to "Cancel",
+      clients_path,
+      class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
   </div>
+
 <% end %>
