@@ -1,11 +1,19 @@
 <div class="mx-auto md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">New sale</h1>
 
-  <%= render 'sales/partials/search_products_form' %>
+  <%= form_with url: search_products_path, method: :get, data: { turbo_frame: "products_found" } do |form| %>
+    <%= form.label :query, "Search products:" %>
+    <%= form.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    <%= form.submit "Search" %>
+  <% end %>
 
-  <%= render 'sales/partials/products_found_table' %>
+  <%= turbo_frame_tag 'products_found' do %>
+    <%= render partial: 'sales/partials/products_found' %>
+  <% end %>
 
-  <%= render 'sales/partials/sale_details' %>
+  <%= turbo_frame_tag 'sale_products' do %>
+    <%= render partial: 'sales/partials/sale_products' %>
+  <% end %>
 
   <hr>
 
@@ -13,8 +21,9 @@
     <%= form.label :client, "Client" %>
     <%= form.text_field :client, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
 
-    <%= form.submit "Confirm sale", data: { turbo: false } %>
+    <%= form.submit "Confirm sale" %>
   <% end %>
 
   <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
 </div>

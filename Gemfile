@@ -2,26 +2,24 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
+
 gem "rails", "~> 7.0.3"
 gem "puma", "~> 5.0"
 gem "sprockets-rails"
-
-#
 gem "ffi"
- 
-# Image processing
-gem "image_processing", ">= 1.2"
-
-# Database driver
-gem "pg", "~> 1.1"
-gem 'pg_search'
-
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data"
 gem "bootsnap", require: false
+
+# Image processing
+gem "image_processing", ">= 1.2"
+
+# Database driver
+gem "pg", "~> 1.1"
+gem 'pg_search'
 
 # Styling
 gem "tailwindcss-rails", "~> 2.0"
@@ -51,7 +49,7 @@ gem 'i18n', '~> 1.12'
 # Load env variables
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rubocop-rails', require: false
+gem "interactor-rails", "~> 2.0"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -67,4 +65,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rubocop-rails', require: false
 end

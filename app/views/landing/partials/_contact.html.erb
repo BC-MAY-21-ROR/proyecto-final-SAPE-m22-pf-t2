@@ -1,0 +1,109 @@
+<section
+  id="contact-form"
+  class="
+    max-w-screen-xl
+    bg-white
+    mx-auto
+    my-6
+    px-8
+    py-16
+    grid
+    gap-8
+    grid-cols-1
+    text-gray-900
+    rounded-lg
+    shadow-lg
+    md:grid-cols-2
+    md:px-12
+    lg:px-16
+    xl:px-32
+  "
+>
+  <div class="flex flex-col justify-between">
+    <div>
+      <h2 class="text-4xl font-bold leading-tight lg:text-5xl">
+        Let's get in touch!
+      </h2>
+      <div class="text-gray-700 mt-8">
+        Hate forms? Send us an
+        <span class="underline">email</span>
+        instead.
+      </div>
+      <%= image_tag "contact.svg", alt: 'Contact img', class: 'w-full mt-16' %>
+    </div>
+  </div>
+  <div>
+    <div>
+      <span class="uppercase text-sm text-gray-500 font-bold">
+        Full Name
+      </span>
+      <input
+        type="text"
+        placeholder="John Doe"
+        class="
+          w-full
+          bg-gray-200
+          text-gray-900
+          mt-2
+          p-3
+          rounded-lg
+          focus:outline-none
+          focus:shadow-outline
+        "
+      />
+    </div>
+    <div class="mt-8">
+      <span class="uppercase text-sm text-gray-500 font-bold">Email</span>
+      <input
+        type="text"
+        placeholder="john_doe@gmail.com"
+        class="
+          w-full
+          bg-gray-200
+          text-gray-900
+          mt-2
+          p-3
+          rounded-lg
+          focus:outline-none
+          focus:shadow-outline
+        "
+      />
+    </div>
+    <div class="mt-8">
+      <span class="uppercase text-sm text-gray-500 font-bold">Message</span>
+      <textarea
+        placeholder="Pricing?"
+        class="
+          w-full
+          h-32
+          bg-gray-200
+          text-gray-900
+          mt-2
+          p-3
+          rounded-lg
+          focus:outline-none
+          focus:shadow-outline
+        "
+      ></textarea>
+    </div>
+    <div class="mt-8">
+      <button
+        class="
+          uppercase
+          text-sm
+          font-bold
+          tracking-wide
+          bg-blue-500
+          text-gray-100
+          p-3
+          rounded-lg
+          w-full
+          focus:outline-none
+          focus:shadow-outline
+        "
+      >
+        Send Message
+      </button>
+    </div>
+  </div>
+</section>
