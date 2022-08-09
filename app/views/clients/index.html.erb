@@ -1,10 +1,12 @@
-<%= render 'dashboard/sidebar' %>
-<div class="mx-auto md:w-2/3 w-full py-10">
-  <div class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-3xl">Clients</h1>
-    <%= link_to 'New client',
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/sidebar' %>
+  <div class="mx-auto md:w-2/3 w-full py-10">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="font-bold text-3xl">Clients</h1>
+      <%= link_to 'New client',
       new_client_path,
       class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+    </div>
+    <%= render partial: 'clients/partials/clients_table' %>
   </div>
-  <%= render partial: 'clients/partials/clients_table' %>
 </div>
