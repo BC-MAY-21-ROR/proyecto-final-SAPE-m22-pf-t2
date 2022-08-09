@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :expenses
   resources :users, only: %i[show edit update]
   resource :inventory
+  resources :register
+  resources :financial_statement
   resource :business
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
@@ -37,6 +39,12 @@ Rails.application.routes.draw do
   post '/add_product_to_sale', to: 'sales#add_product_to_sale'
   delete '/remove_product_to_sale', to: 'sales#remove_product_from_sale'
   get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
+
+  # Register
+  get 'register/index'
+
+  # Financial Statement
+  get 'financial_statement/index'
 
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'

@@ -1,52 +1,94 @@
 <%= render 'dashboard/sidebar' %>
-<div class="container mx-auto h-screen p-14"> 
-  <div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-3 shadow-lg rounded-xl mt-16">
-      <div class="px-6">
-          <div class="flex flex-wrap justify-center">
-              <div class="w-full flex justify-center">
-                  <div class="relative">
-                    <% if @business.logo.attached? %>
-                      <img src="<%= @business.logo.attachment.url %>" class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px] self-center" alt="A nice alt value" />
-                    <% end %>
-                  </div>
-              </div>
-              <div class="w-full text-center mt-20"></div>
+
+<div class="container mx-auto h-screen p-14">
+  <div
+    class="
+      relative
+      max-w-md
+      mx-auto
+      min-w-0
+      break-words
+      bg-white
+      w-full
+      shadow-lg
+      rounded-xl
+      mt-16
+      pb-8
+      md:max-w-2xl
+    "
+  >
+    <div class="px-6">
+      <div class="flex flex-wrap justify-center">
+        <div class="w-full flex justify-center">
+          <div class="relative">
+            <% if @business.logo.attached? %>
+              <img
+                src="<%= @business.logo.attachment.url %>"
+                class="
+                  shadow-xl
+                  rounded-full
+                  align-middle
+                  border-none
+                  absolute
+                  -m-16
+                  -ml-20
+                  lg:-ml-16
+                  max-w-[150px]
+                  self-center
+                "
+                alt="A nice alt value"
+              />
+            <% end %>
           </div>
-          <div class="text-center mt-2">
-              <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1"><%= @business.name  %> </h3>
-              <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
-                  <i class="fa-solid fa-envelope mr-2 text-slate-400 opacity-75"></i><%= current_user.email %>
-              </div>
-              <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
-                  <i class="fa-solid fa-user-gear mr-2 text-slate-400 opacity-75"></i>
-                  <% @enrollments_data.each do |enrollment| %>
-                     <%= enrollment.role%>
-                  <% end%>
-              </div>
-          </div>
-          <div class="mt-6 py-6 border-t border-slate-200 text-center">
-              <div class="flex flex-wrap justify-center">
-                  <div class="w-full px-4">
-                      <p class="font-light leading-relaxed text-slate-600 mb-4"><%= @business.description %> </p>
-                      <%= link_to'Edit this ', edit_business_path, class: "font-normal text-slate-700 hover:text-slate-400" %>
-                  </div>
-              </div>
-          </div>
+        </div>
+        <div class="w-full text-center mt-20"></div>
       </div>
+      <div class="text-center mt-2">
+        <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">
+          <%= @business.name %>
+        </h3>
+        <div class="text-xs mt-0 mb-2 text-slate-400 font-bold">
+          <i class="fa-solid fa-envelope mr-2 text-slate-400 opacity-75"></i>
+          <%= current_user.email %>
+        </div>
+        <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
+          <i class="fa-solid fa-user-gear mr-2 text-slate-400 opacity-75"></i>
+          <%= @user_role %>
+        </div>
+      </div>
+      <div class="py-6 text-center">
+        <div class="flex flex-wrap justify-center">
+          <div class="w-full px-4">
+            <p class="font-light leading-relaxed text-slate-600 mb-4">
+              <%= @business.description %>
+            </p>
+            <% if can? :edit, @business %>
+              <%= link_to 'Edit business info', edit_business_path, class: "font-normal text-slate-700 hover:text-slate-400" %>
+            <% end %>
+            <% unless @user_has_own_business %>
+              <div>
+                <%= link_to 'Create my own business', new_business_path, class: 'text-gray-500 underline' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% unless @enrollments.empty? %>
+        <hr>
+        <h2 class=" text-xl text-center font-black leading-tight md:text-2xl mt-4 ">
+          Switch to another business
+        </h2>
+        <%= form_with url: join_to_enrolled_business_path, method: :post do |form| %>
+          <div class="my-4">
+            <%= form.label 'You are enrolled to the following business:' %>
+            <%= form.select :business_id,
+              options_for_select(enrollments_to_options(@enrollments)),
+              {}, { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mt-2 p-2.5 focus:ring-blue-500 focus:border-blue-500' } %>
+          </div>
+          <%= form.submit "Join to business",
+            class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
- <div class="md:col-span-3 bg-slate-100 w-auto h-35 rounded-lg shadow-md p-4 m-auto space-y-2 md:block">
-<% if can? :edit, @business %>
-  <%= link_to 'Editar negocio',edit_business_path,class: "hover:underline text-gray-800 font-extrabold rounded my-4 md:my-6 py-4 px-8 w-4" %>
-<% end %>
-<% unless @enrollments.empty? %>
-  <hr>
-  <h1>Switch to another business</h1>
-  <%= form_with url: join_to_enrolled_business_path, method: :post do |form| %>
-    <div class="my-5">
-      <%= form.label 'You are enrolled to the following business' %>
-          <%= select_tag(:business_id, options_for_select(enrollments_to_options(@enrollments))) %>
-    </div>
-    <%= form.submit "Join to business", class: "rounded-lg py-3 px-5 bg-blue-600 text-white ne-block font-medium  cursor-pointer" %>
-  <% end %>
-<% end %>
