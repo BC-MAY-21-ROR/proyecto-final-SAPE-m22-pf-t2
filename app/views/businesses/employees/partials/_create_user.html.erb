@@ -1,0 +1,66 @@
+<%= form_with model: @user, url: create_and_enroll_employee_path, class: "contents" do |f| %>
+  <div class="mb-6">
+    <%= f.label 'Name *',
+      for: 'user_name',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :name,
+      placeholder: 'Enter user name',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @user.errors.full_messages_for(:name).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Email *',
+      for: 'user_email',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_field :email,
+      placeholder: 'Enter user email',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Password *',
+      for: 'user_password',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.password_field :password,
+      placeholder: 'Enter user password',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label :role, 'Role *', class:"mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.select :role,
+      options_for_select(roles_to_options),
+      {},
+      { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mt-2 p-2.5 focus:ring-blue-500 focus:border-blue-500' } %>
+  </div>
+
+  <div class="flex items-center space-x-2">
+    <%= f.submit "Create employee", class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+
+    <%= link_to "Cancel",
+      employees_path,
+      class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
+  </div>
+
+<% end %>

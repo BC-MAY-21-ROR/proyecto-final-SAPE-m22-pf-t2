@@ -1,44 +1,56 @@
-<div class="h-screen bg-gray-100 ">
-  <%= render 'dashboard/sidebar' %>
-  
-  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
-    
-    <div class="mx-auto md:w-2/3 w-full pt-5 ">
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/nav' %>
+  <div class="p-4 lg:px-0">
+    <div
+      class="
+        w-full
+        p-6
+        rounded-lg
+        mx-auto
+        bg-white
+        drop-shadow-lg
+        w-2/3
+        lg:w-3/5
+        xl:w-1/2
+        2xl:w-2/5
+      "
+    >
+      <h2
+        class="
+          text-xl
+          text-center
+          font-black
+          leading-tight
+          md:text-2xl
+          lg:text-3xl
+        "
+      >
+        Add an existing account
+      </h2>
 
-      <div class="relative bg-white shadow-lg border border-gray-200 sm:p-6 rounded-sm overflow-hidden mb-8">
+      <%= render 'businesses/employees/partials/add_existing_user' %>
 
-        <div class="relative">
-          <h1 class="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Add already existing account. 👋</h1>
-        </div>
-
+      <div class="w-full flex items-center justify-between py-5">
+        <hr class="w-full bg-gray-400">
+        <p class="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
+        <hr class="w-full bg-gray-400 ">
       </div>
 
-    </div>
+      <h2
+        class="
+          text-xl
+          text-center
+          font-black
+          leading-tight
+          md:text-2xl
+          lg:text-3xl
+        "
+      >
+        Create a user account
+      </h2>
 
-    <div class="mx-auto md:w-2/3 w-full pt-0">
-
-      <%= render 'businesses/employees/partials/add'  %>
-      
-    </div>
-
-    <div class="mx-auto md:w-2/3 w-full pt-10">
-
-      <div class="relative bg-white shadow-lg border border-gray-200 sm:p-6 rounded-sm overflow-hidden mb-8">
-
-        <div class="relative">
-          <h1 class="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Or create a user account. 👋</h1>
-        </div>
-
-      </div>
+      <%= render 'businesses/employees/partials/create_user' %>
 
     </div>
-
-    <div class="mx-auto md:w-2/3 w-full py-00">
-
-      <%= render 'businesses/employees/partials/create'  %>
-      
-    </div>
-   
   </div>
-  
 </div>
