@@ -1,6 +1,6 @@
 class ProvidersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_provider, only: %i[show edit update destroy]
+  load_and_authorize_resource
 
   def index
     @providers = Provider.all
@@ -43,10 +43,6 @@ class ProvidersController < ApplicationController
   end
 
   private
-
-  def set_provider
-    @provider = Provider.find(params[:id])
-  end
 
   def provider_params
     params.require(:provider).permit(:name, :email, :phone)
