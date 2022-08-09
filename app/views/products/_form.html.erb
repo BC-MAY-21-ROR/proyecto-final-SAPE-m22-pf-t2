@@ -1,34 +1,79 @@
-<%= form_with(model: @product, class: "contents") do |form| %>
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+<%= form_with(model: @product, class: "contents") do |f| %>
+
+  <div class="mb-6">
+    <%= f.label 'Code *',
+      for: 'product_code',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.text_field :code,
+      placeholder: 'Enter product code',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+    <% product.errors.full_messages_for(:code).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :code %>
-    <%= form.text_field :code, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Name *',
+      for: 'product_name',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.text_field :name,
+      placeholder: 'Enter product name',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+    <% product.errors.full_messages_for(:name).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :price %>
-    <%= form.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Price *',
+      for: 'product_price',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.number_field :price,
+      placeholder: 'Enter product price',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+    <% product.errors.full_messages_for(:price).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :stock %>
-    <%= form.number_field :stock, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Stock *',
+      for: 'product_stock',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.number_field :stock,
+      placeholder: 'Enter product stock',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+    <% product.errors.full_messages_for(:stock).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Description',
+      for: 'product_description',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.text_area :description,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+    <% product.errors.full_messages_for(:description).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-
-  <%= link_to 'Back to products',
+  <div class="flex items-center space-x-2">
+    <%= f.submit class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+    <%= link_to "Cancel",
       products_path,
-      class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
+  </div>
+
 <% end %>
