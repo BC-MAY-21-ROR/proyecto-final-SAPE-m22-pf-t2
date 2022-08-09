@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
   resources :sales
-  resources :products, path: '/inventory/products'
+  resources :products, path: '/inventory/products', except: [:show]
   resources :expenses
   resources :users, only: %i[show edit update]
   resource :inventory
@@ -45,7 +44,7 @@ Rails.application.routes.draw do
 
   # Financial Statement
   get 'financial_statement/index'
-  
+
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'
   root 'landing#index'
