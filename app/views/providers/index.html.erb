@@ -1,14 +1,12 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Providers</h1>
-    <%= link_to 'New provider', new_provider_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="providers" class="min-w-full">
-    <%= render @providers %>
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/nav' %>
+  <div class="mx-auto md:w-2/3 w-full py-10">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="font-bold text-3xl">Providers</h1>
+      <%= link_to 'New provider',
+        new_provider_path,
+        class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+    </div>
+    <%= render partial: 'providers/partials/providers_table' %>
   </div>
 </div>

@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
     t.string "name"
     t.string "business_type"
     t.string "address"
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
     t.index ["country_id"], name: "index_businesses_on_country_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
@@ -121,6 +121,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
     t.index ["business_id"], name: "index_products_on_business_id"
   end
 
+  create_table "providers", force: :cascade do |t|
+    t.bigint "business_id"
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_providers_on_business_id"
+  end
+
   create_table "purchases", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "spent_id"
@@ -177,5 +187,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
   add_foreign_key "expenses", "businesses"
   add_foreign_key "products", "businesses"
   add_foreign_key "resupplies", "products"
+  add_foreign_key "providers", "businesses"
   add_foreign_key "sales", "clients"
 end

@@ -1,11 +1,10 @@
 class ProvidersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_provider, only: %i[show edit update destroy]
 
   def index
     @providers = Provider.all
   end
-
-  def show; end
 
   def new
     @provider = Provider.new
@@ -14,11 +13,11 @@ class ProvidersController < ApplicationController
   def edit; end
 
   def create
-    @provider = Provider.new(provider_params)
+    @provider = Provider.new(provider_params.merge({ business: current_business }))
 
     respond_to do |format|
       if @provider.save
-        format.html { redirect_to provider_url(@provider), notice: 'Provider was successfully created.' }
+        format.html { redirect_to providers_path, notice: 'Provider was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -28,7 +27,7 @@ class ProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @provider.update(provider_params)
-        format.html { redirect_to provider_url(@provider), notice: 'Provider was successfully updated.' }
+        format.html { redirect_to providers_path, notice: 'Provider was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
