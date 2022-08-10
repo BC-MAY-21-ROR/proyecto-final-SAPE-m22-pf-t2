@@ -1,40 +1,114 @@
+<%= form_with(model: @expense, class: "contents") do |f| %>
+  <div class="mb-6">
+    <%= f.label 'Month',
+      for: 'expense_month',
+      class: 'block mb-2 text-sm font-medium text-gray-900' %>
 
-
-<%= form_with(model: @expense, class: "contents") do |form| %>
-
-  <div class="my-5">
-    <%= form.label :rent %>
-    <%= form.text_field :rent, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= f.month_field :month,
+      class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :salaries %>
-    <%= form.text_field :salaries, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Rent',
+      for: 'expense_rent',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.number_field :rent,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @expense.errors.full_messages_for(:rent).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :general_charges %>
-    <%= form.text_field :general_charges, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Salaries',
+      for: 'expense_salaries',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.number_field :salaries,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @expense.errors.full_messages_for(:salaries).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :service_bills %>
-    <%= form.text_field :service_bills, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'General charges',
+      for: 'expense_general_charges',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.number_field :general_charges,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @expense.errors.full_messages_for(:general_charges).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :commissions %>
-    <%= form.text_field :commissions, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Services bills',
+      for: 'expense_service_bills',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.number_field :service_bills,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @expense.errors.full_messages_for(:service_bills).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :taxes %>
-    <%= form.text_field :taxes, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= f.label 'Commissions',
+      for: 'expense_commissions',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.number_field :commissions,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @expense.errors.full_messages_for(:commissions).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
-  <%= form.hidden_field :business_id, value: current_user.id%>
+  <div class="mb-6">
+    <%= f.label 'Taxes',
+      for: 'expense_taxes',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= f.number_field :taxes,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @expense.errors.full_messages_for(:taxes).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="flex items-center space-x-2">
+    <%= f.submit class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+
+    <%= link_to "Cancel",
+      expenses_path,
+      class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
   </div>
 <% end %>
