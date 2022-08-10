@@ -12,6 +12,11 @@
           <%= link_to 'Add resupply',new_resupply_path,class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
           <% end %>
       </div>
+      <div class="px-4">
+        <% if can? :create, Resupply %>
+          <%= link_to 'All resupplies',resupplies_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <% end %>
+      </div>
     </div>    
   </div>
 </div>

@@ -1,8 +1,10 @@
 class ResuppliesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_resupply, only: [:edit]
 
   def index
     @resupplies = Resupply.all
+    @Product = Product.all
   end
 
   def new 
@@ -11,13 +13,18 @@ class ResuppliesController < ApplicationController
 
   def create
     @resupply = Resupply.new(resupply_params)
-    if @resupply.save
-      redirect_to resupply_path
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @resupply.save
+      format.html { redirect_to resupply_url(@resupply), notice: "Usuario was successfully created." }
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
+  
   end
 
+  def edit;end
+  
   private 
 
   def set_resupply
@@ -26,8 +33,10 @@ class ResuppliesController < ApplicationController
 
   def resupply_params
     params.require(:resupply).permit(
+      :product_id,
       :quantity,
       :comment
     )
   end
+
 end

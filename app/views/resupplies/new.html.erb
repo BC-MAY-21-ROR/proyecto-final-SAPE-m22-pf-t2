@@ -1,21 +1,29 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New Resupply</h1>
-
-  
-
-  <hr>
-
-  <%= form_with model: @resupply, method: :post do |form| %>
-    <%= form.label :quantity, "Quantity" %>
-    <%= form.number_field :comment, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-    
-    <div class="my-5">
-    <%= form.label :comment %>
-    <%= form.text_field :comment, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+<div class="h-screen bg-gray-100 ">
+  <%= render 'dashboard/nav' %>
+  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
+    <div class="mx-auto md:w-2/3 w-full pt-5 ">
+      <div class="relative bg-white shadow-lg border border-gray-200 sm:p-6 rounded-sm overflow-hidden mb-8">
+        <div class="relative">
+          <h1 class="text-2xl md:text-3xl text-gray-800 font-bold mb-1">New Resupply 👋</h1>
+        </div>
+      </div>
+    <%# Table for resupplies %>
+    <div class="mx-auto md:w-2/3 w-full py-00">
+      <%= form_with model: @resupply, method: :post do |form| %>   
+        <%= form.label :product_id, "Id del producto " %>
+        <%= form.number_field :product_id, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+        <%= form.label :quantity, "Quantity" %>
+        <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+        <div class="my-5">
+          <%= form.label :comment %>
+          <%= form.text_field :comment, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+        <%= form.submit "Confirm resupply", data: { turbo: false } ,class:"rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"%>
+      <% end %>
+      <div class="py-3 w-44">
+      <%= link_to 'Back to resupply', resupplies_path,class: "rounded-lg py-3 px-5 bg-blue-600  text-white block font-medium"%>
+      </div>
+    </div>
+    <div class="">
   </div>
-
-    <%= form.submit "Confirm resupply", data: { turbo: false } %>
-  <% end %>
-
-  <%= link_to 'Back to resupply', resupplies_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

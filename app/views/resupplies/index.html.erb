@@ -1,31 +1,16 @@
-<div class="w-full">
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Sales</h1>
-    <%= link_to 'New resupply', new_resupply_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Quantity</th>
-        <th>Comments</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @resupplies.each do |resupply| %>
-        <tr>
-          <td>
-            <%= resupply.quantity %>
-          </td>
-          <td>
-            <%= resupply.comment %>
-          </td>
-          <td>
-            <%= link_to 'Details', resupply_path(resupply) %>
-          </td>
-        </tr>
+<div class="h-screen bg-gray-100 ">
+  <%= render 'dashboard/nav' %>
+  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
+    <div class="mx-auto md:w-2/3 w-full py-5">
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5  text-green-500 font-medium rounded-lg inline-block text-center" id="notice"><%= notice %></p>
       <% end %>
-    </tbody>
-  </table>
-
+    </div>
+    <div class="mx-auto md:w-2/3 w-full py-10">
+      <%= render 'header' %>
+    </div>
+    <div class="mx-auto md:w-2/3 w-full py-10">
+      <%= render 'table_resupplies' %>
+    </div>
+  </div>
 </div>
