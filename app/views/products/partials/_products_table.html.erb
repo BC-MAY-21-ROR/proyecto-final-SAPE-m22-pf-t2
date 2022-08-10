@@ -53,18 +53,11 @@
                 <td class="text-sm text-gray-900 font-normal px-2 py-4 whitespace-nowrap ">
                   <%= product.stock %>
                 </td>
-                <td class=" text-center text-sm text-gray-900 font-normal py-4 max-w-[100px]">
-                  <div class="flex justify-center space-x-2">
-                    <%= link_to 'Edit',
-                      edit_product_path(product),
-                      class: 'bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
-
-                    <%= button_to 'Remove',
-                      product_path(product),
-                      method: :delete,
-                      class: 'bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-500',
-                      form: { data: { turbo_confirm: 'Are you sure?' } } %>
-                  </div>
+                <td class="text-sm text-gray-900 font-normal px-6 py-4 whitespace-nowrap ">
+                    <%= link_to "Show this product", product, class: "bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full" %>
+                </td>
+                <td scope="col" class="text-sm text-gray-900 font-normal px-6 py-4 whitespace-nowrap">
+                    <%= button_to 'Remove', product_path(product), method: :delete, class: 'bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-full', form: { data: { turbo_confirm: 'Are you sure?' } } %>
                 </td>
               </tr>
             <% end %>
