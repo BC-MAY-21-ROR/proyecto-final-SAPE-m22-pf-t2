@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   has_many :sales, through: :product_sales
   has_many :purchases
   has_many :spents, through: :purchases
-  has_many :resupplies
+  has_many :resupplies, through: :product_resupplie
 
   validates :name, :code, :price, :stock, presence: true
 
