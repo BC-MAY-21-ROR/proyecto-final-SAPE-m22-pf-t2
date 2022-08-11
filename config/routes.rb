@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clients, except: [:show]
   resources :sales
   resources :products, path: '/inventory/products', except: [:show]
   resources :expenses

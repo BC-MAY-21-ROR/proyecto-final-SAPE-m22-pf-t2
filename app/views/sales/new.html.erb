@@ -1,10 +1,10 @@
 <div class="mx-auto md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">New sale</h1>
 
-  <%= form_with url: search_products_path, method: :get, data: { turbo_frame: "products_found" } do |form| %>
-    <%= form.label :query, "Search products:" %>
-    <%= form.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-    <%= form.submit "Search" %>
+  <%= form_with url: search_products_path, method: :get, data: { turbo_frame: "products_found" } do |f| %>
+    <%= f.label :query, "Search products:" %>
+    <%= f.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    <%= f.submit "Search" %>
   <% end %>
 
   <%= turbo_frame_tag 'products_found' do %>
@@ -17,11 +17,10 @@
 
   <hr>
 
-  <%= form_with model: @sale, method: :post do |form| %>
-    <%= form.label :client, "Client" %>
-    <%= form.text_field :client, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-
-    <%= form.submit "Confirm sale" %>
+  <%= form_with model: @sale, method: :post do |f| %>
+    <%= f.label :client_id, "Client" %>
+    <%= f.select :client_id, clients_to_options(@clients), {}, { class: 'block w-full' } %>
+    <%= f.submit "Confirm sale" %>
   <% end %>
 
   <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

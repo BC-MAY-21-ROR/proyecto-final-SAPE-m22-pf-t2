@@ -2,10 +2,10 @@ class Sales::CalculateTotalForSaleProducts
   include Interactor
 
   def call
-    total = 0
+    sale_total = 0
     context.sale_products.each do |sale_product|
-      total += sale_product[:total]
+      sale_total += sale_product[:total]
     end
-    context.total = total
+    context.sale_total = sale_total
   end
 end

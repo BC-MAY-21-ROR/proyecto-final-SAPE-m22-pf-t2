@@ -29,5 +29,8 @@ class Ability
 
     # Products
     can %i[create update destroy], Product
+
+    # Client
+    can :manage, Client
   end
 end

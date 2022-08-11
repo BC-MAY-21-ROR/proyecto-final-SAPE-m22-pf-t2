@@ -1,0 +1,81 @@
+<div
+  id="sidebar"
+  class="
+    h-screen
+    w-16
+    menu
+    bg-white
+    text-white
+    px-4
+    flex
+    items-center
+    nunito
+    static
+    fixed
+    shadow
+  "
+>
+  <ul class="list-reset">
+    <li class="my-2 md:my-0">
+      <%= link_to dashboard_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fas fa-home fa-fw mr-3 text-indigo-400"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Home
+        </span>
+      <% end %>
+    </li>
+
+    <li class="my-2 md:my-0">
+      <%= link_to employees_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fa-solid fa-users mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Employees
+        </span>
+      <% end %>
+    </li>
+
+    <% if can? :manage, Client %>
+      <li class="my-2 md:my-0">
+        <%= link_to clients_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+          <i class="fas fa-tasks fa-fw mr-3"></i>
+          <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+            Clients
+          </span>
+        <% end %>
+      </li>
+    <% end %>
+
+    <li class="my-2 md:my-0">
+      <%= link_to products_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fa-solid fa-boxes-stacked mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Inventory
+        </span>
+      <% end %>
+    </li>
+
+    <li class="my-2 md:my-0">
+      <%= link_to expenses_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fas fa-tasks fa-fw mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Business expenses
+        </span>
+      <% end %>
+    </li>
+
+    <li class="my-2 md:my-0">
+      <%= link_to business_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fas fa-tasks fa-fw mr-3"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Business administration
+        </span>
+      <% end %>
+    </li>
+  </ul>
+</div>
