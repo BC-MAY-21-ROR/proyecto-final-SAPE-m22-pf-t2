@@ -3,6 +3,7 @@ class Business < ApplicationRecord
   has_many :business_enrollments
   has_many :users, through: :business_enrollments
   has_many :clients
+  has_many :providers
   has_one_attached :logo
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
   belongs_to :country
