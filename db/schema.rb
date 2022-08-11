@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_212638) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_212638) do
     t.string "name"
     t.string "business_type"
     t.string "address"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description"
     t.index ["country_id"], name: "index_businesses_on_country_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
@@ -94,6 +94,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_212638) do
     t.index ["business_id"], name: "index_expenses_on_business_id"
   end
 
+  create_table "product_resupplies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_sales", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "sale_id"
@@ -124,6 +129,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_212638) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_purchases_on_product_id"
     t.index ["spent_id"], name: "index_purchases_on_spent_id"
+  end
+
+  create_table "resupplies", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_resupplies_on_product_id"
   end
 
   create_table "sales", force: :cascade do |t|
@@ -162,5 +176,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_212638) do
   add_foreign_key "clients", "businesses"
   add_foreign_key "expenses", "businesses"
   add_foreign_key "products", "businesses"
+  add_foreign_key "resupplies", "products"
   add_foreign_key "sales", "clients"
 end

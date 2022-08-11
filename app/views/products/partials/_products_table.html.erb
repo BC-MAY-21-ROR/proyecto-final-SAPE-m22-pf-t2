@@ -58,7 +58,9 @@
                     <%= link_to 'Edit',
                       edit_product_path(product),
                       class: 'bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
-
+                       <%= link_to 'Resupply',
+                      new_resupply_path(:product_id => product),
+                      class: 'bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
                     <%= button_to 'Remove',
                       product_path(product),
                       method: :delete,
