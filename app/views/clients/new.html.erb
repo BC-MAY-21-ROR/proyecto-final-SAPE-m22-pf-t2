@@ -8,26 +8,18 @@
         rounded-lg
         mx-auto
         bg-white
-        drop-shadow-lgsm:w-4/5
+        drop-shadow-lg
+        sm:w-4/5
         md:w-2/3
         lg:w-3/5
         xl:w-1/2
         2xl:w-2/5
       "
     >
-      <h2
-        class="
-          text-xl
-          text-center
-          font-black
-          leading-tight
-          md:text-2xl
-          lg:text-3xl
-        "
-      >
-        New product
+      <h2 class=" text-xl text-center font-black leading-tight">
+        New client
       </h2>
-      <%= render "form", product: @product %>
+      <%= render "form", client: @client %>
     </div>
   </div>
 </div>

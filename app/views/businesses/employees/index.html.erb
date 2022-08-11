@@ -1,19 +1,7 @@
 <div class="h-screen bg-gray-100">
-  <%= render 'dashboard/nav' %>
-  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
-
-    <div class="mx-auto md:w-2/3 w-full py-5">
-      <%= render 'businesses/employees/partials/welcome' %>
-    </div>
-
-    <div class="mx-auto md:w-2/3 w-full py-10">
-      <%= render 'businesses/employees/partials/header' %>
-    </div>
-
-    <div class="mx-auto md:w-2/3 w-full">
-      <%= render 'businesses/employees/partials/table_employees' %>
-    </div>
-
+  <%= render 'dashboard/sidebar' %>
+  <div class="mx-auto w-full py-10 md:w-2/3">
+    <%= render 'businesses/employees/partials/header' %>
+    <%= render 'businesses/employees/partials/employees_table' %>
   </div>
-
 </div>

@@ -33,13 +33,14 @@ class SalesController < ApplicationController
   end
 
   def new
+    @clients = Client.all
     @sale = Sale.new
   end
 
   def add_product_to_sale
     result = Sales::AddProductToSaleOrganizer.call(params.merge({ session: session }))
     @sale_products = result.sale_products
-    @sale_total = result.total
+    @sale_total = result.sale_total
 
     respond_to do |format|
       format.html { render partial: 'sales/partials/sale_products' }
@@ -84,7 +85,7 @@ class SalesController < ApplicationController
       { product_id: params[:product_id], session: session }
     )
     @sale_products = result.sale_products
-    @sale_total = result.total
+    @sale_total = result.sale_total
 
     respond_to do |format|
       format.html { render partial: 'sales/partials/sale_products' }
@@ -105,7 +106,7 @@ class SalesController < ApplicationController
 
   def load_sale_products_from_session
     @sale_products = Sales::LoadSaleProductsFromSession.call({ session: session }).sale_products
-    @sale_total = Sales::CalculateTotalForSaleProducts.call(sale_products: @sale_products).total
+    @sale_total = Sales::CalculateTotalForSaleProducts.call(sale_products: @sale_products).sale_total
   end
 
   def set_sale
@@ -113,6 +114,6 @@ class SalesController < ApplicationController
   end
 
   def sale_params
-    params.require(:sale).permit(:client)
+    params.require(:sale).permit(:client_id)
   end
 end
