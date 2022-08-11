@@ -1,0 +1,19 @@
+<div>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= resupply.quantity %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Code:</strong>
+    <%= product.comment %>
+  </p>
+  <% if action_name != "show" %>
+    <%= link_to "Show this product", product, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if can? :update, Product %>
+      <%= link_to 'Edit this product',
+        edit_product_path(product),
+        class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+    <hr class="mt-6">
+  <% end %>
+</div>

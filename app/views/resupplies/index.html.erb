@@ -1,0 +1,16 @@
+<div class="h-screen bg-gray-100 ">
+  <%= render 'dashboard/nav' %>
+  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
+    <div class="mx-auto md:w-2/3 w-full py-5">
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5  text-green-500 font-medium rounded-lg inline-block text-center" id="notice"><%= notice %></p>
+      <% end %>
+    </div>
+    <div class="mx-auto md:w-2/3 w-full py-10">
+      <%= render 'header' %>
+    </div>
+    <div class="mx-auto md:w-2/3 w-full py-10">
+      <%= render 'table_resupplies' %>
+    </div>
+  </div>
+</div>
