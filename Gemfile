@@ -53,6 +53,7 @@ gem "interactor-rails", "~> 2.0"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'pry', '~> 0.13.1'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
 end
 

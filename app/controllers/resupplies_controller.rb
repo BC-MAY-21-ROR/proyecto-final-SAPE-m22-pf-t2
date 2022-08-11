@@ -9,26 +9,33 @@ class ResuppliesController < ApplicationController
 
   def new 
     @resupply = Resupply.new
+    $product_url = params[:product_id]
   end
 
   def create
     @resupply = Resupply.new(resupply_params)
-    respond_to do |format|
       if @resupply.save
-      format.html { redirect_to resupply_url(@resupply), notice: "Usuario was successfully created." }
+        update_product
+        redirect_to products_url
       else
         render :new, status: :unprocessable_entity
       end
-    end
-  
   end
 
+  def show;end
+
   def edit;end
-  
+
+  def update_product
+    @product = Product.find_by(id: $product_url)
+    new_stock = @product.stock + @resupply.quantity
+    @product.update(stock: new_stock)
+  end
+
   private 
 
-  def set_resupply
-    @resupply = Resupply.find(params[:id])
+  def request_url
+    @query = request.query_parameters
   end
 
   def resupply_params
