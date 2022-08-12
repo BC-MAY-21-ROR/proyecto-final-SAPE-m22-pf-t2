@@ -8,7 +8,9 @@ class ResuppliesController < ApplicationController
 
   def new
     @resupply = Resupply.new
+    @providers = Provider.all
     @product_id = params[:product_id]
+    redirect_to products_path unless @product_id.present?
   end
 
   def create
@@ -27,7 +29,7 @@ class ResuppliesController < ApplicationController
   def edit; end
 
   def update_product
-    @product = Product.find_by(id: @product_id)
+    @product = Product.find(@resupply.product_id)
     new_stock = @product.stock + @resupply.quantity
     @product.update(stock: new_stock)
   end
@@ -37,6 +39,7 @@ class ResuppliesController < ApplicationController
   def resupply_params
     params.require(:resupply).permit(
       :product_id,
+      :provider_id,
       :quantity,
       :comment
     )
