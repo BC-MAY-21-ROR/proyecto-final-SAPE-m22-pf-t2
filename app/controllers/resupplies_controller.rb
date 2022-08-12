@@ -1,6 +1,7 @@
 class ResuppliesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_resupply, only: [:edit]
+  before_action :set_resupply, only: %i[show edit]
+  before_action :set_providers, only: %i[new create]
 
   def index
     @resupplies = Resupply.all
@@ -8,7 +9,6 @@ class ResuppliesController < ApplicationController
 
   def new
     @resupply = Resupply.new
-    @providers = Provider.all
     @product_id = params[:product_id]
     redirect_to products_path unless @product_id.present?
   end
@@ -35,6 +35,14 @@ class ResuppliesController < ApplicationController
   end
 
   private
+
+  def set_resupply
+    @resupply = Resupply.find(params[:id])
+  end
+
+  def set_providers
+    @providers = Provider.all
+  end
 
   def resupply_params
     params.require(:resupply).permit(
