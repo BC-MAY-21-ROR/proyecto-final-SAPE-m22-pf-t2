@@ -16,7 +16,7 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params.merge({ business: current_business }))
-
+    
     respond_to do |format|
       if @expense.save
         format.html { redirect_to expense_url(@expense), notice: 'Expense was successfully created.' }

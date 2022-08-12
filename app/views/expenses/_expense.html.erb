@@ -1,15 +1,15 @@
+<% unless @expenses.empty? %>
 <div class="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-gray-200">
     <header class="px-5 py-4 border-b border-gray-100">
       <h2 class="font-semibold text-gray-800">Expenses</h2>
     </header>
     <div class="p-3">
-
       <!-- Card content -->
       <!-- "Today" group -->
-      <div>
+      <div id="<%= dom_id expenses %>" >
         <header class="text-xs uppercase text-gray-400 bg-gray-50 rounded-sm font-bold p-2">This Month</header>
         <ul class="my-1">
-        <div id="<%= dom_id expense %>">
+        <div>
           <!-- Item -->
           <li class="flex px-2">
             <div class="w-9 h-9 rounded-full shrink-0 bg-red-500 my-2 mr-3">
@@ -94,19 +94,17 @@
               </div>
             </div>
           </li>
-          
         </ul>
-
-      </div>
-
-      
-      
+      </div>      
       <% if action_name != "show" %>
         <%= link_to "Show this expense", expense, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
         <%= link_to 'Edit this expense', edit_expense_path(expense), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
         <hr class="mt-6">
       <% end %>
-
     </div>
   </div>
-  
+<% else %>
+  <h2 class="text-center font-bold text-3xl">
+    No expenses registered!
+  </h2>
+<% end %>

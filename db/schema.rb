@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_10_232944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
     t.string "name"
     t.string "business_type"
     t.string "address"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description"
     t.index ["country_id"], name: "index_businesses_on_country_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
@@ -187,11 +187,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
   add_foreign_key "clients", "businesses"
   add_foreign_key "expenses", "businesses"
   add_foreign_key "products", "businesses"
-<<<<<<< HEAD
   add_foreign_key "providers", "businesses"
-=======
->>>>>>> master
   add_foreign_key "resupplies", "products"
-  add_foreign_key "providers", "businesses"
   add_foreign_key "sales", "clients"
 end
