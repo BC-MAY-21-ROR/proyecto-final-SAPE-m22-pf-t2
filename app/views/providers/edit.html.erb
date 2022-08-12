@@ -1,0 +1,25 @@
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/sidebar' %>
+  <div class="p-4 lg:px-0">
+    <div
+      class="
+        w-full
+        p-6
+        rounded-lg
+        mx-auto
+        bg-white
+        drop-shadow-lg
+        sm:w-4/5
+        md:w-2/3
+        lg:w-3/5
+        xl:w-1/2
+        2xl:w-2/5
+      "
+    >
+      <h2 class=" text-xl text-center font-black leading-tight">
+        Editing provider
+      </h2>
+      <%= render "form", provider: @provider %>
+    </div>
+  </div>
+</div>

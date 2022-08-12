@@ -192,5 +192,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_233039) do
 =======
 >>>>>>> master
   add_foreign_key "resupplies", "products"
+  add_foreign_key "providers", "businesses"
   add_foreign_key "sales", "clients"
 end

@@ -30,7 +30,10 @@ class Ability
     # Products
     can %i[create update destroy], Product
 
-    # Client
+    # Clients
     can :manage, Client
+
+    # Providers
+    can :manage, Provider
   end
 end
