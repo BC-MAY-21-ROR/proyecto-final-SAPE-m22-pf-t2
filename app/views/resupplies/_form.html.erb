@@ -1,0 +1,59 @@
+<%= form_with model: @resupply, method: :post do |f| %>
+  <%= f.text_field :product_id, value: @product_id, class: "hidden" %>
+
+  <div class="mb-6">
+    <%= f.label :provider_id, 'Provider *', class: "mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.select :provider_id,
+      providers_to_options(@providers),
+      { include_blank: '-- Select provider --' },
+      { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mt-2 p-2.5 focus:ring-blue-500 focus:border-blue-500' } %>
+
+    <% @resupply.errors.full_messages_for(:provider).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Quantity *',
+      for: 'resupply_quantity',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.number_field :quantity,
+      min: 0,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @resupply.errors.full_messages_for(:quantity).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Comment',
+      for: 'resupply_comment',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.text_area :comment,
+      placeholder: 'Enter a comment',
+      rows: 5,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @resupply.errors.full_messages_for(:comment).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="flex items-center space-x-2">
+    <%= f.submit "Confirm resupply", class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+
+    <%= link_to "Cancel",
+      products_path,
+      class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
+  </div>
+<% end %>

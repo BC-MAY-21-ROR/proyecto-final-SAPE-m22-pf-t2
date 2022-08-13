@@ -1,15 +1,18 @@
-<div class="px-2 w-full">
+<% unless @resupplies.empty? %>
   <div
     class="
       col-span-full
-      xl:col-span-6
       bg-white
       shadow-lg
       rounded-sm
       border
       border-gray-200
+      xl:col-span-6
     "
   >
+    <header class="px-5 py-4 border-b border-gray-100">
+      <h2 class="font-bold text-gray-800">List of resupplies</h2>
+    </header>
     <div class="p-3">
       <!-- Table -->
       <div class="overflow-x-auto">
@@ -18,19 +21,22 @@
           <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
             <tr>
               <th class="p-2 whitespace-nowrap">
-                <div class="font-bold text-left">Code</div>
+                <div class="font-bold text-left">Product code</div>
               </th>
               <th class="p-2 whitespace-nowrap">
-                <div class="font-bold text-left">Resupplies</div>
+                <div class="font-bold text-left">Product name</div>
               </th>
               <th class="p-2 whitespace-nowrap">
-                <div class="font-bold text-left">Resupplie ID</div>
+                <div class="font-bold text-left">Quantity</div>
               </th>
               <th class="p-2 whitespace-nowrap">
-                <div class="font-bold text-center">Created at</div>
+                <div class="font-bold text-left">Total</div>
               </th>
               <th class="p-2 whitespace-nowrap">
-                <div class="font-bold text-center">Description</div>
+                <div class="font-bold text-left">Created at</div>
+              </th>
+              <th class="p-2 whitespace-nowrap">
+                <div class="font-bold text-center">Show</div>
               </th>
             </tr>
           </thead>
@@ -38,40 +44,25 @@
           <tbody>
             <% @resupplies.each do |resupply| %>
               <tr class="border-b">
-                <td
-                  class="
-                    text-sm
-                    text-gray-900
-                    font-normal
-                    px-6
-                    py-4
-                    whitespace-nowrap
-                    uppercase
-                  "
-                >
-                  <%= resupply.product_id %>
+                <td class=" text-sm text-gray-900 font-normal px-2 py-4 whitespace-nowrap ">
+                  <%= resupply.product.code %>
                 </td>
-                <td class="text-sm text-gray-900 font-semibold px-6 py-4 whitespace-nowrap">
+                <td class=" text-sm text-gray-900 font-normal px-2 py-4 whitespace-nowrap ">
+                  <%= resupply.product.name %>
+                </td>
+                <td class="text-sm text-gray-900 font-semibold px-2 py-4 whitespace-nowrap">
                   <%= resupply.quantity %>
                 </td>
-                <td
-                  class="
-                    text-sm
-                    text-gray-900
-                    font-normal
-                    px-6
-                    py-4
-                    whitespace-nowrap
-                    uppercase
-                  "
-                >
-                  <%= resupply.id %>
+                <td class="text-sm text-gray-900 font-semibold px-2 py-4 whitespace-nowrap">
+                  $<%= resupply.calculate_total %>
                 </td>
-                <td class="text-sm text-gray-900 font-normal px-6 py-4 whitespace-nowrap">
+                <td class="text-sm text-gray-900 font-normal px-2 py-4 whitespace-nowrap">
                   <%= resupply.created_at %>
                 </td>
-                <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                  <%= resupply.comment %>
+                <td class=" text-sm text-center text-gray-900 font-normal px-2 py-4 ">
+                  <%= link_to 'Show',
+                    resupply_path(resupply),
+                    class: 'bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
                 </td>
               </tr>
             <% end %>
@@ -80,4 +71,8 @@
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <h2 class="text-center font-bold text-3xl">
+    No resupplies registered!
+  </h2>
+<% end %>

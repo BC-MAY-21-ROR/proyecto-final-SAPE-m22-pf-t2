@@ -1,27 +1,25 @@
-<div class="h-screen bg-gray-100 ">
+<div class="h-screen bg-gray-100">
   <%= render 'dashboard/sidebar' %>
-  <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
-    <div class="mx-auto md:w-2/3 w-full pt-5">
-      <div class="mx-auto md:w-2/3 w-full py-00">
-        <%= form_with model: @resupply, method: :post do |form| %>
-          <%= form.text_field :product_id, value: @product_id, class: "hidden block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-
-          <%= form.label :provider_id, "Provider" %>
-          <%= form.select :provider_id, providers_to_options(@providers), {}, { class: 'block w-full' } %>
-
-          <%= form.label :quantity, "Quantity" %>
-          <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-
-          <div class="my-5">
-            <%= form.label :comment %>
-            <%= form.text_area :comment, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-          </div>
-
-          <%= form.submit "Confirm resupply", data: { turbo: false }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-        <% end %>
-        <div class="py-3 w-44">
-          <%= link_to 'Back to resupply', resupplies_path, class: "rounded-lg py-3 px-5 bg-blue-600  text-white block font-medium" %>
-        </div>
-      </div>
+  <div class="p-4 lg:px-0">
+    <div
+      class="
+        w-full
+        p-6
+        rounded-lg
+        mx-auto
+        bg-white
+        drop-shadow-lg
+        sm:w-4/5
+        md:w-2/3
+        lg:w-3/5
+        xl:w-1/2
+        2xl:w-2/5
+      "
+    >
+      <h2 class=" text-xl text-center font-black leading-tight">
+        New resupply
+      </h2>
+      <%= render "form" %>
     </div>
   </div>
+</div>
