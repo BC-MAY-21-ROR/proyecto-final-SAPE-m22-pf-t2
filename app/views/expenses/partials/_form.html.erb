@@ -6,6 +6,12 @@
 
     <%= f.month_field :month,
       class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
+
+    <% @expense.errors.full_messages_for(:month).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
   </div>
 
   <div class="mb-6">

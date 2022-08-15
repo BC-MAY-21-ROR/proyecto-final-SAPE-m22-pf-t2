@@ -15,7 +15,7 @@ class ExpensesController < ApplicationController
   def edit; end
 
   def create
-    result = Expenses::CreateOrUpdateExpense.call({ business: current_business, expense_params: })
+    result = Expenses::CreateOrUpdateExpense.call({ business: current_business, expense_params: expense_params })
     @expense = result.expense
     respond_to do |format|
       if result.success?
@@ -27,7 +27,7 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    result = Expenses::CreateOrUpdateExpense.call({ business: current_business, expense_params: })
+    result = Expenses::CreateOrUpdateExpense.call({ business: current_business, expense_params: expense_params })
     @expense = result.expense
     respond_to do |format|
       if result.success?
