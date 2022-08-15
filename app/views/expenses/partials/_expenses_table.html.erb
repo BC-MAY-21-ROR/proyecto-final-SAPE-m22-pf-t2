@@ -1,0 +1,23 @@
+<% unless @expenses.empty? %>
+  <div
+    class="
+      col-span-full
+      bg-white
+      shadow-lg
+      rounded-sm
+      border
+      border-gray-200
+      xl:col-span-6
+    "
+  >
+    <div class="p-3">
+      <% @expenses.each do |expense| %>
+        <%= render "expenses/partials/expense", expense: expense %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <h2 class="text-center font-bold text-3xl">
+    No expenses registered!
+  </h2>
+<% end %>
