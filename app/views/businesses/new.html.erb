@@ -39,9 +39,10 @@
       <%= form_with url: join_to_enrolled_business_path, method: :post do |form| %>
         <div class="my-4">
           <%= form.label 'You are enrolled to the following business:' %>
-          <%= form.select :business_id,
-            enrollments_to_options(@enrollments),
-            {}, { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mt-2 p-2.5 focus:ring-blue-500 focus:border-blue-500' } %>
+          <%= form.select :business_id, %w[[Peru], [Mexico], [Argentina]],
+
+                          {}, { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mt-2 p-2.5 focus:ring-blue-500 focus:border-blue-500' } %>
+          <%= form.select :business_id, %w[[Peru], [Mexico], [Argentina]] %>
         </div>
         <%= form.submit "Join to business",
           class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center hover:bg-blue-800 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>

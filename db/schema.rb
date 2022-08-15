@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_214323) do
     t.string "name"
     t.string "business_type"
     t.string "address"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description"
     t.index ["country_id"], name: "index_businesses_on_country_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
@@ -82,16 +82,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_214323) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.decimal "rent", default: "0.0"
-    t.decimal "salaries", default: "0.0"
-    t.decimal "general_charges", default: "0.0"
-    t.decimal "service_bills", default: "0.0"
-    t.decimal "commissions", default: "0.0"
-    t.decimal "taxes", default: "0.0"
+    t.decimal "rent"
+    t.decimal "salaries"
+    t.decimal "general_charges"
+    t.decimal "service_bills"
+    t.decimal "commissions"
+    t.decimal "taxes"
     t.bigint "business_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "month"
     t.index ["business_id"], name: "index_expenses_on_business_id"
   end
 
@@ -133,9 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_214323) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "provider_id", null: false
     t.index ["product_id"], name: "index_resupplies_on_product_id"
-    t.index ["provider_id"], name: "index_resupplies_on_provider_id"
   end
 
   create_table "sales", force: :cascade do |t|
@@ -169,6 +166,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_214323) do
   add_foreign_key "products", "businesses"
   add_foreign_key "providers", "businesses"
   add_foreign_key "resupplies", "products"
-  add_foreign_key "resupplies", "providers"
   add_foreign_key "sales", "clients"
 end

@@ -1,50 +1,60 @@
 <%= turbo_frame_tag 'products_found' do %>
   <% if @products.present? %>
     <% unless @products.empty? %>
-      <h2>Results for:&nbsp;<%= @query %>
-      </h2>
-      <table class="table-auto">
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stock</th>
+<!--      <h2>Results for:&nbsp;<%#= @query %>-->
+      <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-4">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr scope="col" class="py-3 px-6">
+            <th rowspan="1" colspan="6" class="text-center py-2 px-2 bg-gray-300">
+              List of products found
+            </th>
           </tr>
-        </thead>
-        <tbody>
-          <% @products.each do |product| %>
             <tr>
-              <td>
-                <%= product.code %>
-              </td>
-              <td>
-                <%= product.name %>
-              </td>
-              <td>
-                <%= product.description %>
-              </td>
-              <td>
-                <%= product.price %>
-              </td>
-              <td>
-                <%= product.stock %>
-              </td>
-              <td>
-                <%= form_with url: add_product_to_sale_path, method: :post, data: { turbo_frame: "sale_products" } do |form| %>
-                  <%= form.text_field :product_id, value: product.id, hidden: true %>
-                  <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-                  <%= form.submit 'Add' %>
-                <% end %>
-              </td>
+              <th scope="col" class="py-3 px-6">Code</th>
+              <th scope="col" class="py-3 px-6">Name</th>
+              <th scope="col" class="py-3 px-6">Description</th>
+              <th scope="col" class="py-3 px-6">Price</th>
+              <th scope="col" class="py-3 px-6">Stock</th>
+              <th scope="col" class="py-3 px-6">Amount</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <h2>No products found</h2>
+          </thead>
+          <tbody class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+            <% @products.each do |product| %>
+              <tr>
+                <td class="py-4 px-6">
+                  <%= product.code %>
+                </td>
+                <td class="py-4 px-6">
+                  <%= product.name %>
+                </td>
+                <td class="py-4 px-6">
+                  <%= product.description %>
+                </td>
+                <td class="py-4 px-6">
+                  <%= product.price %>
+                </td>
+                <td class="py-4 px-6">
+                  <%= product.stock %>
+                </td>
+                <td class="py-4 px-6">
+                  <%= form_with url: add_product_to_sale_path, method: :post, data: { turbo_frame: "sale_products" } do |form| %>
+                    <%= form.text_field :product_id, value: product.id, hidden: true %>
+                    <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+                    <%= form.submit 'Add', hidden: true %>
+                    <h2 class="text-green-500 font-light h-3 text-xs">*Press enter to add</h2>
+                  <% end %>
+                </td>
+
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
     <% end %>
+  <% else %>
+    <h2 class="text-red-500 font-light h-3 text-xs">*No products found</h2>
   <% end %>
 
 <% end %>

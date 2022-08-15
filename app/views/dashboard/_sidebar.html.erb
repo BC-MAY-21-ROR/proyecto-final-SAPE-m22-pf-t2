@@ -40,7 +40,7 @@
       <li class="my-2 md:my-0">
         <%= link_to clients_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-          <i class="fas fa-tasks fa-fw mr-3"></i>
+          <i class="fa-solid fa-users-gear mr-3"></i>
           <span class="w-full inline-block pb-1 md:pb-0 text-sm">
             Clients
           </span>
@@ -54,6 +54,16 @@
         <i class="fa-solid fa-boxes-stacked mr-3"></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Inventory
+        </span>
+      <% end %>
+    </li>
+
+    <li class="my-2 md:my-0">
+      <%= link_to sales_path,
+        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
+        <i class="fa-solid fa-cash-register mr-4"></i>
+        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
+          Sales
         </span>
       <% end %>
     </li>

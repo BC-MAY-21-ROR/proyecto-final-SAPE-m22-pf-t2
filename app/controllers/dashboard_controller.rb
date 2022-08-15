@@ -6,7 +6,8 @@ class DashboardController < ApplicationController
 
   def index
     if current_business_id.present?
-      @current_business = Business.find_by_id(current_business_id)
+      current_business = Business.find_by_id(current_business_id)
+      @current_business = current_business.clients.all
       return
     end
 

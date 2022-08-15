@@ -24,4 +24,5 @@ class Business < ApplicationRecord
                 filename: 'default_logo.png',
                 content_type: 'image/png')
   end
+
 end

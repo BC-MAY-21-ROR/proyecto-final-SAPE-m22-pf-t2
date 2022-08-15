@@ -2,20 +2,15 @@
   <%= render 'dashboard/sidebar' %>
   <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
 
-    <div class="mx-auto md:w-2/3 w-full py-5">
-      <%= render 'welcome'  %>
-    </div>
-
     <div class="mx-auto md:w-2/3 w-full py-10">
       <%= render 'header'  %>
     </div>
-
 
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
     
-    <div class="mx-auto md:w-2/3 w-full">
+    <div class="mx-auto md:w-2/3 w-full py-10">
       <%= render @expenses %>
     </div>
 
