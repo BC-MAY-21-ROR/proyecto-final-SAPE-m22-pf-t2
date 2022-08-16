@@ -1,5 +1,5 @@
 module ExpensesHelper
-  def businesses_to_options(businesses)
-    @businesses.map { |business| [business.name, business.id] }
+  def format_month_date(expense)
+    expense.month.strftime('%Y-%m')
   end
 end
