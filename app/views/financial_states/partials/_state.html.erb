@@ -11,7 +11,7 @@
             <div class="self-center">Sales</div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@sales_total) %>
+                + <%= number_to_currency(@sales_total) %>
               </span>
             </div>
           </div>
@@ -25,11 +25,11 @@
         <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
           <div class="grow flex justify-between">
             <div class="self-center">
-              <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Resupplies</a>
+              <a class="font-medium text-gray-800 hover:text-gray-900" href="#0"> Resupplies</a>
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@resupplies_total) %>
+                - <%= number_to_currency(@resupplies_total) %>
               </span>
             </div>
           </div>
@@ -47,7 +47,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@gross_profit) %>
+               = <%= number_to_currency(@gross_profit) %>
               </span>
             </div>
           </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@expense.general_charges) %>
+                - <%= number_to_currency(@expense.general_charges) %>
               </span>
             </div>
           </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@expense.rent) %>
+               - <%= number_to_currency(@expense.rent) %>
               </span>
             </div>
           </div>
@@ -101,7 +101,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@expense.salaries) %>
+               - <%= number_to_currency(@expense.salaries) %>
               </span>
             </div>
           </div>
@@ -119,7 +119,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@ebitda) %>
+               = <%= number_to_currency(@ebitda) %>
               </span>
             </div>
           </div>
@@ -137,7 +137,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@expense.amortizations) %>
+               - <%= number_to_currency(@expense.amortizations) %>
               </span>
             </div>
           </div>
@@ -155,7 +155,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@result_of_explotation) %>
+              = <%= number_to_currency(@result_of_explotation) %>
               </span>
             </div>
           </div>
@@ -173,7 +173,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@expense.commissions) %>
+               - <%= number_to_currency(@expense.commissions) %>
               </span>
             </div>
           </div>
@@ -191,7 +191,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@result_before_taxes) %>
+               = <%= number_to_currency(@result_before_taxes) %>
               </span>
             </div>
           </div>
@@ -209,7 +209,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@expense.taxes) %>
+               - <%= number_to_currency(@expense.taxes) %>
               </span>
             </div>
           </div>
@@ -227,7 +227,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= number_to_currency(@net_profit) %>
+              = <%= number_to_currency(@net_profit) %>
               </span>
             </div>
           </div>
