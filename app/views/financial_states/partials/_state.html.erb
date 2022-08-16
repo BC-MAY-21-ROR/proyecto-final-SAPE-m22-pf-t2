@@ -21,7 +21,7 @@
             <div class="self-center">Monthly Rent of the Store</div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= $final_expense.rent %>
+                <%= @financial_expense.rent %>
               </span>
             </div>
           </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= $final_expense.salaries %>
+                <%= @financial_expense.salaries %>
               </span>
             </div>
           </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= $final_expense.general_charges %>
+                <%= @financial_expense.general_charges %>
               </span>
             </div>
           </div>
@@ -75,7 +75,7 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= $final_expense.service_bills %>
+                <%= @financial_expense.service_bills %>
               </span>
             </div>
           </div>
@@ -93,13 +93,13 @@
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= $final_expense.commissions %>
+                <%= @financial_expense.commissions %>
               </span>
             </div>
           </div>
         </div>
       </li>
-      <!-- Sales -->
+      <!-- Item -->
       <li class="flex px-2">
         <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
           <img id="left-arrow" src="<%= asset_path('form.png')%>" class="w-64 mx-auto"/>
@@ -107,50 +107,16 @@
         <div class="grow flex items-center text-sm py-2">
           <div class="grow flex justify-between">
             <div class="self-center">
-              <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Sales</a>
+              <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Monthly Taxes</a>
             </div>
             <div class="shrink-0 self-start ml-2">
               <span class="font-medium text-gray-800">
-                <%= @total_sale %>
-              </span>
-            </div>
-          </div>
-        </div>
-      </li>
-      <%#  Resupplies %>
-      <li class="flex px-2">
-        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
-          <img id="left-arrow" src="<%= asset_path('form.png')%>" class="w-64 mx-auto"/>
-        </div>
-        <div class="grow flex items-center text-sm py-2">
-          <div class="grow flex justify-between">
-            <div class="self-center">
-              <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Resupplies</a>
-            </div>
-            <div class="shrink-0 self-start ml-2">
-              <span class="font-medium text-gray-800">
-                <%= @total_resupply %>
-              </span>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="flex px-2">
-        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
-          <img id="left-arrow" src="<%= asset_path('form.png')%>" class="w-64 mx-auto"/>
-        </div>
-        <div class="grow flex items-center text-sm py-2">
-          <div class="grow flex justify-between">
-            <div class="self-center">
-              <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Total</a>
-            </div>
-            <div class="shrink-0 self-start ml-2">
-              <span class="font-medium text-gray-800">
-                <%= @total %>
+                <%= @financial_expense.taxes %>
               </span>
             </div>
           </div>
         </div>
       </li>
     </ul>
+    <%# <%= link_to 'Download this budget', financial_state_url, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
