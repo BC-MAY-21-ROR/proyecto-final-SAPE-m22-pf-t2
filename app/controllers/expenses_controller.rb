@@ -60,6 +60,7 @@ class ExpensesController < ApplicationController
       :general_charges,
       :service_bills,
       :commissions,
+      :amortizations,
       :taxes
     )
   end

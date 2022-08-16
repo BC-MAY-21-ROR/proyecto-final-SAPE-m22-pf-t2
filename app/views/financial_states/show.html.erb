@@ -1,21 +1,7 @@
 <div class="h-screen bg-white">
   <%= render 'dashboard/sidebar' %>
   <div class="p-4 lg:px-0">
-    <div
-      class="
-        w-full
-        p-6
-        rounded-lg
-        mx-auto
-        bg-white
-        drop-shadow-lg
-        sm:w-4/5
-        md:w-2/3
-        lg:w-3/5
-        xl:w-1/2
-        2xl:w-2/5
-      "
-    >
+    <div class="w-full p-6 rounded-lg mx-auto bg-white drop-shadow-lg sm:w-4/5 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/5">
       <h2 class=" text-xl text-center font-black leading-tight">
         Financial state of&nbsp;<%= format_month_date(@expense) %>
       </h2>
@@ -24,15 +10,15 @@
           <%= f.label 'Month',
             for: 'expense_month',
             class: 'block mb-2 text-sm font-medium text-gray-900' %>
-
           <div>
             <%= f.month_field :month,
               class: ' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
-
             <%= f.submit 'Apply', class: 'text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto"' %>
           </div>
         </div>
       <% end %>
+      <%= render 'financial_states/partials/state' %>
+      <!-- 
       <p>
         Sales:&nbsp;<%= number_to_currency(@sales_total) %>
       </p>
@@ -72,6 +58,7 @@
       <p>
         = Net profit:&nbsp;<%= number_to_currency(@net_profit) %>
       </p>
+      --->
     </div>
   </div>
 </div>
