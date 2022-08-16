@@ -1,36 +1,6 @@
-<div class="w-full">
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Sales</h1>
-    <%= link_to 'New sale', new_sale_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/sidebar' %>
+  <div class="mx-auto w-full py-10 md:w-2/3">
+    <%= render 'sales/partials/sales_table' %>
   </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Client</th>
-        <th>Total</th>
-        <th>Date</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sales.each do |sale| %>
-        <tr>
-          <td>
-            <%= sale.client.name %>
-          </td>
-          <td>
-            <%= sale.total %>
-          </td>
-          <td>
-            <%= sale.created_at %>
-          </td>
-          <td>
-            <%= link_to 'Details', sale_path(sale) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
 </div>

@@ -1,28 +1,35 @@
-<div class="mx-auto md:w-2/3 w-full">
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/sidebar' %>
+  <div class="mx-auto w-full py-10 md:w-2/3">
+<div class="w-full p-6 rounded-lg mx-auto bg-white drop-shadow-lg sm:w-4/5 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/5 ">
+  <div class="mb-6"> 
   <h1 class="font-bold text-4xl">New sale</h1>
-
+  </div>
+  <div class="mb-6"> 
   <%= form_with url: search_products_path, method: :get, data: { turbo_frame: "products_found" } do |f| %>
     <%= f.label :query, "Search products:" %>
-    <%= f.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-    <%= f.submit "Search" %>
+    <%= f.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full mb-4' %>
+    <%= f.submit "Search" ,class: 'bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
   <% end %>
-
+  </div>
+  <div class="mb-6"> 
   <%= turbo_frame_tag 'products_found' do %>
     <%= render partial: 'sales/partials/products_found' %>
   <% end %>
-
+  </div>
+  <div class="mb-6"> 
   <%= turbo_frame_tag 'sale_products' do %>
     <%= render partial: 'sales/partials/sale_products' %>
   <% end %>
-
+  </div>
   <hr>
-
+  <div class="mb-6 py-8"> 
   <%= form_with model: @sale, method: :post do |f| %>
-    <%= f.label :client_id, "Client" %>
-    <%= f.select :client_id, clients_to_options(@clients), {}, { class: 'block w-full' } %>
-    <%= f.submit "Confirm sale" %>
+    <%= f.label :client_id, "Client" ,class:'py-2 mb-4' %>
+    <%= f.select :client_id, clients_to_options(@clients), {}, { class: 'block w-full py-2 mb-4' } %>
+    <%= f.submit "Confirm sale", class: 'bg-blue-500 text-white mb-6 font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
   <% end %>
-
   <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-
+  </div>
+  </div>
 </div>

@@ -1,0 +1,136 @@
+<div class="col-span-full bg-white shadow-lg rounded-sm border border-gray-200 xl:col-span-6"> 
+  <div class="p-3"> 
+    <ul class="my-1">
+    <!-- Item -->
+    <li class="flex px-2">
+        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
+        <img
+            id="left-arrow"
+            src="<%= asset_path('form.png')%>"
+            class="w-64 mx-auto"
+        />
+        </div>
+        <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
+        <div class="grow flex justify-between">
+            <div class="self-center">Monthly Rent of the Store</div>
+            <div class="shrink-0 self-start ml-2">
+            <span class="font-medium text-gray-800">
+                <%= @financial_expense.rent%>
+            </span>
+            </div>
+        </div>
+        </div>
+    </li>
+    <!-- Item -->
+    <li class="flex px-2">
+        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
+        <img
+            id="left-arrow"
+            src="<%= asset_path('form.png')%>"
+            class="w-64 mx-auto"
+        />
+        </div>
+        <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
+        <div class="grow flex justify-between">
+            <div class="self-center">
+            <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Employees' salaries</a>
+            </div>
+            <div class="shrink-0 self-start ml-2">
+            <span class="font-medium text-gray-800">
+                <%= @financial_expense.salaries%>
+            </span>
+            </div>
+        </div>
+        </div>
+    </li>
+    <!-- Item -->
+    <li class="flex px-2">
+        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
+        <img
+            id="left-arrow"
+            src="<%= asset_path('form.png')%>"
+            class="w-64 mx-auto"
+        />
+        </div>
+        <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
+        <div class="grow flex justify-between">
+            <div class="self-center">
+            <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Monthly General Charges</a>
+            </div>
+            <div class="shrink-0 self-start ml-2">
+            <span class="font-medium text-gray-800">
+                <%= @financial_expense.general_charges%>
+            </span>
+            </div>
+        </div>
+        </div>
+    </li>
+    <!-- Item -->
+    <li class="flex px-2">
+        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
+        <img
+            id="left-arrow"
+            src="<%= asset_path('form.png')%>"
+            class="w-64 mx-auto"
+        />
+        </div>
+        <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
+        <div class="grow flex justify-between">
+            <div class="self-center">
+            <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Payment of service bills</a>
+            </div>
+            <div class="shrink-0 self-start ml-2">
+            <span class="font-medium text-gray-800">
+                <%= @financial_expense.service_bills%>
+            </span>
+            </div>
+        </div>
+        </div>
+    </li>
+    <!-- Item -->
+    <li class="flex px-2">
+        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
+        <img
+            id="left-arrow"
+            src="<%= asset_path('form.png')%>"
+            class="w-64 mx-auto"
+        />
+        </div>
+        <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
+        <div class="grow flex justify-between">
+            <div class="self-center">
+            <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Monthly commissions</a>
+            </div>
+            <div class="shrink-0 self-start ml-2">
+            <span class="font-medium text-gray-800">
+                <%= @financial_expense.commissions%>
+            </span>
+            </div>
+        </div>
+        </div>
+    </li>
+    <!-- Item -->
+    <li class="flex px-2">
+        <div class="w-9 h-9 rounded-full shrink-0 bg-blue-500 my-2 mr-3">
+        <img
+            id="left-arrow"
+            src="<%= asset_path('form.png')%>"
+            class="w-64 mx-auto"
+        />
+        </div>
+        <div class="grow flex items-center text-sm py-2">
+        <div class="grow flex justify-between">
+            <div class="self-center">
+            <a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Monthly Taxes</a>
+            </div>
+            <div class="shrink-0 self-start ml-2">
+            <span class="font-medium text-gray-800">
+                <%= @financial_expense.taxes%>
+            </span>
+            </div>
+        </div>
+        </div>
+    </li>
+    </ul>
+<%# <%= link_to 'Download this budget', financial_state_url, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %> %>
+</div>

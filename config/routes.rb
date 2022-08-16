@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :sales, :resupplies
   resources :products, path: '/inventory/products'
   resources :users, only: %i[show edit update]
-  resources :financial_statement
+  resources :financial_state
 
   resource :business, :inventory
 
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
 
   # Financial Statement
-  get 'financial_statement/index'
+  get 'financial_state/index'
   get 'products/new_resupply', to: 'products#new'
 
   # Dashboard & landing
