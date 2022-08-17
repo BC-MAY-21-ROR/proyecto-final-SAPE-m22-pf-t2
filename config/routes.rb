@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resource :business, :inventory, :financial_state
 
-  devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
+  devise_for :user, controllers: {
+    omniauth_callbacks: 'omniauth',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
 
   # Business
   get '/business/employees',
