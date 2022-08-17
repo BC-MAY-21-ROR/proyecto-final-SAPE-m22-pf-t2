@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @products = current_business.products
+    @pagy, @products = pagy(current_business.products)
   end
 
   def show; end
