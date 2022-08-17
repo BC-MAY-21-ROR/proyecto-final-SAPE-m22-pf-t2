@@ -1,7 +1,23 @@
-<div class="h-screen bg-gray-100">
-  <%= render 'dashboard/sidebar' %>
+<div class="h-screen bg-gray-100 font-sans">
+  <%= render 'sidebar' %>
   <%= render 'dashboard/partials/navbar' %>
-  <div class="hero-gradient mx-auto w-full md:w-3/3">
-    <%= render 'dashboard/partials/welcome' %>
+  <div
+    class="
+      dashboard-content
+      flex
+      flex-row
+      flex-wrap
+      flex-1
+      flex-grow
+      content-start
+      pl-16
+    "
+  >
+    <!--Dash Content -->
+    <%= render 'dashboard/partials/dash_content' %>
+    <!--Graph Content -->
+    <div class="flex flex-1">
+      <%= line_chart(@data, width: "99%", height: "100%") %>
+    </div>
   </div>
 </div>
