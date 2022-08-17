@@ -3,7 +3,7 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: %i[show edit update destroy]
 
   def index
-    @expenses = Expense.all.order(month: :desc)
+    @expenses = Expense.where(business: current_business).order(month: :desc)
   end
 
   def show; end
