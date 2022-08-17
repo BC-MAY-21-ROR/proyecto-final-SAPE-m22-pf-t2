@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @clients = Client.all
+    @clients = Client.where(business: current_business)
   end
 
   def show; end

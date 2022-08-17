@@ -33,7 +33,7 @@ class SalesController < ApplicationController
   end
 
   def new
-    @clients = Client.all
+    @clients = Client.where(business: current_business)
     @sale = Sale.new
   end
 
