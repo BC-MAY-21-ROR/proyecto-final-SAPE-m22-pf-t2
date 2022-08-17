@@ -19,7 +19,7 @@
     >
       <h2 class=" text-xl text-center font-black leading-tight">
         <% if @expense.present? %>
-          Financial state of&nbsp;<%= @selected_month %>
+          Financial state of&nbsp;<%= format_month_from_expense(@expense) %>
         <% else %>
           No financial state for month:&nbsp;<%= @selected_month %>
         <% end %>
@@ -34,7 +34,7 @@
               id="month"
               name="month"
               type="month"
-              value="<%= @expense.present? ? format_month_date(@expense) : @selected_month %>"
+              value="<%= @expense.present? ? format_month_from_expense(@expense) : @selected_month %>"
               class="
                 bg-gray-50
                 border

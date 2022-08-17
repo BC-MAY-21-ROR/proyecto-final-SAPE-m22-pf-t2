@@ -4,7 +4,7 @@
       Sales
     </div>
     <div>
-      <%= number_to_currency(@sales_total) %>
+      <%= number_to_currency(@financial_state[:sales_total]) %>
     </div>
   </div>
   <div class="flex justify-between">
@@ -12,7 +12,7 @@
       <span class="font-bold">-</span>&nbsp;Resupplies
     </div>
     <div class="mr-5">
-      <%= number_to_currency(@resupplies_total) %>
+      <%= number_to_currency(@financial_state[:resupplies_total]) %>
     </div>
   </div>
   <hr class="my-3">
@@ -22,7 +22,7 @@
       = Gross profit
     </div>
     <div>
-      <%= number_to_currency(@gross_profit) %>
+      <%= number_to_currency(@financial_state[:gross_profit]) %>
     </div>
   </div>
 
@@ -46,6 +46,15 @@
 
   <div class="flex justify-between">
     <div class="ml-5">
+      <span class="font-bold">-</span>&nbsp;Service bills
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.service_bills) %>
+    </div>
+  </div>
+
+  <div class="flex justify-between">
+    <div class="ml-5">
       <span class="font-bold">-</span>&nbsp;General charges
     </div>
     <div class="mr-5">
@@ -59,7 +68,7 @@
       = Ebitda
     </div>
     <div>
-      <%= number_to_currency(@ebitda) %>
+      <%= number_to_currency(@financial_state[:ebitda]) %>
     </div>
   </div>
 
@@ -78,7 +87,7 @@
       = Result of explotation
     </div>
     <div>
-      <%= number_to_currency(@result_of_explotation) %>
+      <%= number_to_currency(@financial_state[:result_of_explotation]) %>
     </div>
   </div>
 
@@ -97,7 +106,7 @@
       = Result before taxes
     </div>
     <div>
-      <%= number_to_currency(@result_before_taxes) %>
+      <%= number_to_currency(@financial_state[:result_before_taxes]) %>
     </div>
   </div>
 
@@ -115,8 +124,10 @@
     <div class="text-lg uppercase">
       = Net profit
     </div>
-    <div class="<%= @net_profit >= 0 ? 'text-green-600' : 'text-red-600' %>">
-      <%= number_to_currency(@net_profit) %>
+    <div
+      class="<%= @financial_state[:net_profit] >= 0 ? 'text-green-600' : 'text-red-600' %>"
+    >
+      <%= number_to_currency(@financial_state[:net_profit]) %>
     </div>
   </div>
 

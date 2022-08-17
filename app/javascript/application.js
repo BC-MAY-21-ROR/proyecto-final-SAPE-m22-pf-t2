@@ -5,6 +5,5 @@ import 'Chart.bundle';
 import 'chartkick';
 import 'controllers';
 import 'popper';
-import './dashboard';
 import './dropdown';
 import './landing';
