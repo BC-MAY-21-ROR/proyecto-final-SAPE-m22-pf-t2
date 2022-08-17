@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def has_path?(path)
+  def has_in_path?(path)
     request.path.include? path
   end
 
