@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @providers = Provider.where(business: current_business)
+    @pagy, @providers = pagy(current_business.providers)
   end
 
   def new
