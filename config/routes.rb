@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   resources :sales, :resupplies
   resources :products, path: '/inventory/products'
   resources :users, only: %i[show edit update]
-  resources :financial_statement
 
-  resource :business, :inventory
+  resource :business, :inventory, :financial_state
 
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth', registrations: 'users/registrations' }
 
@@ -41,8 +40,7 @@ Rails.application.routes.draw do
   get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
 
   # Financial Statement
-  get 'financial_statement/index'
-  get 'products/new_resupply', to: 'products#new'
+  get 'financial_state_of_month', to: 'financial_states#financial_state_of_month'
 
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'

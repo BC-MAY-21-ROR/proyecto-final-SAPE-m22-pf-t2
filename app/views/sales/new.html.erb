@@ -1,28 +1,38 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New sale</h1>
+<div class="h-screen bg-gray-100">
+<%= render 'dashboard/sidebar' %>
+  <div class="absolute right-0 top-0 mt-3">   
+    <%= render 'dashboard/partials/menu' %>
+  </div>
+  <div class="mx-auto md:w-2/3 w-full">
+    <div class="flex justify-between pt-4 mb-2">
+      <h1 class="font-bold text-4xl mb-2">New sale</h1>
+      <%= link_to 'Back to sales', sales_path, class: "bg-transparent hover:bg-green-500 text-yellow-500 font-semibold hover:text-white py-3 px-4 border border-yellow-500 rounded" %>
+    </div>
+    <hr>
+    <div class="rounded bg-gray-200 px-2 py-2 mt-4">
+      <%= form_with url: search_products_path, method: :get, data: { turbo_frame: "products_found" } do |f| %>
+        <div class="flex">
+          <%= f.text_field :query, placeholder: "Search product" ,class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+          <%= f.submit "Search", class: 'mt-2 h-10 ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold px-3 rounded' %>
+        </div>
+      <% end %>
 
-  <%= form_with url: search_products_path, method: :get, data: { turbo_frame: "products_found" } do |f| %>
-    <%= f.label :query, "Search products:" %>
-    <%= f.text_field :query, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-    <%= f.submit "Search" %>
-  <% end %>
+      <%= turbo_frame_tag 'products_found' do %>
+        <%= render partial: 'sales/partials/products_found' %>
+      <% end %>
 
-  <%= turbo_frame_tag 'products_found' do %>
-    <%= render partial: 'sales/partials/products_found' %>
-  <% end %>
+      <%= turbo_frame_tag 'sale_products' do %>
+        <%= render partial: 'sales/partials/sale_products' %>
+      <% end %>
 
-  <%= turbo_frame_tag 'sale_products' do %>
-    <%= render partial: 'sales/partials/sale_products' %>
-  <% end %>
-
-  <hr>
-
-  <%= form_with model: @sale, method: :post do |f| %>
-    <%= f.label :client_id, "Client" %>
-    <%= f.select :client_id, clients_to_options(@clients), {}, { class: 'block w-full' } %>
-    <%= f.submit "Confirm sale" %>
-  <% end %>
-
-  <%= link_to 'Back to sales', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-
+      <%= form_with model: @sale, method: :post do |f| %>
+        <div class="flex mt-2 bg-white rounded py-1 px-2">
+          <%= f.label :client_id, "Client: " %>
+          <%= f.select :client_id, clients_to_options(@clients), {}, { class: 'ml-2 block w-full' } %>
+        </div>
+        <%= f.submit "Confirm sale", class: "m-auto flex cursor-pointer justify-center mt-2 inline-block px-6 py-2 border-2 border-green-500 text-green-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out" %>
+      <% end %>
+    </div>
+  </div>
 </div>
+

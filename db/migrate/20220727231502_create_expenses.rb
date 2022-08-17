@@ -6,6 +6,7 @@ class CreateExpenses < ActiveRecord::Migration[7.0]
       t.decimal :general_charges
       t.decimal :service_bills
       t.decimal :commissions
+      t.decimal :amortizations
       t.decimal :taxes
       t.references :business, null: false, foreign_key: true
 

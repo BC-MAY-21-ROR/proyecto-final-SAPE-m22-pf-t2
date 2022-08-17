@@ -7,6 +7,9 @@ class ResuppliesController < ApplicationController
     @resupplies = Resupply.all
   end
 
+  def show;end 
+
+  
   def new
     @resupply = Resupply.new
     @product_id = params[:product_id]

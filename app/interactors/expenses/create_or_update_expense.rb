@@ -1,8 +1,9 @@
 class Expenses::CreateOrUpdateExpense
+  include DateUtils
   include Interactor
 
   def call
-    context.expense = Expense.where(month: parse_month_year_date).first
+    context.expense = Expense.get_expense_of_month(month_year)
 
     if context.expense
       update_expense
@@ -21,15 +22,12 @@ class Expenses::CreateOrUpdateExpense
   end
 
   def expense_params
-    context.expense_params.merge({ business: context.business, month: parse_month_year_date })
+    context.expense_params.merge(
+      { business: context.business, month: DateUtils.parse_month_year_date(month_year) }
+    )
   end
 
-  def parse_month_year_date
-    return if context.expense_params[:month].empty?
-
-    month_year_date = context.expense_params[:month].split('-')
-    year = month_year_date[0].to_i
-    month = month_year_date[1].to_i
-    Date.new(year, month)
+  def month_year
+    context.expense_params[:month]
   end
 end
