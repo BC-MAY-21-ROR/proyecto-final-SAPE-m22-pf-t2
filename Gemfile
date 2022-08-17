@@ -44,10 +44,13 @@ gem 'omniauth-google-oauth2'
 # Hosting
 gem 'cloudinary'
 
-gem 'i18n', '~> 1.12'
-
 # Load env variables
 gem 'dotenv-rails', groups: [:development, :test]
+
+# Charts
+gem "chartkick"
+
+gem 'i18n', '~> 1.12'
 
 gem "interactor-rails", "~> 2.0"
 
