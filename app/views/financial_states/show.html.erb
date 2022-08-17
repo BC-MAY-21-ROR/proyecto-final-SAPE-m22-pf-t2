@@ -1,67 +1,60 @@
 <div class="h-screen bg-white">
   <%= render 'dashboard/sidebar' %>
-  <div class="absolute right-0 top-0 mt-3">   
+  <div class="absolute right-0 top-0 mt-3">
     <%= render 'dashboard/partials/menu' %>
   </div>
   <div class="p-4 lg:px-0">
-    <div class="w-full p-6 rounded-lg mx-auto bg-white drop-shadow-lg sm:w-4/5 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/5">
+    <div
+      class="
+        w-full
+        p-6
+        rounded-lg
+        mx-auto
+        bg-white
+        drop-shadow-lg
+        sm:w-4/5
+        md:w-2/3
+        lg:w-3/5
+        xl:w-1/2
+        2xl:w-2/5
+      "
+    >
       <h2 class=" text-xl text-center font-black leading-tight">
-        Financial state of&nbsp;<%= format_month_date(@expense) %>
+        <% if @expense.present? %>
+          Financial state of&nbsp;<%= @selected_month %>
+        <% else %>
+          No financial state for month:&nbsp;<%= @selected_month %>
+        <% end %>
       </h2>
-      <%= form_with(model: @expense, url: financial_state_of_month_path, method: :get, class: "contents") do |f| %>
+      <%= form_with url: financial_state_path, method: :get do |f| %>
         <div class="mb-6">
           <%= f.label 'Month',
-            for: 'expense_month',
+            for: 'month',
             class: 'block mb-2 text-sm font-medium text-gray-900' %>
           <div>
-            <%= f.month_field :month,
-              class: ' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500' %>
-            <%= f.submit 'Apply', class: 'text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto"' %>
+            <input
+              id="month"
+              name="month"
+              type="month"
+              value="<%= @expense.present? ? format_month_date(@expense) : @selected_month %>"
+              class="
+                bg-gray-50
+                border
+                border-gray-300
+                text-gray-900
+                text-sm
+                rounded-lg
+                p-2.5
+                focus:ring-blue-500
+                focus:border-blue-500
+              "
+            >
+            <%= f.submit 'Apply',
+              class: 'text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto"' %>
           </div>
         </div>
       <% end %>
-      <%= render 'financial_states/partials/state' %>
-      <!-- 
-      <p>
-        Sales:&nbsp;<%= number_to_currency(@sales_total) %>
-      </p>
-      <p>
-        - Resupplies:&nbsp;<%= number_to_currency(@resupplies_total) %>
-      </p>
-      <p>
-        = Gross profit:&nbsp;<%= number_to_currency(@gross_profit) %>
-      </p>
-      <p>
-        - General charges:&nbsp;<%= number_to_currency(@expense.general_charges) %>
-      </p>
-      <p>
-        - Rent:&nbsp;<%= number_to_currency(@expense.rent) %>
-      </p>
-      <p>
-        - Employee salaries:&nbsp;<%= number_to_currency(@expense.salaries) %>
-      </p>
-      <p>
-        = Ebitda:&nbsp;<%= number_to_currency(@ebitda) %>
-      </p>
-      <p>
-        - Amortizations: (-- Falta por poner en el entity --)
-      </p>
-      <p>
-        = Result of explotation:&nbsp;<%= number_to_currency(@result_of_explotation) %>
-      </p>
-      <p>
-        - Commissions:&nbsp;<%= number_to_currency(@expense.commissions) %>
-      </p>
-      <p>
-        = Result before taxes:&nbsp;<%= number_to_currency(@result_before_taxes) %>
-      </p>
-      <p>
-        - Taxes:&nbsp;<%= number_to_currency(@expense.taxes) %>
-      </p>
-      <p>
-        = Net profit:&nbsp;<%= number_to_currency(@net_profit) %>
-      </p>
-      --->
+      <%= render partial: 'financial_states/partials/state' %>
     </div>
   </div>
 </div>
