@@ -16,12 +16,8 @@ class FinancialStatesController < ApplicationController
   def prepare_financial_state
     return unless @expense.present?
 
-    @sales_total = Sale.total_of_month(@expense.month)
-    @resupplies_total = Resupply.total_of_month(@expense.month)
-    @gross_profit = @sales_total - @resupplies_total
-    @ebitda = @gross_profit - @expense.general_charges - @expense.rent - @expense.salaries
-    @result_of_explotation = @ebitda - @expense.amortizations
-    @result_before_taxes = @result_of_explotation - @expense.commissions
-    @net_profit = @result_before_taxes - @expense.taxes
+    @financial_state = FinancialState::CalculateFinancialStateFromExpense.call(
+      { business: current_business, expense: @expense }
+    ).financial_state
   end
 end

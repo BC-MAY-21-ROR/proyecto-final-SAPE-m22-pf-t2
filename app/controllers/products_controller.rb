@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @products = Product.all
+    @products = current_business.products
   end
 
   def show; end

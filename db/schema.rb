@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_031557) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_165202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_031557) do
     t.string "name"
     t.string "business_type"
     t.string "address"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "description"
     t.index ["country_id"], name: "index_businesses_on_country_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
@@ -135,6 +135,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_031557) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "provider_id", null: false
+    t.bigint "business_id", null: false
+    t.index ["business_id"], name: "index_resupplies_on_business_id"
     t.index ["product_id"], name: "index_resupplies_on_product_id"
     t.index ["provider_id"], name: "index_resupplies_on_provider_id"
   end
@@ -143,8 +145,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_031557) do
     t.decimal "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "client"
     t.bigint "client_id", null: false
+    t.bigint "business_id", null: false
+    t.index ["business_id"], name: "index_sales_on_business_id"
     t.index ["client_id"], name: "index_sales_on_client_id"
   end
 
@@ -169,7 +172,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_031557) do
   add_foreign_key "expenses", "businesses"
   add_foreign_key "products", "businesses"
   add_foreign_key "providers", "businesses"
+  add_foreign_key "resupplies", "businesses"
   add_foreign_key "resupplies", "products"
   add_foreign_key "resupplies", "providers"
+  add_foreign_key "sales", "businesses"
   add_foreign_key "sales", "clients"
 end

@@ -65,7 +65,6 @@
         </svg>
       </button>
     </div>
-
     <div
       id="nav-content"
       class="
@@ -86,13 +85,18 @@
       <ul class="list-reset justify-end flex-1 items-center lg:flex">
         <li class="mr-3">
           <%= link_to "Español", root_path(lang: :es), class: "inline-block py-2 px-4 text-black font-bold no-underline" %>
+
           <%= link_to "English", root_path(lang: :en), class: "inline-block py-2 px-4 text-black font-bold no-underline" %>
+
           <% if current_user.present? %>
             <%= link_to 'Go to dashboard',
               dashboard_path,
               class: "bg-landing-button mx-auto text-gray-800 font-extrabold rounded mt-4 py-4 px-8 shadow opacity-75 lg:mx-0 hover:underline" %>
           <% else %>
-            <%= link_to t("sign_in"), new_user_session_path, class: "inline-block py-2 px-4 text-black font-bold no-underline" %>
+            <%= link_to t("sign_in"),
+              new_user_session_path,
+              class: "inline-block py-2 px-4 text-black font-bold no-underline" %>
+
             <%= link_to t("sign_up"), 
               new_user_registration_path, 
               class: "bg-landing-button mx-auto text-gray-800 font-extrabold rounded mt-4 py-4 px-8 shadow opacity-75 lg:mx-0 hover:underline" %>

@@ -2,7 +2,9 @@ class Sales::CreateSale
   include Interactor
 
   def call
-    context.sale = Sale.new(context.sale_params.merge({ total: context.sale_total }))
+    context.sale = Sale.new(
+      context.sale_params.merge({ business: context.business, total: context.sale_total })
+    )
 
     if context.sale.save
       save_sale_products

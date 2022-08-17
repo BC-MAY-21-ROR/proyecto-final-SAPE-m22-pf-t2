@@ -4,7 +4,7 @@ class ResuppliesController < ApplicationController
   before_action :set_providers, only: %i[new create]
 
   def index
-    @resupplies = Resupply.where(business: current_business)
+    @resupplies = current_business.resupplies
   end
 
   def show; end
@@ -16,7 +16,7 @@ class ResuppliesController < ApplicationController
   end
 
   def create
-    @resupply = Resupply.new(resupply_params)
+    @resupply = Resupply.new(resupply_params.merge({ business: current_business }))
 
     if @resupply.save
       update_product
@@ -41,7 +41,7 @@ class ResuppliesController < ApplicationController
   end
 
   def set_providers
-    @providers = Provider.where(business: current_business)
+    @providers = current_business.providers
   end
 
   def resupply_params

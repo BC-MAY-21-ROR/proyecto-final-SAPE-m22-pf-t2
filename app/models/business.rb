@@ -1,12 +1,14 @@
 class Business < ApplicationRecord
-  has_one :products
-  has_many :business_enrollments
-  has_many :users, through: :business_enrollments
-  has_many :clients
-  has_many :providers
-  has_one_attached :logo
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
   belongs_to :country
+  has_many :users, through: :business_enrollments
+  has_many :business_enrollments
+  has_many :products
+  has_many :clients
+  has_many :providers
+  has_many :sales
+  has_many :resupplies
+  has_one_attached :logo
   after_commit :add_default_logo, on: %i[create update]
 
   validates_uniqueness_of :owner_id, message: 'can not have more than one owner'

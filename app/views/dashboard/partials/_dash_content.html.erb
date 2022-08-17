@@ -1,14 +1,14 @@
 <div
-  id="dash-content"
   class="
     bg-gray-200
     py-6
-    lg:py-0
     w-full
-    lg:max-w-sm
     flex
     flex-wrap
     content-start
+    h-full
+    lg:max-w-sm
+    lg:py-0
   "
 >
   <div class="w-1/2 lg:w-full">
@@ -17,14 +17,14 @@
         border-2
         border-gray-400
         border-dashed
-        hover:border-transparent
-        hover:bg-white
-        hover:shadow-xl
         rounded
         p-6
         m-2
         md:mx-10
         md:my-6
+        hover:border-transparent
+        hover:bg-white
+        hover:shadow-xl
       "
     >
       <div class="flex flex-col items-center">
@@ -35,10 +35,17 @@
         </div>
         <div class="flex-1">
           <h3 class="font-bold text-3xl">
-            <%= number_to_currency(@sales_total) %>
-            <span class="text-green-500"><i class="fas fa-caret-up"></i></span>
+            <%= number_to_currency(@current_month_sales_total) %>
+            <span class="text-green-500">
+              <i class="fas fa-caret-up"></i>
+            </span>
           </h3>
-          <h5 class="font-bold text-gray-500">Total sales</h5>
+          <h5 class="font-bold text-gray-500 text-center">
+            Total sales
+          </h5>
+          <h6 class="text-gray-500 text-center">
+            (<%= format_month_date(Date.today) %>)
+          </h6>
         </div>
       </div>
     </div>
@@ -50,14 +57,54 @@
         border-2
         border-gray-400
         border-dashed
-        hover:border-transparent
-        hover:bg-white
-        hover:shadow-xl
         rounded
         p-6
         m-2
         md:mx-10
         md:my-6
+        hover:border-transparent
+        hover:bg-white
+        hover:shadow-xl
+      "
+    >
+      <div class="flex flex-col items-center">
+        <div class="flex-shrink pr-4">
+          <div class="rounded-full p-3 bg-gray-300">
+            <i class="fa fa-wallet fa-fw fa-inverse text-indigo-500"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-3xl">
+            <%= number_to_currency(@current_month_resupplies_total) %>
+            <span class="text-red-500">
+              <i class="fas fa-caret-down"></i>
+            </span>
+          </h3>
+          <h5 class="font-bold text-gray-500 text-center">
+            Total resupplies
+          </h5>
+          <h6 class="text-gray-500 text-center">
+            (<%= format_month_date(Date.today) %>)
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-1/2 lg:w-full">
+    <div
+      class="
+        border-2
+        border-gray-400
+        border-dashed
+        rounded
+        p-6
+        m-2
+        md:mx-10
+        md:my-6
+        hover:border-transparent
+        hover:bg-white
+        hover:shadow-xl
       "
     >
       <div class="flex flex-col items-center">
@@ -68,10 +115,51 @@
         </div>
         <div class="flex-1">
           <h3 class="font-bold text-3xl">
-            <%= @clients.size %>
-            <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span>
+            <%= @clients_count %>
+            <span class="text-yellow-600">
+              <i class="fas fa-caret-up"></i>
+            </span>
           </h3>
-          <h5 class="font-bold text-gray-500">Total Clients</h5>
+          <h5 class="font-bold text-gray-500 text-center">
+            Total clients
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-1/2 lg:w-full">
+    <div
+      class="
+        border-2
+        border-gray-400
+        border-dashed
+        rounded
+        p-6
+        m-2
+        md:mx-10
+        md:my-6
+        hover:border-transparent
+        hover:bg-white
+        hover:shadow-xl
+      "
+    >
+      <div class="flex flex-col items-center">
+        <div class="flex-shrink pr-4">
+          <div class="rounded-full p-3 bg-gray-300">
+            <i class="fa-solid fa-truck-field text-indigo-500"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-3xl">
+            <%= @providers_count %>
+            <span class="text-yellow-600">
+              <i class="fas fa-caret-up"></i>
+            </span>
+          </h3>
+          <h5 class="font-bold text-gray-500 text-center">
+            Total providers
+          </h5>
         </div>
       </div>
     </div>
