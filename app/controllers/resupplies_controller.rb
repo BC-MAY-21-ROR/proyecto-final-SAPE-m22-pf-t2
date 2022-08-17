@@ -4,7 +4,7 @@ class ResuppliesController < ApplicationController
   before_action :set_providers, only: %i[new create]
 
   def index
-    @resupplies = current_business.resupplies
+    @pagy, @resupplies = pagy(current_business.resupplies)
   end
 
   def show; end
