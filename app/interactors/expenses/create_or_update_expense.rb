@@ -3,7 +3,7 @@ class Expenses::CreateOrUpdateExpense
   include Interactor
 
   def call
-    context.expense = Expense.get_expense_of_month(month_year)
+    context.expense = Expense.get_expense_of_month(context.business, month_year)
 
     if context.expense
       update_expense
