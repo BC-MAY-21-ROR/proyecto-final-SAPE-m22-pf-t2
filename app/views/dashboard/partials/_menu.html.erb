@@ -1,5 +1,4 @@
 <div class="flex flex-wrap">
-  <div class="w-full sm:w-6/12 md:w-4/12 px-4">
     <div class="relative inline-flex align-middle w-full">
       <button class="flex items-center focus:outline-none mr-3" type="button" data-controller="dashboard" data-action="click->dashboard#openDropdown">
         <img class="w-8 h-8 rounded-full mr-4" src="<%= current_user.avatar.url(:width=>32,:crop=>"fill") %>" alt="Avatar of User" />
@@ -13,18 +12,16 @@
         <a href="<%= business_path %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
           Business
         </a>
-        <a href="<% financial_state_url %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
+        <a href="<%= financial_state_url %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
           Financial state
         </a>
-        <div
-          class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
-        <a href="<% root_path %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
-          Volver a inicio
+        <div class="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25"></div>
+        <a href="<%= root_path %>" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700">
+          Back to home
         </a>
         <span class="text-sm left-3 py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"> 
-        <%= button_to "Cerrar sesion", destroy_user_session_path, :method => :delete  %>  
+        <%= button_to "Sign out", destroy_user_session_path, :method => :delete  %>  
         </span>
       </div>
-    </div>
-  </div>
+    </div>  
 </div>

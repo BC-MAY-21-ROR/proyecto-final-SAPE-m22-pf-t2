@@ -1,5 +1,7 @@
-<div class="mx-auto md:w-2/3 w-full">
-
+<div class="h-screen bg-gray-100">
+  <%= render 'dashboard/sidebar' %>
+  <%= render 'dashboard/partials/navbar' %>
+   <div class="w-full p-6 rounded-lg mx-auto bg-white mb-6 mt-8 drop-shadow-lg sm:w-4/5 md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-2/5 ">
   <h1 class="font-bold text-4xl">Editing info</h1>
   <%= form_with(model: @user, class: "contents") do |form| %>
   <div class="my-5">
@@ -29,5 +31,5 @@
   </div>
   <% end %> 
   <%= link_to "Show my info", @user, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-
+  </div>
 </div>
