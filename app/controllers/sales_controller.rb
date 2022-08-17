@@ -5,7 +5,7 @@ class SalesController < ApplicationController
   before_action :set_sale, only: %i[show edit update destroy sale_details_pdf]
 
   def index
-    @sales = Sale.all
+    @sales = Sale.where(business: current_business)
   end
 
   def show
@@ -50,7 +50,7 @@ class SalesController < ApplicationController
   def edit; end
 
   def create
-    result = Sales::CreateSaleOrganizer.call({ sale_params: sale_params, session: session})
+    result = Sales::CreateSaleOrganizer.call({ sale_params: sale_params, session: session })
     @sale = result.sale
 
     respond_to do |format|
