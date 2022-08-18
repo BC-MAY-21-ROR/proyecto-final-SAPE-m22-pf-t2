@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 
   # Financial Statement
   get 'financial_state_of_month', to: 'financial_states#financial_state_of_month'
+  get 'financial_state_pdf', to: 'financial_states#financial_state_pdf'
 
   # Dashboard & landing
   get 'dashboard', to: 'dashboard#index'
