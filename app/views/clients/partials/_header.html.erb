@@ -1,0 +1,17 @@
+<div class="flex justify-between items-center mb-4">
+  <h1 class="font-bold text-3xl">Clients</h1>
+  <div class="flex items-center space-x-3">
+
+    <% unless clients.empty? %>
+      <%= form_with url: clients_pdf_path(format: :pdf), method: :get do |f| %>
+        <%= f.submit 'Download PDF', 
+          class: 'bg-transparent cursor-pointer text-blue-700 text-sm py-2 px-4 border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent',
+          :formtarget => "_blank" %>
+      <% end %>
+    <% end %>
+
+    <%= link_to 'New client',
+      new_client_path,
+      class: "text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
+  </div>
+</div>

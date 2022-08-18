@@ -20,7 +20,7 @@
       <h2 class=" text-xl text-center font-black leading-tight">
         New client
       </h2>
-      <%= render "form", client: @client %>
+      <%= render partial: "clients/partials/form", locals: { client: @client } %>
     </div>
   </div>
 </div>

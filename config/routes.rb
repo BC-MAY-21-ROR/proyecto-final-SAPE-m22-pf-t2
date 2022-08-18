@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   delete '/remove_employee_from_current_business',
          to: 'business_enrollments#remove_employee_from_current_business'
 
+  # Clients PDF Report
+  get '/clients_pdf', to: 'clients#clients_pdf', as: 'clients_pdf'
+
   # Sales
   get '/search_products', to: 'sales#search_products'
   post '/add_product_to_sale', to: 'sales#add_product_to_sale'
