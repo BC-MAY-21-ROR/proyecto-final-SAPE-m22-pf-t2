@@ -20,7 +20,7 @@
       <h2 class=" text-xl text-center font-black leading-tight">
         New provider
       </h2>
-      <%= render "form", provider: @provider %>
+      <%= render partial: "providers/partials/form", locals: { provider: @provider } %>
     </div>
   </div>
 </div>

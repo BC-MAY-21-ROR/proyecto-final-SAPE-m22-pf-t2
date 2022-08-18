@@ -20,6 +20,7 @@ class SalesController < ApplicationController
         render pdf: "sale_details_#{@sale.id}",
                template: 'sales/partials/_sale_products',
                encoding: 'utf8',
+               orientation: 'landscape',
                formats: [:html]
       end
     end

@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   # Clients PDF Report
   get '/clients_pdf', to: 'clients#clients_pdf', as: 'clients_pdf'
 
+  # Providers PDF Report
+  get '/providers_pdf', to: 'providers#providers_pdf', as: 'providers_pdf'
+
   # Sales
   get '/search_products', to: 'sales#search_products'
   post '/add_product_to_sale', to: 'sales#add_product_to_sale'
