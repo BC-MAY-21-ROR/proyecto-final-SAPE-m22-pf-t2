@@ -1,6 +1,11 @@
 <%= turbo_frame_tag 'sale_products' do %>
+  <% if @error_enough_stock.present? %>
+    <p class="text-red-500 text-xs font-light">
+      <%= @error_enough_stock %>!
+    </p>
+  <% end %>
   <% unless @sale_products.empty? %>
-    <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-4">
+    <div class="overflow-x-auto relative shadow-md mt-4 sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead
           class="
@@ -14,7 +19,7 @@
         >
           <tr scope="col" class="py-3 px-6">
             <th rowspan="1" colspan="6" class="text-center py-2 px-2 bg-gray-300">
-              List products to sale
+              Products to sale
             </th>
           </tr>
           <tr>

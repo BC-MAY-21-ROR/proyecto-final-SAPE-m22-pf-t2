@@ -40,9 +40,10 @@ class SalesController < ApplicationController
 
   def add_product_to_sale
     result = Sales::AddProductToSaleOrganizer.call(params.merge({ session: session }))
+    @error_enough_stock = result.error_enough_stock
     @sale_products = result.sale_products
     @sale_total = result.sale_total
-
+    
     respond_to do |format|
       format.html { render partial: 'sales/partials/sale_products' }
     end
@@ -52,7 +53,12 @@ class SalesController < ApplicationController
 
   def create
     result = Sales::CreateSaleOrganizer.call(
-      { business: current_business, sale_params: sale_params, session: session })
+      { 
+        business: current_business,
+        sale_params: sale_params,
+        session: session 
+      }
+    )
     @sale = result.sale
 
     respond_to do |format|
@@ -84,7 +90,10 @@ class SalesController < ApplicationController
 
   def remove_product_from_sale
     result = Sales::RemoveProductFromSaleInSessionOrganizer.call(
-      { product_id: params[:product_id], session: session }
+      {
+        product_id: params[:product_id],
+        session: session
+      }
     )
     @sale_products = result.sale_products
     @sale_total = result.sale_total

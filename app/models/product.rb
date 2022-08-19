@@ -15,11 +15,11 @@ class Product < ApplicationRecord
 
   def self.search(query, business_id)
     search_by_name_and_description(query)
-      .select { |product| product.business_id == business_id }
+      .select { |product| product.business_id == business_id && product.has_stock? }
   end
 
   def self.calculate_total_value(business)
-    business.products.inject(0) { |sum, product| sum += product.calculate_value }
+    business.products.inject(0) { |sum, product| sum + product.calculate_value }
   end
 
   def calculate_total_price(quantity)
@@ -28,5 +28,13 @@ class Product < ApplicationRecord
 
   def calculate_value
     sale_price * stock
+  end
+
+  def enough_stock?(quantity)
+    stock >= quantity
+  end
+
+  def has_stock?
+    stock > 0
   end
 end
