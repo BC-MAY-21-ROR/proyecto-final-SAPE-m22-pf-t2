@@ -10,10 +10,6 @@ class Resupply < ApplicationRecord
     where(
       business: business,
       created_at: month.beginning_of_month..month.end_of_month
-    ).inject(0) { |sum, resupply| sum + resupply.calculate_total }
-  end
-
-  def calculate_total
-    product.price * quantity
+    ).inject(0) { |sum, resupply| sum + resupply.total }
   end
 end
