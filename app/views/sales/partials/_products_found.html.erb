@@ -1,20 +1,28 @@
 <%= turbo_frame_tag 'products_found' do %>
   <% if @products.present? %>
     <% unless @products.empty? %>
-<!--      <h2>Results for:&nbsp;<%#= @query %>-->
       <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-4">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr scope="col" class="py-3 px-6">
-            <th rowspan="1" colspan="6" class="text-center py-2 px-2 bg-gray-300">
-              List of products found
-            </th>
-          </tr>
+          <thead
+            class="
+              text-xs
+              text-gray-700
+              uppercase
+              bg-gray-50
+              dark:bg-gray-700
+              dark:text-gray-400
+            "
+          >
+            <tr scope="col" class="py-3 px-6">
+              <th rowspan="1" colspan="6" class="text-center py-2 px-2 bg-gray-300">
+                List of products found
+              </th>
+            </tr>
             <tr>
               <th scope="col" class="py-3 px-6">Code</th>
               <th scope="col" class="py-3 px-6">Name</th>
               <th scope="col" class="py-3 px-6">Description</th>
-              <th scope="col" class="py-3 px-6">Price</th>
+              <th scope="col" class="py-3 px-6">Sale price</th>
               <th scope="col" class="py-3 px-6">Stock</th>
               <th scope="col" class="py-3 px-6">Amount</th>
             </tr>
@@ -32,7 +40,7 @@
                   <%= product.description %>
                 </td>
                 <td class="py-4 px-6">
-                  <%= product.price %>
+                  <%= number_to_currency product.sale_price %>
                 </td>
                 <td class="py-4 px-6">
                   <%= product.stock %>
@@ -42,19 +50,16 @@
                     <%= form.text_field :product_id, value: product.id, hidden: true %>
                     <%= form.number_field :quantity, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
                     <%= form.submit 'Add', hidden: true %>
-                    <h2 class="text-green-500 font-light h-3 text-xs">*Press enter to add</h2>
+                    <h2 class="text-green-500 font-light h-3 text-xs">* Press enter to add</h2>
                   <% end %>
                 </td>
-
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-
     <% end %>
   <% else %>
-    <h2 class="text-red-500 font-light h-3 text-xs">*No products found</h2>
+    <h2 class="text-red-500 font-light h-3 text-xs">* No products found</h2>
   <% end %>
-
 <% end %>

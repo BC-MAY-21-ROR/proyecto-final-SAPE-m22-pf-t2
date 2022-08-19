@@ -8,17 +8,25 @@ class Product < ApplicationRecord
   has_many :sales, through: :product_sales
   has_many :resupplies
 
-  validates :name, :code, :price, :stock, presence: true
+  validates :name, :code, :purcharse_price, :sale_price, :stock, presence: true
 
-  validates :name, length: { minimum: 4 }
   validates :code, length: { minimum: 2 }
+  validates :name, length: { minimum: 4 }
 
   def self.search(query, business_id)
     search_by_name_and_description(query)
       .select { |product| product.business_id == business_id }
   end
 
+  def self.calculate_total_value(business)
+    business.products.inject(0) { |sum, product| sum += product.calculate_value }
+  end
+
   def calculate_total_price(quantity)
-    price.to_f * quantity.to_i
+    sale_price * quantity.to_i
+  end
+
+  def calculate_value
+    sale_price * stock
   end
 end

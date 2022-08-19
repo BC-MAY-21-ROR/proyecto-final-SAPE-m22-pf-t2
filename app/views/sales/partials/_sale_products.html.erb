@@ -2,7 +2,16 @@
   <% unless @sale_products.empty? %>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-4">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead
+          class="
+            text-xs
+            text-gray-700
+            uppercase
+            bg-gray-50
+            dark:bg-gray-700
+            dark:text-gray-400
+          "
+        >
           <tr scope="col" class="py-3 px-6">
             <th rowspan="1" colspan="6" class="text-center py-2 px-2 bg-gray-300">
               List products to sale
@@ -11,45 +20,47 @@
           <tr>
             <th scope="col" class="py-3 px-6">Code</th>
             <th scope="col" class="py-3 px-6">Name</th>
-            <th scope="col" class="py-3 px-6">Price</th>
+            <th scope="col" class="py-3 px-6">Sale price</th>
             <th scope="col" class="py-3 px-6">Quantity</th>
             <th scope="col" class="py-3 px-6">Total</th>
             <th scope="col" class="py-3 px-6">Remove</th>
           </tr>
-      </thead>
-      <tbody class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-        <% @sale_products.each do |sale_product| %>
-          <tr>
-            <td class="py-4 px-6">
-              <%= sale_product[:product_code] %>
-            </td>
-            <td class="py-4 px-6">
-              <%= sale_product[:product_name] %>
-            </td>
-            <td class="py-4 px-6">
-              MXN <%= sale_product[:product_price] %>
-            </td>
-            <td class="py-4 px-6">
-              <%= sale_product[:quantity] %>
-            </td>
-            <td class="py-4 px-6">
-              MXN <%= sale_product[:total] %>
-            </td>
-            <td class="py-4 px-6">
-              <%= form_with url: remove_product_to_sale_path, method: :delete, data: { turbo_frame: "sale_products" } do |form| %>
-                <%= form.text_field :product_id, value: sale_product[:product_id], hidden: true %>
-                <%= form.submit 'Remove', class:"font-medium text-red-600 dark:text-red-500 cursor-pointer hover:underline" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+          <% @sale_products.each do |sale_product| %>
+            <tr>
+              <td class="py-4 px-6">
+                <%= sale_product[:product_code] %>
+              </td>
+              <td class="py-4 px-6">
+                <%= sale_product[:product_name] %>
+              </td>
+              <td class="py-4 px-6">
+                <%= number_to_currency sale_product[:product_sale_price] %>
+              </td>
+              <td class="py-4 px-6">
+                <%= sale_product[:quantity] %>
+              </td>
+              <td class="py-4 px-6">
+                <%= number_to_currency sale_product[:total] %>
+              </td>
+              <td class="py-4 px-6">
+                <%= form_with url: remove_product_to_sale_path, method: :delete, data: { turbo_frame: "sale_products" } do |form| %>
+                  <%= form.text_field :product_id, value: sale_product[:product_id], hidden: true %>
+                  <%= form.submit 'Remove', class:"font-medium text-red-600 dark:text-red-500 cursor-pointer hover:underline" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   <% else %>
-    <p class="text-red-500 text-xs font-light">*No sale products!</p>
+    <p class="text-red-500 text-xs font-light">* No sale products!</p>
   <% end %>
 
-  <h2 class="bg-white rounded px-2 py-1 mt-2">Total sale: $ <%= @sale_total %></h2>
+  <h2 class="bg-white rounded px-2 py-1 mt-2">
+    Total sale:&nbsp;<%= number_to_currency @sale_total %>
+  </h2>
 
 <% end %>
