@@ -13,7 +13,7 @@
   </p>
   <p class="my-5">
     <strong class="block font-medium mb-1">Resupply total:</strong>
-    $<%= @resupply.calculate_total %>
+    $<%= @resupply.total %>
   </p>
   <p class="my-5">
     <strong class="block font-medium mb-1">Date:</strong>
@@ -21,6 +21,10 @@
   </p>
   <p class="my-5">
     <strong class="block font-medium mb-1">Comment:</strong>
-    <%= @resupply.comment %>
+    <% if @resupply.comment.empty? %>
+      -- No comment provided --
+    <% else %>
+      <%= @resupply.comment %>
+    <% end %>
   </p>
 </div>

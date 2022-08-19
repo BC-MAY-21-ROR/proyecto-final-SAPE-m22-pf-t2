@@ -35,19 +35,30 @@
   </div>
 
   <div class="mb-6">
-    <%= f.label 'Price *',
-      for: 'product_price',
+    <%= f.label 'Purchase price *',
+      for: 'product_purchase_price',
       class: "block mb-2 text-sm font-medium text-gray-900" %>
-    <%= f.number_field :price,
+    <%= f.number_field :purchase_price,
       placeholder: 'Enter product price',
       class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-    <% product.errors.full_messages_for(:price).each do |message| %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <span class="block sm:inline"><%= message %></span>
-        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-        </span>
-      </div>
+    <% product.errors.full_messages_for(:purchase_price).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Sale price *',
+      for: 'product_sale_price',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+    <%= f.number_field :sale_price,
+      placeholder: 'Enter product price',
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+    <% product.errors.full_messages_for(:sale_price).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
     <% end %>
   </div>
 

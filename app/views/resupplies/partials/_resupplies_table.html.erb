@@ -1,4 +1,11 @@
 <% unless @resupplies.empty? %>
+  <h3 class="text-xl my-5">
+    Resupplies total&nbsp;<%= "for month #{@selected_month}" if @selected_month.present? %>:
+    <span class="font-bold">
+      <%= number_to_currency @resupplies_total %>
+    </span>
+  </h3>
+
   <div
     class="
       col-span-full
@@ -54,7 +61,7 @@
                   <%= resupply.quantity %>
                 </td>
                 <td class="text-sm text-gray-900 font-semibold px-2 py-4 whitespace-nowrap">
-                  $<%= resupply.calculate_total %>
+                  <%= number_to_currency resupply.total %>
                 </td>
                 <td class="text-sm text-gray-900 font-normal px-2 py-4 whitespace-nowrap">
                   <%= resupply.created_at %>

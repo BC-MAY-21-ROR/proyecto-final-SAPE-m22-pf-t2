@@ -18,7 +18,8 @@ class Sales::CreateSale
   def save_sale_products
     ProductSale.create!(
       context.session[:sale_products].map do |sale_product|
-        sale_product.merge({ sale_id: context.sale.id })
+        product = Product.find_by_id(sale_product[:product_id])
+        sale_product.merge({ sale_id: context.sale.id, product_price: product.sale_price })
       end
     )
   end

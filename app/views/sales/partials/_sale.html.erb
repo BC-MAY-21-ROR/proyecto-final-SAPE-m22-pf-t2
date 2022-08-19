@@ -1,0 +1,80 @@
+<div id="<%= dom_id sale %>">
+  <h2 class="text-center text-4xl font-bold">Sale #<%= sale.id %></h2>
+  <div class="flex justify-between items-center">
+    <div>
+      <p class="text-lg">Client:
+        <span class="font-bold">
+          <%= sale.client.name %>
+        </span>
+      </p>
+      <p class="text-lg">Date:
+        <span class="font-bold">
+          <%= sale.created_at.localtime %>
+        </span>
+      </p>
+      <p class="text-lg">Products:
+        <span class="font-bold">
+          <%= sale.products.count %>
+        </span>
+      </p>
+      <p class="text-lg">Sale total:
+        <span class="font-bold">
+          <%= number_to_currency sale.total %>
+        </span>
+      </p>
+    </div>
+    <%= form_with url: sale_details_pdf_path(id: sale.id, format: :pdf), method: :get do |form| %>
+      <%= form.submit 'Download PDF',
+        class: 'bg-transparent cursor-pointer text-blue-700 text-sm py-2 px-4 border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent',
+        formtarget: "_blank" %>
+    <% end %>
+  </div>
+  <div class="overflow-x-auto relative shadow-md mt-4 sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="
+          text-xs
+          text-gray-700
+          uppercase
+          bg-gray-50
+          dark:bg-gray-700
+          dark:text-gray-400
+        "
+      >
+        <tr scope="col" class="py-3 px-6">
+          <th rowspan="1" colspan="6" class="text-center py-2 px-2 bg-gray-300">
+            Products
+          </th>
+        </tr>
+        <tr>
+          <th scope="col" class="py-3 px-6">Code</th>
+          <th scope="col" class="py-3 px-6">Name</th>
+          <th scope="col" class="py-3 px-6">Sale price</th>
+          <th scope="col" class="py-3 px-6">Quantity</th>
+          <th scope="col" class="py-3 px-6">Total</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+        <% @sale_products.each do |sale_product| %>
+          <tr>
+            <td class="py-4 px-6">
+              <%= sale_product[:product_code] %>
+            </td>
+            <td class="py-4 px-6">
+              <%= sale_product[:product_name] %>
+            </td>
+            <td class="py-4 px-6">
+              <%= number_to_currency sale_product[:product_sale_price] %>
+            </td>
+            <td class="py-4 px-6">
+              <%= sale_product[:quantity] %>
+            </td>
+            <td class="py-4 px-6">
+              <%= number_to_currency sale_product[:total] %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

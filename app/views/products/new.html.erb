@@ -29,7 +29,7 @@
       >
         New product
       </h2>
-      <%= render "form", product: @product %>
+      <%= render partial: 'products/partials/form', locals: { product: @product } %>
     </div>
   </div>
 </div>

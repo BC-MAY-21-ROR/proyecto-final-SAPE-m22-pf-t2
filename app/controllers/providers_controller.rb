@@ -6,6 +6,20 @@ class ProvidersController < ApplicationController
     @providers = Provider.where(business: current_business)
   end
 
+  def providers_pdf
+    @business = current_business
+    @providers = @business.providers
+    respond_to do |format|
+      format.pdf do
+        render pdf: "providers_pdf_#{@business.id}",
+               template: 'providers/partials/_providers_table_pdf',
+               encoding: 'utf8',
+               orientation: 'landscape',
+               formats: [:html]
+      end
+    end
+  end
+
   def new
     @provider = Provider.new
   end

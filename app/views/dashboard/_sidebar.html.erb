@@ -19,7 +19,9 @@
     <li class="my-2 md:my-0">
       <%= link_to dashboard_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fas fa-home fa-fw mr-3 text-indigo-400"></i>
+        <i
+          class="fas fa-home fa-fw mr-3 <%= "text-indigo-400" if has_in_path? 'dashboard' %>"
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Home
         </span>
@@ -29,7 +31,9 @@
     <li class="my-2 md:my-0">
       <%= link_to employees_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-users mr-3"></i>
+        <i
+          class="fa-solid fa-users mr-3 <%= "text-indigo-400" if has_in_path? 'employees' %>"
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Employees
         </span>
@@ -40,7 +44,14 @@
       <li class="my-2 md:my-0">
         <%= link_to clients_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-          <i class="fa-solid fa-users-gear mr-3"></i>
+          <i
+            class="
+              fa-solid
+              fa-users-gear
+              mr-3
+              <%= "text-indigo-400" if has_in_path? 'clients' %>
+            "
+          ></i>
           <span class="w-full inline-block pb-1 md:pb-0 text-sm">
             Clients
           </span>
@@ -52,7 +63,14 @@
       <li class="my-2 md:my-0">
         <%= link_to providers_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-          <i class="fa-solid fa-truck-field mr-3"></i>
+          <i
+            class="
+              fa-solid
+              fa-truck-field
+              mr-3
+              <%= "text-indigo-400" if has_in_path? 'providers' %>
+            "
+          ></i>
           <span class="w-full inline-block pb-1 md:pb-0 text-sm">
             Providers
           </span>
@@ -63,7 +81,14 @@
     <li class="my-2 md:my-0">
       <%= link_to products_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-boxes-stacked mr-3"></i>
+        <i
+          class="
+            fa-solid
+            fa-boxes-stacked
+            mr-3
+            <%= "text-indigo-400" if has_in_path? 'inventory' %>
+          "
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Inventory
         </span>
@@ -73,7 +98,14 @@
     <li class="my-2 md:my-0">
       <%= link_to sales_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-cash-register mr-4"></i>
+        <i
+          class="
+            fa-solid
+            fa-cash-register
+            mr-3
+            <%= "text-indigo-400" if has_in_path? 'sales' %>
+          "
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Sales
         </span>
@@ -83,7 +115,14 @@
     <li class="my-2 md:my-0">
       <%= link_to resupplies_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-list-check mr-4"></i>
+        <i
+          class="
+            fa-solid
+            fa-list-check
+            mr-3
+            <%= "text-indigo-400" if has_in_path? 'resupplies' %>
+          "
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Resupplies
         </span>
@@ -93,7 +132,14 @@
     <li class="my-2 md:my-0">
       <%= link_to expenses_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-clipboard mr-4"></i>
+        <i
+          class="
+            fa-solid
+            fa-clipboard
+            mr-3
+            <%= "text-indigo-400" if has_in_path? 'expenses' %>
+          "
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Business expenses
         </span>
@@ -101,19 +147,16 @@
     </li>
 
     <li class="my-2 md:my-0">
-      <%= link_to business_path,
-        class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-briefcase mr-4"></i>
-        <span class="w-full inline-block pb-1 md:pb-0 text-sm">
-          Business administration
-        </span>
-      <% end %>
-    </li>
-
-    <li class="my-2 md:my-0">
       <%= link_to financial_state_path,
         class: "block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-indigo-400" do %>
-        <i class="fa-solid fa-money-bill-trend-up mr-4"></i>
+        <i
+          class="
+            fa-solid
+            fa-money-bill-trend-up
+            mr-3
+            <%= "text-indigo-400" if has_in_path? 'financial_state' %>
+          "
+        ></i>
         <span class="w-full inline-block pb-1 md:pb-0 text-sm">
           Financial state
         </span>
