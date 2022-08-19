@@ -1,5 +1,19 @@
 <div class="p-4 lg:px-0">
-  <div class="w-full p-6 rounded-lg mx-auto bg-white drop-shadow-lg lg:w-2/5">
+  <div
+    class="
+      w-full
+      p-6
+      rounded-lg
+      mx-auto
+      bg-white
+      drop-shadow-lg
+      sm:w-4/5
+      md:w-2/3
+      lg:w-3/5
+      xl:w-1/2
+      2xl:w-2/5
+    "
+  >
     <h2
       class="
         text-xl
@@ -13,8 +27,7 @@
       Create your own business
     </h2>
 
-
-    <%= render "form", business: @business %>
+    <%= render "businesses/partials/form", business: @business %>
 
     <% unless @enrollments.empty? %>
       <div class="w-full flex items-center justify-between py-5">
