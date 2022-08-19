@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   has_many :sales, through: :product_sales
   has_many :resupplies
 
-  validates :name, :code, :purcharse_price, :sale_price, :stock, presence: true
+  validates :name, :code, :purchase_price, :sale_price, :stock, presence: true
 
   validates :code, length: { minimum: 2 }
   validates :name, length: { minimum: 4 }
