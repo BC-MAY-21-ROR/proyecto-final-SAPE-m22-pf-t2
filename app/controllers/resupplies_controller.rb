@@ -4,10 +4,31 @@ class ResuppliesController < ApplicationController
   before_action :set_providers, only: %i[new create]
 
   def index
-    @pagy, @resupplies = pagy(current_business.resupplies)
+    @selected_month = params[:month]
+    @pagy, @resupplies = if @selected_month.present?
+                    pagy(Resupply.resupplies_of_month(current_business, DateUtils.parse_month_year_date(@selected_month)))
+                  else
+                    pagy(current_business.resupplies)
+                  end
+    @resupplies_total = @resupplies.sum(:total)
   end
 
   def show; end
+
+  def monthly_resupplies_pdf
+    @selected_month = params[:month]
+    @resupplies = Resupply.resupplies_of_month(current_business, DateUtils.parse_month_year_date(@selected_month))
+    @resupplies_total = @resupplies.sum(:total)
+    respond_to do |format|
+      format.pdf do
+        render pdf: "monthly_resupplies_#{@selected_month}",
+               template: 'resupplies/partials/_monthly_resupplies_pdf',
+               encoding: 'utf8',
+               orientation: 'landscape',
+               formats: [:html]
+      end
+    end
+  end
 
   def new
     @resupply = Resupply.new
@@ -16,10 +37,15 @@ class ResuppliesController < ApplicationController
   end
 
   def create
-    @resupply = Resupply.new(resupply_params.merge({ business: current_business }))
+    result = Resupplies::CreateResupply.call(
+      {
+        business: current_business,
+        resupply_params: resupply_params
+      }
+    )
+    @resupply = result.resupply
 
-    if @resupply.save
-      update_product
+    if result.success?
       redirect_to products_url
     else
       render :new, status: :unprocessable_entity
@@ -27,12 +53,6 @@ class ResuppliesController < ApplicationController
   end
 
   def edit; end
-
-  def update_product
-    @product = Product.find(@resupply.product_id)
-    new_stock = @product.stock + @resupply.quantity
-    @product.update(stock: new_stock)
-  end
 
   private
 

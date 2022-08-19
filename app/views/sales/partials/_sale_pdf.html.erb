@@ -1,0 +1,62 @@
+<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" %>
+
+<h2 class="text-center text-4xl font-bold">Sale #<%= @sale.id %></h2>
+<div class="flex justify-between items-center">
+  <div>
+    <p>Client:
+      <span class="font-weight-bold">
+        <%= @sale.client.name %>
+      </span>
+    </p>
+    <p>Date:
+      <span class="font-weight-bold">
+        <%= @sale.created_at.localtime %>
+      </span>
+    </p>
+    <p>Products:
+      <span class="font-weight-bold">
+        <%= @sale.products.count %>
+      </span>
+    </p>
+    <p>Sale total:
+      <span class="font-weight-bold">
+        <%= number_to_currency @sale.total %>
+      </span>
+    </p>
+  </div>
+</div>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Sale price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <h3 class="text-center">Products</h3>
+      <% @sale_products.each do |sale_product| %>
+        <tr class="text-center">
+          <td>
+            <%= sale_product[:product_code] %>
+          </td>
+          <td>
+            <%= sale_product[:product_name] %>
+          </td>
+          <td>
+            <%= number_to_currency sale_product[:product_sale_price] %>
+          </td>
+          <td>
+            <%= sale_product[:quantity] %>
+          </td>
+          <td>
+            <%= number_to_currency sale_product[:total] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

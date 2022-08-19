@@ -6,6 +6,20 @@ class ClientsController < ApplicationController
     @pagy, @clients = pagy(current_business.clients)
   end
 
+  def clients_pdf
+    @business = current_business
+    @clients = @business.clients
+    respond_to do |format|
+      format.pdf do
+        render pdf: "clients_pdf_#{@business.id}",
+               template: 'clients/partials/_clients_table_pdf',
+               encoding: 'utf8',
+               orientation: 'landscape',
+               formats: [:html]
+      end
+    end
+  end
+
   def show; end
 
   def new

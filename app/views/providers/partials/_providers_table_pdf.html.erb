@@ -1,0 +1,44 @@
+<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" %>
+
+<h3 class="mb-4">
+  <%= @business.name %>
+  <small class="text-muted">(<%= format_month_date(Date.today) %>)</small>
+</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @providers.each do |provider| %>
+      <tr class="text-center">
+        <th scope="row">
+          <%= provider.id %>
+        </th>
+        <td>
+          <%= provider.name %>
+        </td>
+        <td>
+          <% unless provider.email.empty? %>
+            <%= provider.email %>
+          <% else %>
+            No email provided
+          <% end %>
+        </td>
+        <td>
+          <% unless provider.phone.empty? %>
+            <%= provider.phone %>
+          <% else %>
+            No phone provided
+          <% end %>
+          <%= provider.phone %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
