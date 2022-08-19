@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+
   before_action :set_locale
 
   def after_sign_in_path_for(_resource)

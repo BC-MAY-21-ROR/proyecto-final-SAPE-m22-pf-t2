@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @clients = Client.where(business: current_business)
+    @pagy, @clients = pagy(current_business.clients)
   end
 
   def clients_pdf

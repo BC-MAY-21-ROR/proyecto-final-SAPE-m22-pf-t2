@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def has_in_path?(path)
     request.path.include? path
   end

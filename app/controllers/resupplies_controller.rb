@@ -5,10 +5,10 @@ class ResuppliesController < ApplicationController
 
   def index
     @selected_month = params[:month]
-    @resupplies = if @selected_month.present?
-                    Resupply.resupplies_of_month(current_business, DateUtils.parse_month_year_date(@selected_month))
+    @pagy, @resupplies = if @selected_month.present?
+                    pagy(Resupply.resupplies_of_month(current_business, DateUtils.parse_month_year_date(@selected_month)))
                   else
-                    current_business.resupplies
+                    pagy(current_business.resupplies)
                   end
     @resupplies_total = @resupplies.sum(:total)
   end

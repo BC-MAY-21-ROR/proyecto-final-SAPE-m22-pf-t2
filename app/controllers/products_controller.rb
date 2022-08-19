@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @products = current_business.products
+    @pagy, @products = pagy(current_business.products)
     @total_value = Product.calculate_total_value(current_business)
   end
 
