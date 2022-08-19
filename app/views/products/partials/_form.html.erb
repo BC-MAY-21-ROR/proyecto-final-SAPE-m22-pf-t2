@@ -29,13 +29,13 @@
   </div>
 
   <div class="mb-6">
-    <%= f.label 'Purcharse price *',
-      for: 'product_purcharse_price',
+    <%= f.label 'Purchase price *',
+      for: 'product_purchase_price',
       class: "block mb-2 text-sm font-medium text-gray-900" %>
-    <%= f.number_field :purcharse_price,
+    <%= f.number_field :purchase_price,
       placeholder: 'Enter product price',
       class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-    <% product.errors.full_messages_for(:purcharse_price).each do |message| %>
+    <% product.errors.full_messages_for(:purchase_price).each do |message| %>
       <p class="mt-2 text-sm text-red-600">
         <%= message %>
       </p>

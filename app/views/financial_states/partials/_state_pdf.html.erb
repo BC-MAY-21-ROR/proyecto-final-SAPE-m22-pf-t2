@@ -1,0 +1,147 @@
+<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" %>
+
+<% if @expense.present? %>
+  <h2 class="mb-5">
+    Financial state for month:
+    <span class="font-weight-bold">
+      <%= format_month_from_expense(@expense) %>
+    </span>
+  </h2>
+
+  <div class="d-flex justify-content-between font-weight-bold">
+    <h5 class="text-uppercase">
+      Sales
+    </h5>
+    <div>
+      <%= number_to_currency(@financial_state[:sales_total]) %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Resupplies
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@financial_state[:resupplies_total]) %>
+    </div>
+  </div>
+  <hr class="my-3">
+
+  <div class="d-flex justify-content-between font-weight-bold">
+    <h5 class="text-uppercase">
+      = Gross profit
+    </h5>
+    <div>
+      <%= number_to_currency(@financial_state[:gross_profit]) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Rent
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.rent) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Salaries
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.salaries) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Service bills
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.service_bills) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;General charges
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.general_charges) %>
+    </div>
+  </div>
+  <hr class="my-3">
+
+  <div class="d-flex justify-content-between font-weight-bold">
+    <h5 class="text-uppercase">
+      = Ebitda
+    </h5>
+    <div>
+      <%= number_to_currency(@financial_state[:ebitda]) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Amortizations
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.amortizations) %>
+    </div>
+  </div>
+  <hr class="my-3">
+
+  <div class="d-flex justify-content-between font-weight-bold">
+    <h5 class="text-uppercase">
+      = Result of explotation
+    </h5>
+    <div>
+      <%= number_to_currency(@financial_state[:result_of_explotation]) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Commissions
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.commissions) %>
+    </div>
+  </div>
+  <hr class="my-3">
+
+  <div class="d-flex justify-content-between font-weight-bold">
+    <h5 class="text-uppercase">
+      = Result before taxes
+    </h5>
+    <div>
+      <%= number_to_currency(@financial_state[:result_before_taxes]) %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="ml-5">
+      <span class="font-weight-bold">-</span>&nbsp;Taxes
+    </div>
+    <div class="mr-5">
+      <%= number_to_currency(@expense.taxes) %>
+    </div>
+  </div>
+  <hr class="my-3">
+
+  <div class="d-flex justify-content-between font-weight-bold">
+    <h5 class="text-uppercase">
+      = Net profit
+    </h5>
+    <div
+      class="<%= @financial_state[:net_profit] >= 0 ? 'text-green-600' : 'text-red-600' %>"
+    >
+      <%= number_to_currency(@financial_state[:net_profit]) %>
+    </div>
+  </div>
+
+<% else %>
+  <h2 class="text-center font-weight-bold">
+    No expense for month!
+  </h2>
+<% end %>

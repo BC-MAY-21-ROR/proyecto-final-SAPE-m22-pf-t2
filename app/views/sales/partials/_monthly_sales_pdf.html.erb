@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" %>
+
+<h3>
+  Sales total for month&nbsp;<%= @selected_month %>:
+  <span class="font-weight-bold">
+    <%= number_to_currency @sales_total %>
+  </span>
+</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        Client
+      </th>
+      <th scope="col">
+        Total
+      </th>
+      <th scope="col">
+        Date
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr class="text-center">
+        <td>
+          <%= sale.client.name %>
+        </td>
+        <td>
+          <%= number_to_currency sale.total %>
+        </td>
+        <td>
+          <%= sale.created_at %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

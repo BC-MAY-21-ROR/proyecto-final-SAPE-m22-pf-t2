@@ -1,11 +1,18 @@
 class SalesController < ApplicationController
+  include DateUtils
+
   before_action :authenticate_user!
   before_action :init_sale_products
   before_action :load_sale_products_from_session, only: %i[new create]
   before_action :set_sale, only: %i[show edit update destroy sale_details_pdf]
 
   def index
-    @sales = current_business.sales
+    @selected_month = params[:month]
+    @sales = if @selected_month.present?
+               Sale.sales_of_month(current_business, DateUtils.parse_month_year_date(@selected_month))
+             else
+               current_business.sales
+             end
     @sales_total = @sales.sum(:total)
   end
 
@@ -18,8 +25,24 @@ class SalesController < ApplicationController
     respond_to do |format|
       format.pdf do
         render pdf: "sale_details_#{@sale.id}",
-               template: 'sales/partials/_sale_products',
+               template: 'sales/partials/_sale_pdf',
                encoding: 'utf8',
+               orientation: 'landscape',
+               formats: [:html]
+      end
+    end
+  end
+
+  def monthly_sales_pdf
+    @selected_month = params[:month]
+    @sales = Sale.sales_of_month(current_business, DateUtils.parse_month_year_date(@selected_month))
+    @sales_total = @sales.sum(:total)
+    respond_to do |format|
+      format.pdf do
+        render pdf: "monthly_sales_#{@selected_month}",
+               template: 'sales/partials/_monthly_sales_pdf',
+               encoding: 'utf8',
+               orientation: 'landscape',
                formats: [:html]
       end
     end
@@ -43,7 +66,7 @@ class SalesController < ApplicationController
     @error_enough_stock = result.error_enough_stock
     @sale_products = result.sale_products
     @sale_total = result.sale_total
-    
+
     respond_to do |format|
       format.html { render partial: 'sales/partials/sale_products' }
     end
@@ -53,10 +76,10 @@ class SalesController < ApplicationController
 
   def create
     result = Sales::CreateSaleOrganizer.call(
-      { 
+      {
         business: current_business,
         sale_params: sale_params,
-        session: session 
+        session: session
       }
     )
     @sale = result.sale

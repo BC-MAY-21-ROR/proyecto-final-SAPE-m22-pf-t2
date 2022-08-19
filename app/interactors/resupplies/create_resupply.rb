@@ -17,7 +17,7 @@ class Resupplies::CreateResupply
       context.resupply_params.merge(
         {
           business: context.business,
-          total: @product.purcharse_price * context.resupply_params[:quantity].to_i
+          total: @product.purchase_price * context.resupply_params[:quantity].to_i
         }
       )
     )

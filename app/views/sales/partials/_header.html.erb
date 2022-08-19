@@ -4,3 +4,41 @@
     new_sale_path,
     class:"text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
 </div>
+
+<div class="flex space-x-2">
+  <%= form_with url: sales_path, method: :get do |f| %>
+    <%= f.label 'Sales for month',
+      for: 'month',
+      class: 'block mb-2 text-sm font-medium text-gray-900' %>
+    <div class="space-x-1">
+      <input
+        id="month"
+        name="month"
+        type="month"
+        value="<%= @selected_month %>"
+        class="
+          bg-gray-50
+          border
+          border-gray-300
+          text-gray-900
+          text-sm
+          rounded-lg
+          p-2.5
+          focus:ring-blue-500
+          focus:border-blue-500
+        "
+      >
+      <%= f.submit 'Apply',
+      class: 'text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto"' %>
+    </div>
+  <% end %>
+
+  <% if @selected_month.present? && @sales.any? %>
+    <%= form_with url: monthly_sales_pdf_path(format: :pdf), method: :get, class: 'self-end mb-0.5' do |f| %>
+      <input hidden name="month" value="<%= @selected_month %>">
+      <%= f.submit 'Download PDF', 
+        class: 'bg-transparent cursor-pointer text-blue-700 text-sm py-2 px-4 border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent',
+        formtarget: "_blank" %>
+    <% end %>
+  <% end %>
+</div>
