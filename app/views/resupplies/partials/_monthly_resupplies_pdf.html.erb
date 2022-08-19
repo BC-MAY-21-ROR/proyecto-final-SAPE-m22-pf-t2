@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" %>
+
+<h3 class="mb-5">
+  Resupplies total for month&nbsp;<%= @selected_month %>:
+  <span class="font-weight-bold">
+    <%= number_to_currency @resupplies_total %>
+  </span>
+</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        Product code
+      </th>
+      <th scope="col">
+        Product name
+      </th>
+      <th scope="col">
+        Quantity
+      </th>
+      <th scope="col">
+        Total
+      </th>
+      <th scope="col">
+        Created at
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resupplies.each do |resupply| %>
+      <tr class="text-center">
+        <td>
+          <%= resupply.product.code %>
+        </td>
+        <td>
+          <%= resupply.product.name %>
+        </td>
+        <td>
+          <%= resupply.quantity %>
+        </td>
+        <td>
+          <%= number_to_currency resupply.total %>
+        </td>
+        <td>
+          <%= resupply.created_at %>
+        </td>
+        <td>
+          <%= link_to 'Show',
+            resupply_path(resupply),
+            class: 'bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

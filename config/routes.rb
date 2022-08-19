@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   get '/sales/:id/sale_details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
   get 'monthly_sales_pdf', to: 'sales#monthly_sales_pdf'
 
+  # Monthly resupplies PDF
+  get 'monthly_resupplies_pdf', to: 'resupplies#monthly_resupplies_pdf'
+
   # Financial Statement
   get 'financial_state_of_month', to: 'financial_states#financial_state_of_month'
   get 'financial_state_pdf', to: 'financial_states#financial_state_pdf'
