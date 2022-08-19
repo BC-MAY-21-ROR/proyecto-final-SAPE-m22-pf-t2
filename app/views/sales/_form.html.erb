@@ -1,11 +1,10 @@
 <%= form_with(model: sale, class: "contents") do |form| %>
   <% if sale.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
       <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
-
       <ul>
         <% sale.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li class="block sm:inline"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>

@@ -340,6 +340,10 @@ GEM
     unf_ext (0.0.8.2)
     unf_ext (0.0.8.2-x64-mingw-ucrt)
     unicode-display_width (2.2.0)
+    view_component (2.69.0)
+      activesupport (>= 5.0.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -400,6 +404,7 @@ DEPENDENCIES
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
+  view_component
   web-console
   webdrivers
   wicked_pdf
