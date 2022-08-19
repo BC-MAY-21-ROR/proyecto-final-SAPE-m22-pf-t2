@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   get '/search_products', to: 'sales#search_products'
   post '/add_product_to_sale', to: 'sales#add_product_to_sale'
   delete '/remove_product_to_sale', to: 'sales#remove_product_from_sale'
-  get '/sales/:id/details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
+  get '/sales/:id/sale_details_pdf', to: 'sales#sale_details_pdf', as: 'sale_details_pdf'
 
   # Financial Statement
   get 'financial_state_of_month', to: 'financial_states#financial_state_of_month'

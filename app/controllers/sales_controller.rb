@@ -18,7 +18,7 @@ class SalesController < ApplicationController
     respond_to do |format|
       format.pdf do
         render pdf: "sale_details_#{@sale.id}",
-               template: 'sales/partials/_sale_products',
+               template: 'sales/partials/_sale_pdf',
                encoding: 'utf8',
                orientation: 'landscape',
                formats: [:html]
@@ -44,7 +44,7 @@ class SalesController < ApplicationController
     @error_enough_stock = result.error_enough_stock
     @sale_products = result.sale_products
     @sale_total = result.sale_total
-    
+
     respond_to do |format|
       format.html { render partial: 'sales/partials/sale_products' }
     end
@@ -54,10 +54,10 @@ class SalesController < ApplicationController
 
   def create
     result = Sales::CreateSaleOrganizer.call(
-      { 
+      {
         business: current_business,
         sale_params: sale_params,
-        session: session 
+        session: session
       }
     )
     @sale = result.sale

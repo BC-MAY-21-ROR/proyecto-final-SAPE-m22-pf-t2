@@ -12,7 +12,7 @@ class ProvidersController < ApplicationController
     respond_to do |format|
       format.pdf do
         render pdf: "providers_pdf_#{@business.id}",
-               template: 'providers/partials/_providers_table_report',
+               template: 'providers/partials/_providers_table_pdf',
                encoding: 'utf8',
                orientation: 'landscape',
                formats: [:html]
