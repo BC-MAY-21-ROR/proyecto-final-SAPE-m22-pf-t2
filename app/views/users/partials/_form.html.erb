@@ -1,27 +1,14 @@
-<%= form_with(model: @product, class: "contents") do |f| %>
-
+<%= form_with(model: @user, class: "contents") do |f| %>
   <div class="mb-6">
-    <%= f.label 'Code *',
-      for: 'product_code',
+    <%= f.label 'Name',
+      for: 'user_name',
       class: "block mb-2 text-sm font-medium text-gray-900" %>
-    <%= f.text_field :code,
-      placeholder: 'Enter product code',
-      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-    <% product.errors.full_messages_for(:code).each do |message| %>
-      <p class="mt-2 text-sm text-red-600">
-        <%= message %>
-      </p>
-    <% end %>
-  </div>
 
-  <div class="mb-6">
-    <%= f.label 'Name *',
-      for: 'product_name',
-      class: "block mb-2 text-sm font-medium text-gray-900" %>
     <%= f.text_field :name,
-      placeholder: 'Enter product name',
+      placeholder: 'Enter user name',
       class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-    <% product.errors.full_messages_for(:name).each do |message| %>
+
+    <% @user.errors.full_messages_for(:name).each do |message| %>
       <p class="mt-2 text-sm text-red-600">
         <%= message %>
       </p>
@@ -29,52 +16,78 @@
   </div>
 
   <div class="mb-6">
-    <%= f.label 'Price *',
-      for: 'product_price',
+    <%= f.label 'Email',
+      for: 'user_email',
       class: "block mb-2 text-sm font-medium text-gray-900" %>
-    <%= f.number_field :price,
-      placeholder: 'Enter product price',
+
+    <%= f.text_field :email,
+      placeholder: 'Enter user email',
       class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-    <% product.errors.full_messages_for(:price).each do |message| %>
+
+    <% @user.errors.full_messages_for(:email).each do |message| %>
       <p class="mt-2 text-sm text-red-600">
         <%= message %>
       </p>
     <% end %>
   </div>
 
-  <% unless has_in_path? 'edit' %>
-    <div class="mb-6">
-      <%= f.label 'Stock *',
-        for: 'product_stock',
-        class: "block mb-2 text-sm font-medium text-gray-900" %>
-      <%= f.number_field :stock,
-        placeholder: 'Enter product stock',
-        class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-      <% product.errors.full_messages_for(:stock).each do |message| %>
-        <p class="mt-2 text-sm text-red-600">
-          <%= message %>
-        </p>
-      <% end %>
+  <div class="mb-6">
+    <%= f.label 'Password',
+      for: 'user_password',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.password_field :password,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label 'Password confirmation',
+      for: 'user_password_confirmation',
+      class: "block mb-2 text-sm font-medium text-gray-900" %>
+
+    <%= f.password_field :password_confirmation,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
+
+    <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+      <p class="mt-2 text-sm text-red-600">
+        <%= message %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label "Profile picture", class: "mr-2 text-sm font-medium text-gray-900" %>
+    <div class="mt-4 inline">
+      <label
+        class="
+          inline
+          bg-blue-500
+          rounded
+          text-white
+          py-2
+          px-4
+          hover:border-blue-500
+          hover:bg-blue-400
+        "
+      >
+        Choose file
+        <span class="hidden">
+          <%= f.file_field :avatar %>
+        </span>
+      </label>
     </div>
-  <% end %>
-
-  <div class="mb-6">
-    <%= f.label 'Description',
-      for: 'product_description',
-      class: "block mb-2 text-sm font-medium text-gray-900" %>
-    <%= f.text_area :description,
-      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500" %>
-    <% product.errors.full_messages_for(:description).each do |message| %>
-      <p class="mt-2 text-sm text-red-600">
-        <%= message %>
-      </p>
-    <% end %>
   </div>
 
   <div class="flex items-center space-x-2">
     <%= f.submit class: "text-white bg-blue-700 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto" %>
     <%= link_to "Cancel",
-      products_path,
+      user_path(@user),
       class: "text-white bg-red-600 font-medium rounded-lg text-sm w-full px-5 py-2.5 mt-4 text-center cursor-pointer hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 sm:w-auto" %>
   </div>
 

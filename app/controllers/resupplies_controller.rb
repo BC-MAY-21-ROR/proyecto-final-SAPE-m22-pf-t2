@@ -16,10 +16,10 @@ class ResuppliesController < ApplicationController
   end
 
   def create
-    @resupply = Resupply.new(resupply_params.merge({ business: current_business }))
+    result = Resupplies::CreateResupply.call({ business: current_business, resupply_params: resupply_params })
+    @resupply = result.resupply
 
-    if @resupply.save
-      update_product
+    if result.success?
       redirect_to products_url
     else
       render :new, status: :unprocessable_entity
@@ -27,12 +27,6 @@ class ResuppliesController < ApplicationController
   end
 
   def edit; end
-
-  def update_product
-    @product = Product.find(@resupply.product_id)
-    new_stock = @product.stock + @resupply.quantity
-    @product.update(stock: new_stock)
-  end
 
   private
 
