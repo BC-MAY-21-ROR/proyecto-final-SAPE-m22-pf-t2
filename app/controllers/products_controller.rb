@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = current_business.products
+    @total_value = Product.calculate_total_value(current_business)
   end
 
   def show; end
@@ -48,9 +49,10 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(
-      :name,
       :code,
-      :price,
+      :name,
+      :purcharse_price,
+      :sale_price,
       :stock,
       :description
     )
