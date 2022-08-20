@@ -1,59 +1,54 @@
-<% unless @sales.empty? %> 
-    <div class="flex justify-between items-center mb-4 ">
-
-    </div>
-    <div
-      class="
-        col-span-full
-        bg-white
-        shadow-lg
-        rounded-sm
-        border
-        border-gray-200
-        xl:col-span-6
-      "
-    >
-      <table class="table-auto w-full">
-        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-          <tr>
-            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Client</th>
-            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Total</th>
-            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Date</th>
-            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @sales.each do |sale| %>
-            <tr class="border-b">
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <%= sale.client.name %>
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <%= number_to_currency(sale.total) %>
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <%= sale.created_at %>
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <%= link_to 'Details', sale_path(sale), style: "color: blue" %>
-              </td>
-            </tr>
-          <% end %>
-          <tr class="border-gray-700">
-            <td class="text-sm text-orange-500 font-light px-6 py-4 whitespace-nowrap">
-              Sales total
+<% unless @sales.empty? %>
+  <div
+    class="
+      col-span-full
+      bg-white
+      shadow-lg
+      rounded-sm
+      border
+      border-gray-200
+      xl:col-span-6
+    "
+  >
+    <table class="table-auto w-full">
+      <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+        <tr>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Client</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Total</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Date</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sales.each do |sale| %>
+          <tr class="border-b">
+            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              <%= sale.client.name %>
             </td>
-            <td class="text-sm text-red-500 font-light px-6 py-4 whitespace-nowrap">
-              <%= number_to_currency(@sales_total) %>
+            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              <%= number_to_currency(sale.total) %>
+            </td>
+            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              <%= sale.created_at %>
+            </td>
+            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+              <%= link_to 'Details', sale_path(sale), style: "color: blue" %>
             </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-
- <% else %>
+        <% end %>
+        <tr class="border-gray-700">
+          <td class="text-sm text-orange-500 font-light px-6 py-4 whitespace-nowrap">
+            Sales total
+          </td>
+          <td class="text-sm text-red-500 font-light px-6 py-4 whitespace-nowrap">
+            <%= number_to_currency(@sales_total) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% else %>
   <h2 class="text-center font-bold text-3xl">
     No sales registered!
   </h2>
 <% end %>
-
