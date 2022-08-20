@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
           title: "New product was created",
           body: "Product for code:#{@product.code} and name:#{@product.name} was succesfully created."
         }
-        format.html { redirect_to products_path, sucess: flash }
+        format.html { redirect_to products_path, success: flash }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
