@@ -1,4 +1,4 @@
-<div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto" data-controller="notification" data-notification-timeout="<%= @data[:timeout] %>">
+<div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto hidden" data-controller="notification" data-notification-timeout="<%= @data[:timeout] %>">
   <div class="rounded-lg shadow-xs overflow-hidden">
     <div class="p-4">
       <div class="flex items-start">
@@ -28,11 +28,14 @@
           <% end %>
         </div>
         <div class="ml-4 flex-shrink-0 flex">
-          <button class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150" onclick="closeAlert(event)">
+          <button class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150" data-action="notification#close" >
             <i class="fa-solid fa-circle-xmark"></i>
           </button>
         </div>
       </div>
     </div>
+     <% if @data[:countdown] %>
+      <div class="bg-indigo-600 rounded-lg h-1 w-0" data-notification-target="countdown"></div>
+    <% end %>
   </div>
 </div>
