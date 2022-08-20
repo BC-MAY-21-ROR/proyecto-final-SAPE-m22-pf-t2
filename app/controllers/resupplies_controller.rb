@@ -44,9 +44,14 @@ class ResuppliesController < ApplicationController
       }
     )
     @resupply = result.resupply
-
+    
     if result.success?
-      redirect_to products_url
+      @product = Product.find_by(id: @product_id)
+      flash = {
+        title: "Resupply was created",
+        body: "Ressuply for: #{@resupply.quantity} products was created"
+      }
+      redirect_to products_url , success: flash
     else
       render :new, status: :unprocessable_entity
     end

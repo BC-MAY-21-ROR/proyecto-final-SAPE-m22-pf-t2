@@ -31,7 +31,11 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.save
-        format.html { redirect_to providers_path, notice: 'Provider was successfully created.' }
+        flash = {
+          title: "Provider was created",
+          body:"Provider: #{@provider.email} - #{@provider.name} was succesfully created"
+        }
+        format.html { redirect_to providers_path, success:flash }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +45,10 @@ class ProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @provider.update(provider_params)
-        format.html { redirect_to providers_path, notice: 'Provider was successfully updated.' }
+        flash = {
+          title: "Provider: #{@provider.email} - #{@product.name} was updated"
+        }
+        format.html { redirect_to providers_path, success:flash }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -52,7 +59,10 @@ class ProvidersController < ApplicationController
     @provider.destroy
 
     respond_to do |format|
-      format.html { redirect_to providers_url, notice: 'Provider was successfully destroyed.' }
+      flash = {
+        title: "Provider: #{@provider.name} was destroyed"
+      }
+      format.html { redirect_to providers_url, success:flash }
     end
   end
 

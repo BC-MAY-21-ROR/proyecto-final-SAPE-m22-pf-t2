@@ -86,7 +86,10 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if result.success?
-        format.html { redirect_to sale_url(@sale), notice: 'Sale was successfully created.' }
+        flash = {
+          title: "Sale was made succesfully"
+        }
+        format.html { redirect_to sale_url(@sale), success: flash }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -96,7 +99,10 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to sale_url(@sale), notice: 'Sale was successfully updated.' }
+        flash = {
+          title: "Sale was succesfully updated"
+        }
+        format.html { redirect_to sale_url(@sale), success:flash }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

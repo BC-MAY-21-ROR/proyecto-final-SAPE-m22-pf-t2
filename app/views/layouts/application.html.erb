@@ -26,17 +26,17 @@
   </head>
   <body>
     <main>
-      <%= yield %>
+
+
+    <div class="fixed inset-0 px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
+      <div id="notifications" class="flex flex-col top-20 absolute right-6 justify-center">
+        <% flash.each do |type, data| %>
+          <%= render NotificationComponent.new(type: type, data: data) %>
+        <% end %>
+      </div>
+    </div>
+      
+    <%= yield %>
     </main>
-    <% if notice %>
-      <p class="alert alert-success">
-        <%= notice %>
-      </p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger">
-        <%= alert %>
-      </p>
-    <% end %>
   </body>
 </html>
