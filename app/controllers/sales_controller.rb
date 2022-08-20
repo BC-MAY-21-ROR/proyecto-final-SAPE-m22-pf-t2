@@ -87,7 +87,7 @@ class SalesController < ApplicationController
     respond_to do |format|
       if result.success?
         flash = {
-          title: "Sale was made succesfully"
+          title: 'Sale was made succesfully'
         }
         format.html { redirect_to sale_url(@sale), success: flash }
       else
@@ -100,7 +100,7 @@ class SalesController < ApplicationController
     respond_to do |format|
       if @sale.update(sale_params)
         flash = {
-          title: "Sale was succesfully updated"
+          title: 'Sale was succesfully updated'
         }
         format.html { redirect_to sale_url(@sale), success:flash }
       else

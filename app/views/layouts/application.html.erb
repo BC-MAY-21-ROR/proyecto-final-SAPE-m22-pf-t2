@@ -10,7 +10,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+    <script
+      src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+      charset="utf-8"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
@@ -26,17 +29,29 @@
   </head>
   <body>
     <main>
-
-
-    <div class="fixed inset-0 px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end">
-      <div id="notifications" class="flex flex-col top-20 absolute right-6 justify-center">
-        <% flash.each do |type, data| %>
-          <%= render NotificationComponent.new(type: type, data: data) %>
-        <% end %>
+      <div
+        class="
+          fixed
+          inset-0
+          px-4
+          py-6
+          pointer-events-none
+          sm:p-6
+          sm:items-start
+          sm:justify-end
+        "
+      >
+        <div
+          id="notifications"
+          class="flex flex-col top-20 absolute right-6 justify-center"
+        >
+          <% flash.each do |type, data| %>
+            <%= render NotificationComponent.new(type: type, data: data) %>
+          <% end %>
+        </div>
       </div>
-    </div>
-      
-    <%= yield %>
+
+      <%= yield %>
     </main>
   </body>
 </html>

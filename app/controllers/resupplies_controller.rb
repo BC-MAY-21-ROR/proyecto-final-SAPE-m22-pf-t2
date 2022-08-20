@@ -6,10 +6,10 @@ class ResuppliesController < ApplicationController
   def index
     @selected_month = params[:month]
     @pagy, @resupplies = if @selected_month.present?
-                    pagy(Resupply.resupplies_of_month(current_business, DateUtils.parse_month_year_date(@selected_month)))
-                  else
-                    pagy(current_business.resupplies)
-                  end
+                           pagy(Resupply.resupplies_of_month(current_business, DateUtils.parse_month_year_date(@selected_month)))
+                         else
+                           pagy(current_business.resupplies)
+                         end
     @resupplies_total = @resupplies.sum(:total)
   end
 
@@ -44,14 +44,14 @@ class ResuppliesController < ApplicationController
       }
     )
     @resupply = result.resupply
-    
+
     if result.success?
       @product = Product.find_by(id: @product_id)
       flash = {
-        title: "Resupply was created",
+        title: 'Resupply was created',
         body: "Ressuply for: #{@resupply.quantity} products was created"
       }
-      redirect_to products_url , success: flash
+      redirect_to products_url, success: flash
     else
       render :new, status: :unprocessable_entity
     end

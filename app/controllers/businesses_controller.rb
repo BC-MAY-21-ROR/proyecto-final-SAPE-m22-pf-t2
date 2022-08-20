@@ -59,10 +59,10 @@ class BusinessesController < ApplicationController
         self.current_business = @business
         BusinessEnrollment.enroll_user_as_admin(current_user, @business)
         flash = {
-          title: "New bussiness was created",
+          title: 'New bussiness was created',
           body: "Bussiness: #{@business.name} was created"
         }
-        format.html { redirect_to dashboard_path, success:flash }
+        format.html { redirect_to dashboard_path, success: flash }
       else
         @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
         format.html { render :new, status: :unprocessable_entity }
@@ -85,7 +85,7 @@ class BusinessesController < ApplicationController
         flash = {
           title: "Business: #{@business.name} was updated"
         }
-        format.html { redirect_to business_path, sucess:flash }
+        format.html { redirect_to business_path, success: flash }
       else
         format.html { render edit_business_path, status: :unprocessable_entity }
       end
@@ -99,7 +99,7 @@ class BusinessesController < ApplicationController
       flash = {
         title: "Bussiness: #{@business.name} was destroyed"
       }
-      format.html { redirect_to businesses_url, success:flash }
+      format.html { redirect_to businesses_url, success: flash }
     end
   end
 

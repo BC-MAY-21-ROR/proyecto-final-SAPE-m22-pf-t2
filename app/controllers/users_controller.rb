@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action do
-    ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
+    ActiveStorage::Current.url_options = {
+      protocol: request.protocol,
+      host: request.host,
+      port: request.port
+    }
   end
 
   def show; end
@@ -13,7 +17,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(update_user_params)
         bypass_sign_in @user, scope: :user
-        format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
+        flash = {
+          title: "User: #{@user.name} successfully was updated"
+        }
+        format.html { redirect_to user_url(@user), success: flash }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -24,7 +31,10 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      flash = {
+        title: "User: #{@user.name} successfully was destroyed"
+      }
+      format.html { redirect_to users_url, success: flash }
     end
   end
 

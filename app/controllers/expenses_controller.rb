@@ -20,7 +20,7 @@ class ExpensesController < ApplicationController
     respond_to do |format|
       if result.success?
         flash = {
-          title: "New expense was created",
+          title: 'New expense was created',
           body: "Expense for #{@expense.month} was succesfully created."
         }
         format.html { redirect_to expenses_url, success: flash }
@@ -36,7 +36,7 @@ class ExpensesController < ApplicationController
     respond_to do |format|
       if result.success?
         flash = {
-          title: "Expense was updated",
+          title: 'Expense was updated',
           body: "Expense for #{@expense.month} was succesfully updated."
         }
         format.html { redirect_to expenses_path, success: flash }
@@ -49,7 +49,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense.destroy
     flash = {
-      title: "Expense was destroyed",
+      title: 'Expense was destroyed',
       body: "Expense for #{@expense.month} was succesfully destroyed."
     }
     respond_to do |format|

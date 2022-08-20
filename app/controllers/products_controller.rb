@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
         flash = {
-          title: "New product was created",
+          title: 'New product was created',
           body: "Product for code:#{@product.code} and name:#{@product.name} was succesfully created."
         }
         format.html { redirect_to products_path, success: flash }
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
         flash = {
           title: "Product for code:#{@product.code} and name:#{@product.name} was updated"
         }
-        format.html { redirect_to products_path, success:flash }
+        format.html { redirect_to products_path, success: flash }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
       flash = {
         title: "Product for code:#{@product.code} and name:#{@product.name} was destroyed"
       }
-      format.html { redirect_to products_url, success:flash }
+      format.html { redirect_to products_url, success: flash }
     end
   end
 
