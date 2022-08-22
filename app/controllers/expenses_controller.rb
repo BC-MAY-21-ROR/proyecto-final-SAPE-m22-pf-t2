@@ -19,7 +19,11 @@ class ExpensesController < ApplicationController
     @expense = result.expense
     respond_to do |format|
       if result.success?
-        format.html { redirect_to expenses_url, notice: 'Expense was successfully created.' }
+        flash = {
+          title: 'New expense was created',
+          body: "Expense for #{@expense.month} was succesfully created."
+        }
+        format.html { redirect_to expenses_url, success: flash }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -31,7 +35,11 @@ class ExpensesController < ApplicationController
     @expense = result.expense
     respond_to do |format|
       if result.success?
-        format.html { redirect_to expenses_path, notice: 'Expense was successfully updated.' }
+        flash = {
+          title: 'Expense was updated',
+          body: "Expense for #{@expense.month} was succesfully updated."
+        }
+        format.html { redirect_to expenses_path, success: flash }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -40,9 +48,12 @@ class ExpensesController < ApplicationController
 
   def destroy
     @expense.destroy
-
+    flash = {
+      title: 'Expense was destroyed',
+      body: "Expense for #{@expense.month} was succesfully destroyed."
+    }
     respond_to do |format|
-      format.html { redirect_to expenses_url, notice: 'Expense was successfully destroyed.' }
+      format.html { redirect_to expenses_url, success: flash }
     end
   end
 

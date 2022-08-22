@@ -29,18 +29,21 @@ class DashboardController < ApplicationController
   end
 
   def prepare_general_data
-    
-    unless @current_business.nil?
+    if @current_business.present?
       @clients_count = current_business.clients.count
       @providers_count = current_business.providers.count
       @current_month_sales_total = Sale.total_of_month(current_business, Date.today)
       @current_month_resupplies_total = Resupply.total_of_month(current_business, Date.today)
-    else 
+    else
       redirect_to new_business_path
     end
   end
 
   def prepare_chart_data
-    @data = FinancialState::CalculateLastSemesterFinancialState.call({ business: current_business }).financial_states
+    @graph_data = FinancialState::CalculateLastSemesterFinancialState.call(
+      {
+        business: current_business
+      }
+    ).financial_states
   end
 end

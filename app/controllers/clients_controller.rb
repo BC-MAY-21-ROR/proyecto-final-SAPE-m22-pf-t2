@@ -33,7 +33,11 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to clients_path, notice: 'Client was successfully created.' }
+        flash = {
+          title: 'New client was created',
+          body: "Client: #{@client.name} - #{@client.email} was succesfully created."
+        }
+        format.html { redirect_to clients_path, success: flash }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -43,7 +47,10 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to clients_path, notice: 'Client was successfully updated.' }
+        flash = {
+          title: "Client: #{@client.name} was updated"
+        }
+        format.html { redirect_to clients_path, success: flash }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -54,7 +61,10 @@ class ClientsController < ApplicationController
     @client.destroy
 
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      flash = {
+        title: "Client: #{@client.name} was destroyed"
+      }
+      format.html { redirect_to clients_url, success: flash }
     end
   end
 

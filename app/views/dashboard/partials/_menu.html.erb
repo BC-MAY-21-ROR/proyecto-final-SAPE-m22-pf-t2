@@ -14,7 +14,12 @@
       <span class="hidden md:inline-block">
         Hi,&nbsp;<%= current_user.name %>
       </span>
-      <%= show_svg 'arrow_down.svg' %>
+      <img
+        class="w-4 h-4 rounded-full mr-4"
+        src="<%= asset_path('arrow_down.svg') %>"
+        alt="Arrow down"
+      />
+      <%# <%= show_svg 'arrow_down.svg' %> 
     </button>
     <div
       class="
@@ -66,7 +71,7 @@
         Business
       </a>
       <a
-        href="<% financial_state_url %>"
+        href="<%= financial_state_url %>"
         class="
           text-sm
           py-2
@@ -82,7 +87,7 @@
         Financial state
       </a>
       <a
-        href="<% root_path %>"
+        href="<%= root_path %>"
         class="
           text-sm
           py-2
@@ -95,7 +100,7 @@
           text-slate-700
         "
       >
-        Volver a inicio
+        Back to home
       </a>
       <span
         class="
@@ -111,7 +116,7 @@
           text-slate-700
         "
       >
-        <%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
       </span>
     </div>
   </div>

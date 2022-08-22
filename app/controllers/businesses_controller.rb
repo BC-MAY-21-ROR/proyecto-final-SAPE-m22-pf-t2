@@ -58,7 +58,11 @@ class BusinessesController < ApplicationController
       if @business.save
         self.current_business = @business
         BusinessEnrollment.enroll_user_as_admin(current_user, @business)
-        format.html { redirect_to dashboard_path, notice: 'Your own business was successfully created.' }
+        flash = {
+          title: 'New bussiness was created',
+          body: "Bussiness: #{@business.name} was created"
+        }
+        format.html { redirect_to dashboard_path, success: flash }
       else
         @enrollments = BusinessEnrollment.enrollments_for_user(current_user)
         format.html { render :new, status: :unprocessable_entity }
@@ -78,7 +82,10 @@ class BusinessesController < ApplicationController
   def update
     respond_to do |format|
       if @business.update(business_params)
-        format.html { redirect_to business_path, notice: 'Your own business was successfully updated.' }
+        flash = {
+          title: "Business: #{@business.name} was updated"
+        }
+        format.html { redirect_to business_path, success: flash }
       else
         format.html { render edit_business_path, status: :unprocessable_entity }
       end
@@ -89,7 +96,10 @@ class BusinessesController < ApplicationController
     @business.destroy
 
     respond_to do |format|
-      format.html { redirect_to businesses_url, notice: 'Business was successfully destroyed.' }
+      flash = {
+        title: "Bussiness: #{@business.name} was destroyed"
+      }
+      format.html { redirect_to businesses_url, success: flash }
     end
   end
 

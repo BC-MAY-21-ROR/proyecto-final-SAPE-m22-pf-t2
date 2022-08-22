@@ -24,6 +24,9 @@ gem 'pg_search'
 # Styling
 gem "tailwindcss-rails", "~> 2.0"
 
+# Components
+gem "view_component"
+
 # PDF reports
 gem 'wicked_pdf' 
 gem 'wkhtmltopdf-binary'
