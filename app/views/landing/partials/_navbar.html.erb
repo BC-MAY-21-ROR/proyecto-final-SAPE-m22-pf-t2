@@ -89,7 +89,7 @@
           <%= link_to "English", root_path(lang: :en), class: "inline-block py-2 px-4 text-black font-bold no-underline" %>
 
           <% if current_user.present? %>
-            <%= link_to 'Go to dashboard',
+            <%= link_to t("button_dashboard"),
               dashboard_path,
               class: "bg-landing-button mx-auto text-gray-800 font-extrabold rounded mt-4 py-4 px-8 shadow opacity-75 lg:mx-0 hover:underline" %>
           <% else %>

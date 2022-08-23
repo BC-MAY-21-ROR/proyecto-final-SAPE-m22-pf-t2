@@ -1,7 +1,7 @@
 <section id="testimonials" class="bg-white py-32">
   <div class="max-w-6xl px-5 mx-auto text-center">
     <h2 class="text-4xl font-bold text-center">
-      What are experts saying about SAPEC?
+      <%= t("experts") %> 
     </h2>
     <div class="flex flex-col my-20 md:flex-row md:space-x-6">
       <!-- Testimonial 1 -->
@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    <%= link_to 'Get Started', 
+    <%= link_to t("button_start"), 
       new_user_registration_path, 
       class: "bg-landing-button text-gray-800 font-extrabold rounded mt-20 py-4 px-8 shadow-lg w-48 hover:underline" %>
 
