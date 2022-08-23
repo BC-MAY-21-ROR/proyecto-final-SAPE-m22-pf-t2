@@ -18,6 +18,11 @@ main {
   height: calc(100% - 64px);
 }
 
+.sidebar-mobile{
+  position: absolute;
+  left: -40px;
+  top: 20px;
+}
 @media (max-width: 600px) {
   .sidebar {
     display: none;

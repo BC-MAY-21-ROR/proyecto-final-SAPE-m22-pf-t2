@@ -15,33 +15,34 @@
 > 
   <!-- Mobile -->
     <div class = "mobile lg:hidden flex justify-around
-    items-center "> 
+    items-center p-0 mx-auto h-full w-full"> 
       
-      <div class="justify-center">
-        <a href="<%= root_path %>" class="item">
-          <div class="md:block">
-            <img id="sapec-logo" src="<%= asset_path('navbar-logo.png')%>" class="w-16 ml-16 my-10 mx-auto"/>
+      <ul class="flex justify-around items-center item w-screen">
+        <li>
+          <div class="flex justify-center items-center item">
+            <%= render 'dashboard/partials/sidebar_mobile' %>
           </div>
-        </a>
-      </div>
-      
-      <div class="justify-center">
-        <a href="<%= root_path %>">
-          <div class="md:block">
-            <img
-              id="sapec-logo"
-              src="<%= asset_path('navbar-logo.png')%>"
-              class="w-16 ml-16 my-10 mx-auto"
-            />
-          </div>
-        </a>
-      </div>
+        </li>
 
-        <a href="<%= root_path %>">
-          <div class="md:block">
-           <%= render 'dashboard/partials/menu' %>
+        <li>
+          <div class="flex justify-center items-center mx-auto">
+          <a href="<%= root_path %>">
+              <img
+                id="sapec-logo"
+                src="<%= asset_path('navbar-logo.png')%>" class="w-16 "
+                />
+              </a>
+            </div>
+        </li>
+
+        <li>
+          <div class="flex justify-center items-center">
+            <%= render 'dashboard/partials/menu' %>
           </div>
-        </a>
+      </li>
+      
+    </ul>
+      
   </div>
 
   <!-- Desktop -->

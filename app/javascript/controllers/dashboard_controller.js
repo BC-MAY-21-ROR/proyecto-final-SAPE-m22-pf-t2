@@ -13,4 +13,17 @@ export default class extends Controller {
     dropdown.classList.toggle('hidden');
     dropdown.classList.toggle('block');
   }
+
+  openMenuDropdown(){
+    let element = this.element;
+    const dropdown = document.getElementById('menu-dropdown');
+    while (element.nodeName !== 'BUTTON') {
+      element = element.parentNode;
+    }
+    Popper.createPopper(element, dropdown, {
+      placement: 'bottom-start',
+    });
+    dropdown.classList.toggle('hidden');
+    dropdown.classList.toggle('block');
+  }
 }
