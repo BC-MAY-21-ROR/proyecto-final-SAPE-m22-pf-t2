@@ -1,9 +1,9 @@
-@import url('pages/landing.css');
-@import url('pages/dashboard.css');
+@import url("pages/landing.css");
+@import url("pages/dashboard.css");
 
 html {
-  background-color: rgb(248 250 252);
-  height: 100vh;
+  background-color: rgb(243 244 246);
+  height: 100%;
 }
 
 body {
