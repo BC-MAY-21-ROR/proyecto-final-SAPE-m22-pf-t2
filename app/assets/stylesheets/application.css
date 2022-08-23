@@ -17,3 +17,15 @@ main {
 .dashboard-content {
   height: calc(100% - 64px);
 }
+
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+  .desktop {
+    display: none;
+  }
+  .item {
+    border: solid 2px red;
+  }
+}

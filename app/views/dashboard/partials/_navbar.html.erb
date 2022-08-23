@@ -12,8 +12,42 @@
     shadow
     px-5
   "
->
+> 
+  <!-- Mobile -->
+    <div class = "mobile lg:hidden flex justify-around
+    items-center "> 
+      
+      <div class="justify-center">
+        <a href="<%= root_path %>" class="item">
+          <div class="md:block">
+            <img id="sapec-logo" src="<%= asset_path('navbar-logo.png')%>" class="w-16 ml-16 my-10 mx-auto"/>
+          </div>
+        </a>
+      </div>
+      
+      <div class="justify-center">
+        <a href="<%= root_path %>">
+          <div class="md:block">
+            <img
+              id="sapec-logo"
+              src="<%= asset_path('navbar-logo.png')%>"
+              class="w-16 ml-16 my-10 mx-auto"
+            />
+          </div>
+        </a>
+      </div>
+
+        <a href="<%= root_path %>">
+          <div class="md:block">
+           <%= render 'dashboard/partials/menu' %>
+          </div>
+        </a>
+  </div>
+
+  <!-- Desktop -->
   <!-- logo -->
+  <div class = "desktop w-full flex mx-auto justify-between
+    items-center "> 
   <div class="inline-flex">
     <a href="<%= root_path %>">
       <div class="md:block">
@@ -34,5 +68,6 @@
       </div>
       <%= render 'dashboard/partials/menu' %>
     </div>
+  </div>
   </div>
 </nav>
